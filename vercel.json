@@ -1,8 +1,5 @@
 {
   "redirects": [
-    {
-      "source": "/",
-      "destination": "/login.html"
-    }
+    { "source": "/", "destination": "/login.html", "permanent": false }
   ]
 }
