@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Not Found</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff9f0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 404页面样式 */
+        .error-container {
+            text-align: center;
+            padding: 100px 0;
+        }
+        
+        .error-container h1 {
+            font-size: 4em;
+            color: #b91c1c;
+            margin-bottom: 30px;
+        }
+        
+        .error-container p {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            color: #666;
+        }
+        
+        .back-home {
+            display: inline-block;
+            background: #b91c1c;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 1.1em;
+            transition: background 0.3s ease;
+        }
+        
+        .back-home:hover {
+            background: #991b1b;
+        }
+        
+        /* 页脚 */
+        footer {
+            background: #f8f8f8;
+            color: #333;
+            padding: 40px 0;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 150px 1fr 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 25px;
+            font-size: 1.2em;
+            color: #000000;
+            font-weight: bold;
+        }
+        
+        .footer-section p {
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            text-decoration: none;
+            color: #666;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #b91c1c;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="error-container">
+            <h1>404</h1>
+            <p>抱歉，您访问的页面不存在</p>
+            <a href="index.html" class="back-home">返回首页</a>
+        </div>
+    </div>
+    
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>快速链接</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="discover.html">发现</a></li>
+                        <li><a href="profile.html">我的</a></li>
+                        <li><a href="team.html">队伍介绍</a></li>
+                        <li><a href="current.html">当届动态</a></li>
+                        <li><a href="past.html">朝花夕拾</a></li>
+                        <li><a href="resources.html">资料分享</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>固原支教队</h3>
+                    <p>用爱心点燃希望，用知识改变未来。我们致力于为宁夏回族自治区固原市隆德县的孩子们提供优质的教育资源，帮助他们实现梦想。</p>
+                </div>
+                <div class="footer-section">
+                    <h3>赞助方</h3>
+                    <ul style="list-style: none; padding-left: 0; color: #666;">
+                        <li style="margin-bottom: 8px;">• 厦门大学</li>
+                        <li style="margin-bottom: 8px;">• 共青团隆德县委员会</li>
+                        <li style="margin-bottom: 8px;">• 中国大学生知行促进计划</li>
+                        <li style="margin-bottom: 8px;">• 知行计划・西门子爱绿教育计划（第七、八届）</li>
+                        <li style="margin-bottom: 8px;">• 知行计划・立邦为爱上色中国大学生农村支教奖（第七届）</li>
+                        <li style="margin-bottom: 8px;">• 快乐学习</li>
+                        <li style="margin-bottom: 8px;">• "鹏青杯" 大学生社会公益创投大赛（第一、二、三届）</li>
+                    </ul>
+                    <p style="margin-top: 15px; color: #666;">更多合作单位与赞助详情，欢迎关注固原支教队官方微信公众号，获取最新动态与完整名单。</p>
+                </div>
+                <div class="footer-section">
+                    <h3>联系我们</h3>
+                    <p>地址：福建省厦门市思明区思明南路422号</p>
+                    <div style="margin-top: 15px; text-align: center;">
+                        <img src="CRcode/wx_gongzhonghao_logo.jpg" alt="固原支教队官方微信公众号" style="width: 100px; height: 100px;">
+                        <p style="margin-top: 10px; color: #666; font-size: 0.9em;">官方微信公众号</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 厦门大学西部梦想社团 固原支教队. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

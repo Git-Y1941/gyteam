@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>固原支教队 - 首页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff9f0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 主导航栏 */
+        .main-nav {
+            background: #ffffff;
+            padding: 20px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-radius: 0 0 10px 10px;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+        }
+        
+        .logo-text {
+            text-align: left;
+        }
+        
+        .logo-text .large {
+            font-size: 1.7em;
+            font-weight: bold;
+            color: #b91c1c;
+        }
+        
+        .logo-text .small {
+            font-size: 1em;
+            color: #666;
+            margin-top: 2px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+        }
+        
+        .nav-links a:hover {
+            color: #b91c1c;
+            font-weight: bold;
+        }
+        
+        .nav-links a.active {
+            color: #b91c1c;
+            font-weight: bold;
+        }
+        
+        /* 导航链接文字对齐 */
+        .nav-links a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+            padding-top: 3px;
+        }
+        
+        /* 导航图标 */
+        .nav-icon {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+            vertical-align: middle;
+            flex-shrink: 0;
+        }
+        
+        /* 首页图标 - 三条横杠 */
+        .nav-icon-home {
+            width: 18px;
+            height: 14px;
+            position: relative;
+        }
+        
+        .nav-icon-home::before,
+        .nav-icon-home::after,
+        .nav-icon-home span {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #b91c1c;
+        }
+        
+        .nav-icon-home::before {
+            top: 0;
+        }
+        
+        .nav-icon-home span {
+            top: 6px;
+        }
+        
+        .nav-icon-home::after {
+            bottom: 0;
+        }
+        
+        /* 发现图标 - 放大镜 */
+        .nav-icon-discover {
+            width: 16px;
+            height: 16px;
+            border: 2px solid #b91c1c;
+            border-radius: 50%;
+            position: relative;
+        }
+        
+        .nav-icon-discover::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 2px;
+            background-color: #b91c1c;
+            bottom: -3px;
+            right: -4px;
+            transform: rotate(45deg);
+        }
+        
+        /* 我的图标 - 小人 */
+        .nav-icon-profile {
+            width: 14px;
+            height: 16px;
+            position: relative;
+        }
+        
+        .nav-icon-profile::before {
+            content: '';
+            position: absolute;
+            left: 2px;
+            top: -2px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            border: solid 2px #b91c1c;
+        }
+        
+        .nav-icon-profile::after {
+            content: '';
+            position: absolute;
+            left: -1px;
+            bottom: -2px;
+            width: 14px;
+            height: 6px;
+            border-left: solid 2px #b91c1c;
+            border-right: solid 2px #b91c1c;
+            border-top: solid 2px #b91c1c;
+            border-bottom: solid 2px transparent;
+            border-radius: 8px 8px 0 0;
+        }
+        
+        /* 首页下拉菜单 */
+        .nav-home-dropdown {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-home-arrow {
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 5px solid #b91c1c;
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        
+        .nav-home-dropdown:hover .nav-home-arrow {
+            transform: rotate(180deg);
+        }
+        
+        .nav-home-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            min-width: 150px;
+            display: none;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            padding: 5px 0;
+        }
+        
+        .nav-home-dropdown {
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding-bottom: 10px;
+        }
+        
+        .nav-home-dropdown:hover .nav-home-menu {
+            display: block;
+        }
+        
+        .nav-home-menu a {
+            display: block;
+            padding: 10px 15px;
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .nav-home-menu a:last-child {
+            border-bottom: none;
+        }
+        
+        .nav-home-menu a:hover {
+            background: #f9f9f9;
+            color: #b91c1c;
+        }
+        
+        /* 滚动图片 */
+        .carousel {
+            position: relative;
+            height: 500px;
+            max-height: 500px;
+            overflow: hidden;
+            margin: 50px 0 30px;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+        }
+        
+        .carousel-inner {
+            display: flex;
+            height: 100%;
+        }
+        
+        .carousel-item {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+            display: none;
+        }
+        
+        .carousel-item.active {
+            display: block;
+        }
+        
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            padding: 15px 20px;
+        }
+        
+        .carousel-caption h3 {
+            margin-bottom: 5px;
+        }
+        
+        .carousel-caption p {
+            margin-bottom: 0;
+        }
+        
+        .carousel-indicators {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+        
+        .indicator {
+            width: 20px;
+            height: 4px;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .indicator.active {
+            background: white;
+        }
+        
+        /* 置顶贴文 */
+        .pinned-post {
+            display: flex;
+            margin: 30px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pinned-post-left {
+            flex: 1;
+            background: #b91c1c;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            border: 1px solid #b91c1c;
+            border-radius: 12px 0 0 12px;
+        }
+        
+        .pinned-post-right {
+            flex: 5;
+            background: white;
+            padding: 10px 10px 10px 25px;
+            border: 1px solid #e0e0e0;
+            border-left: none;
+            border-radius: 0 12px 12px 0;
+        }
+        
+        .pinned-post-right h3 {
+            margin-bottom: 5px;
+            font-size: 1.2em;
+            color: #b91c1c;
+        }
+        
+        .pinned-post-right p {
+            color: #333;
+        }
+        
+        /* 功能按钮 */
+        .feature-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .feature-btn {
+            background: #ffffff;
+            padding: 35px;
+            border: 1px solid #e0e0e0;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 12px;
+        }
+        
+        .feature-btn:hover {
+            border-color: #b91c1c;
+            background: #f8f9fa;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-btn h3 {
+            margin-bottom: 10px;
+            color: #b91c1c;
+            font-size: 1.2em;
+        }
+        
+        .feature-btn p {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        /* 贴文筛选 */
+        .post-filter {
+            display: flex;
+            margin: 30px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .filter-btn {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            font-size: 1em;
+            font-weight: 500;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+            border-radius: 8px 8px 0 0;
+        }
+        
+        .filter-btn:hover {
+            background: #f8f9fa;
+        }
+        
+        .filter-btn.active {
+            color: #b91c1c;
+            border-bottom: 2px solid #b91c1c;
+            background: #fef5f5;
+        }
+        
+        /* 贴文列表 */
+        .post-list {
+            margin-bottom: 50px;
+        }
+        
+        .post-item {
+            background: #ffffff;
+            padding: 25px;
+            border: 1px solid #e0e0e0;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+            border-radius: 12px;
+        }
+        
+        .post-item:hover {
+            border-color: #b91c1c;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .post-avatar {
+            width: 40px;
+            height: 40px;
+            background: #b91c1c;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .post-avatar:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(185, 28, 28, 0.3);
+        }
+        
+        .post-info {
+            flex: 1;
+        }
+        
+        .post-author {
+            font-weight: 500;
+            color: #b91c1c;
+        }
+        
+        .post-meta {
+            font-size: 0.8em;
+            color: #999;
+        }
+        
+        .post-content {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .post-actions {
+            display: flex;
+            gap: 20px;
+            font-size: 0.9em;
+            color: #666;
+            padding-top: 15px;
+            border-top: 1px solid #f0f0f0;
+        }
+        
+        .post-action {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s ease;
+        }
+        
+        .post-action:hover {
+            color: #b91c1c;
+        }
+        
+        /* 悬浮发帖按钮 */
+        .fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: #b91c1c;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            cursor: pointer;
+            border: 1px solid #991b1b;
+            transition: all 0.3s ease;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(185, 28, 28, 0.3);
+        }
+        
+        .fab:hover {
+            background: #991b1b;
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(185, 28, 28, 0.4);
+        }
+        
+        /* 热门资讯 */
+        .content-section {
+            margin-bottom: 40px;
+        }
+        
+        .content-block {
+            padding: 25px;
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .content-block h3 {
+            color: #b91c1c;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            border-left: 4px solid #b91c1c;
+            padding-left: 10px;
+        }
+        
+        /* 筛选按钮 */
+        .filter-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .filter-btn {
+            padding: 8px 16px;
+            background: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+        
+        .filter-btn:hover {
+            background: #b91c1c;
+            color: white;
+        }
+        
+        .filter-btn.active {
+            background: #b91c1c;
+            color: white;
+        }
+        
+        /* 资讯列表 */
+        .news-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .news-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #333;
+        }
+        
+        .news-item:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .news-image {
+            width: 100px;
+            height: 70px;
+            margin-right: 15px;
+            border-radius: 4px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .news-info {
+            flex: 1;
+        }
+        
+        .news-info h4 {
+            margin: 0;
+            font-size: 1.1em;
+            color: #333;
+        }
+        
+        .news-tag {
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            white-space: nowrap;
+        }
+        
+        .article-tag {
+            background: #e0e7ff;
+            color: #4338ca;
+        }
+        
+        .video-tag {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        /* 页脚 */
+        footer {
+            background: #f8f8f8;
+            color: #333;
+            padding: 60px 0;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 80px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 130px 1fr 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 25px;
+            font-size: 1.2em;
+            color: #000000;
+            font-weight: bold;
+        }
+        
+        .footer-section p {
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+        
+        .footer-section:nth-child(2) {
+        padding: 0 40px; /* 核心：左右内边距，数值可自行调整（如10px/30px） */
+        }
+
+
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            text-decoration: none;
+            color: #666;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #b91c1c;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 25px;
+            border-top: 1px solid #e0e0e0;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-wrap: wrap;
+            }
+            
+            .nav-links li {
+                margin-left: 15px;
+                margin-bottom: 10px;
+            }
+            
+            .carousel {
+                height: 250px;
+            }
+            
+            .feature-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 主导航栏 -->
+    <nav class="main-nav">
+        <div class="container nav-container">
+            <div class="logo">
+            <img src="logo.png" alt="厦门大学西部梦想社团 固原支教队">
+            <div class="logo-text">
+                <div class="small">厦门大学西部梦想社团</div>
+                <div class="large">固原支教队</div>
+            </div>
+        </div>
+            <ul class="nav-links">
+                <li class="nav-home-dropdown">
+                    <a href="index.html" class="active">
+                        <span class="nav-icon nav-icon-home"><span></span></span>
+                        首页
+                    </a>
+                    <span class="nav-home-arrow"></span>
+                    <div class="nav-home-menu">
+                        <a href="team.html">队伍介绍</a>
+                        <a href="current.html">当届动态</a>
+                        <a href="past.html">朝花夕拾</a>
+                        <a href="resources.html">资料分享</a>
+                    </div>
+                </li>
+                <li><a href="discover.html"><span class="nav-icon nav-icon-discover"></span>发现</a></li>
+                <li><a href="profile.html"><span class="nav-icon nav-icon-profile"></span>我的</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- 滚动图片 -->
+    <div class="container">
+        <div class="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="img/play_01.jpg" alt="2025年支教活动总结">
+                    <div class="carousel-caption">
+                        <h3>2025年支教活动总结</h3>
+                        <p>隆德县沙塘中心小学，我们在这里书写新故事的开始</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="img/play_02.jpg" alt="25届成员介绍">
+                    <div class="carousel-caption">
+                        <h3>25届成员介绍</h3>
+                        <p>我们学习、我们锻炼，我们一起成长</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="img/play_03.jpg" alt="朝花夕拾——从前的故事">
+                    <div class="carousel-caption">
+                        <h3>朝花夕拾——从前的故事</h3>
+                        <p>隆德县杜川村杜川小学，讲述三年的难忘经历</p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-indicators">
+                <div class="indicator active"></div>
+                <div class="indicator"></div>
+                <div class="indicator"></div>
+            </div>
+        </div>
+        
+        <!-- 置顶贴文 -->
+        <div class="pinned-post">
+            <div class="pinned-post-left">通知</div>
+            <div class="pinned-post-right">
+                <h3>重要通知：2026届社团分队大会即将开始</h3>
+                <p>有意向加入我们支教队伍的同学请留意社团微信公众号，队伍报名届时在分队大会开启</p>
+            </div>
+        </div>
+        
+        <!-- 功能按钮 -->
+        <div class="feature-buttons">
+            <div class="feature-btn" onclick="window.location.href='team.html'">
+                <h3>队伍介绍</h3>
+                <p>了解支教队伍的历史、使命和成员</p>
+            </div>
+            <div class="feature-btn" onclick="window.location.href='current.html'">
+                <h3>当届动态</h3>
+                <p>查看当前届次的活动安排和进展</p>
+            </div>
+            <div class="feature-btn" onclick="window.location.href='past.html'">
+                <h3>朝花夕拾</h3>
+                <p>回顾往届支教活动的精彩瞬间</p>
+            </div>
+            <div class="feature-btn" onclick="window.location.href='resources.html'">
+                <h3>资料分享</h3>
+                <p>下载教案模板、优秀案例等资源</p>
+            </div>
+        </div>
+        
+        <!-- 热门资讯 -->
+        <div class="content-section" id="hot-news">
+            <div class="content-block">
+                <h3>热门资讯</h3>
+                
+                <!-- 资讯筛选 -->
+                <div class="filter-tabs">
+                    <button class="filter-btn active" data-filter="all">全部</button>
+                    <button class="filter-btn" data-filter="article">公众号文章</button>
+                    <button class="filter-btn" data-filter="video">视频</button>
+                </div>
+                
+                <!-- 资讯列表 -->
+                <div class="news-list">
+                    <a href="https://mp.weixin.qq.com/s/s-PYt-nznI27cH8HmMTtWA" class="news-item" data-type="article" target="_blank">
+                        <div class="news-image">
+                            <img src="https://mmbiz.qpic.cn/sz_mmbiz_jpg/XZwCWJNjEjMNADnBkmpXTiasYWwVtaJ3Wdciaxow5MKAhT29cSTBujJSmdCticXNpjVSQ98iaic2ylmxO5ic6xeckzPjPbvywHLwJYv1qLibGjspM4/640?wx_fmt=jpeg&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=6" alt="春节特辑" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="news-info">
+                            <h4>春节特辑 | 叮！假期充值失败？</h4>
+                        </div>
+                        <div class="news-tag article-tag">公众号文章</div>
+                    </a>
+                    
+                    <a href="https://www.bilibili.com/video/BV1vCtdzBEGe/?spm_id_from=333.1387.homepage.video_card.click&vd_source=b8cb1023b1c8c32e5413974722cc17d3" class="news-item" data-type="video" target="_blank">
+                        <div class="news-image">
+                            <img src="https://i2.hdslb.com/bfs/archive/4b37e95d030aed727afeac93a169cbaff7d74f9c.jpg@672w_378h_1c.webp" alt="固原队总结视频" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="news-info">
+                            <h4>固原队总结视频-我们的那个夏天</h4>
+                        </div>
+                        <div class="news-tag video-tag">视频</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>快速链接</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="discover.html">发现</a></li>
+                        <li><a href="profile.html">我的</a></li>
+                        <li><a href="team.html">队伍介绍</a></li>
+                        <li><a href="current.html">当届动态</a></li>
+                        <li><a href="past.html">朝花夕拾</a></li>
+                        <li><a href="resources.html">资料分享</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>固原支教队</h3>
+                    <p>用爱心点燃希望，用知识改变未来。</p>
+                    <p>我们致力于为宁夏回族自治区固原市隆德县的孩子们提供优质的教育资源，帮助他们实现梦想。</p>
+                </div>
+                <div class="footer-section">
+                    <h3>赞助方</h3>
+                    <ul style="list-style: none; padding-left: 0; color: #666;">
+                        <li style="margin-bottom: 8px;">厦门大学</li>
+                        <li style="margin-bottom: 8px;">共青团隆德县委员会</li>
+                        <li style="margin-bottom: 8px;">中国大学生知行促进计划</li>
+                        <li style="margin-bottom: 8px;">西门子爱绿教育计划</li>
+                        <li style="margin-bottom: 8px;">立邦为爱上色中国大学生农村支教奖</li>
+                        <li style="margin-bottom: 8px;">快乐学习</li>
+                        <li style="margin-bottom: 8px;">"鹏青杯" 大学生社会公益创投大赛</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>联系我们</h3>
+                    <p>地址：福建省厦门市思明区思明南路422号</p>
+                    <div style="margin-top: 15px; text-align: center;">
+                        <img src="CRcode/wx_gongzhonghao_logo.jpg" alt="固原支教队官方微信公众号" style="width: 100px; height: 100px;">
+                        <p style="margin-top: 10px; color: #666; font-size: 0.9em;">官方微信公众号</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 厦门大学西部梦想社团 固原支教队. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // 滚动图片轮播
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-item');
+        const indicators = document.querySelectorAll('.indicator');
+        
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+            });
+            slides[index].classList.add('active');
+            indicators.forEach((indicator, i) => {
+                indicator.classList.remove('active');
+                if (i === index) {
+                    indicator.classList.add('active');
+                }
+            });
+            currentSlide = index;
+        }
+        
+        // 自动轮播
+        setInterval(() => {
+            showSlide((currentSlide + 1) % slides.length);
+        }, 5000);
+        
+        // 点击指示器切换
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                showSlide(index);
+            });
+        });
+        
+        // 贴文筛选
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // 移除所有按钮的active类
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                // 添加当前按钮的active类
+                this.classList.add('active');
+                
+                const filter = this.getAttribute('data-filter');
+                document.querySelectorAll('.post-item').forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-type') === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // 打开发帖模态框
+        function openPostModal() {
+            // 检查用户登录状态
+            const userType = localStorage.getItem('userType');
+            if (!userType) {
+                alert('请先登录后再发帖');
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // 这里可以添加打开发帖模态框的逻辑
+            alert('发帖功能开发中...');
+        }
+        
+        // 检查登录状态
+        function checkLoginStatus() {
+            const userType = localStorage.getItem('userType');
+            if (!userType) {
+                // 未登录，跳转到登录页
+                window.location.href = 'login.html';
+            }
+        }
+        
+        // 页面加载时检查登录状态
+        // checkLoginStatus();
+        
+        // 热门资讯筛选功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const newsItems = document.querySelectorAll('.news-item');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // 移除所有按钮的active类
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    // 添加当前按钮的active类
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    
+                    newsItems.forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-type') === filter) {
+                            item.style.display = 'flex';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+
+    </script>
+</body>
+</html>

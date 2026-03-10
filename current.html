@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>厦门大学西部梦想社团 固原支教队 - 当届动态</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff9f0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 主导航栏 */
+        .main-nav {
+            background: #ffffff;
+            padding: 20px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-radius: 0 0 10px 10px;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+        }
+        
+        .logo-text {
+            text-align: left;
+        }
+        
+        .logo-text .large {
+            font-size: 1.7em;
+            font-weight: bold;
+            color: #b91c1c;
+        }
+        
+        .logo-text .small {
+            font-size: 1em;
+            color: #666;
+            margin-top: 2px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        /* 导航链接文字对齐 */
+        .nav-links a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+            padding-top: 3px;
+        }
+        
+        /* 导航图标 */
+        .nav-icon {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+            vertical-align: middle;
+            flex-shrink: 0;
+        }
+        
+        /* 首页图标 - 三条横杠 */
+        .nav-icon-home {
+            width: 18px;
+            height: 14px;
+            position: relative;
+        }
+        
+        .nav-icon-home::before,
+        .nav-icon-home::after,
+        .nav-icon-home span {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #b91c1c;
+        }
+        
+        .nav-icon-home::before {
+            top: 0;
+        }
+        
+        .nav-icon-home span {
+            top: 6px;
+        }
+        
+        .nav-icon-home::after {
+            bottom: 0;
+        }
+        
+        /* 发现图标 - 放大镜 */
+        .nav-icon-discover {
+            width: 16px;
+            height: 16px;
+            border: 2px solid #b91c1c;
+            border-radius: 50%;
+            position: relative;
+        }
+        
+        .nav-icon-discover::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 2px;
+            background-color: #b91c1c;
+            bottom: -3px;
+            right: -4px;
+            transform: rotate(45deg);
+        }
+        
+        /* 我的图标 - 小人 */
+        .nav-icon-profile {
+            width: 14px;
+            height: 16px;
+            position: relative;
+        }
+        
+        .nav-icon-profile::before {
+            content: '';
+            position: absolute;
+            left: 2px;
+            top: -2px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            border: solid 2px #b91c1c;
+        }
+        
+        .nav-icon-profile::after {
+            content: '';
+            position: absolute;
+            left: -1px;
+            bottom: -2px;
+            width: 14px;
+            height: 6px;
+            border-left: solid 2px #b91c1c;
+            border-right: solid 2px #b91c1c;
+            border-top: solid 2px #b91c1c;
+            border-bottom: solid 2px transparent;
+            border-radius: 8px 8px 0 0;
+        }
+        
+        /* 首页下拉菜单 */
+        .nav-home-dropdown {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-home-arrow {
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 5px solid #b91c1c;
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        
+        .nav-home-dropdown:hover .nav-home-arrow {
+            transform: rotate(180deg);
+        }
+        
+        .nav-home-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            min-width: 150px;
+            display: none;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            padding: 5px 0;
+        }
+        
+        .nav-home-dropdown {
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding-bottom: 10px;
+        }
+        
+        .nav-home-dropdown:hover .nav-home-menu {
+            display: block;
+        }
+        
+        .nav-home-menu a {
+            display: block;
+            padding: 10px 15px;
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .nav-home-menu a:last-child {
+            border-bottom: none;
+        }
+        
+        .nav-home-menu a:hover {
+            background: #f9f9f9;
+            color: #b91c1c;
+        }
+        
+        /* 队伍标题 */
+        .team-title {
+            text-align: center;
+            margin-top: 80px;
+            margin-bottom: 50px;
+        }
+        
+        .team-title h1 {
+            font-size: 3em;
+            font-weight: bold;
+            color: #b91c1c;
+            margin-bottom: 30px;
+        }
+        
+        .team-slogan {
+            font-size: 1.2em;
+            color: #666;
+        }
+        
+        /* 快速定位导航 */
+        .anchor-nav {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding: 15px;
+            background: #f9f9f9;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .anchor-link {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 8px 15px;
+            border-radius: 4px;
+        }
+        
+        .anchor-link:hover {
+            color: #b91c1c;
+            background: #fff0f0;
+        }
+        
+        .anchor-link.active {
+            color: #b91c1c;
+            font-weight: bold;
+        }
+        
+        /* 方块样式 */
+        .content-block {
+            padding: 25px;
+            margin-bottom: 30px;
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .content-block:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .content-block h3 {
+            color: #b91c1c;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            border-left: 4px solid #b91c1c;
+            padding-left: 10px;
+        }
+        
+        .content-block p {
+            line-height: 1.8;
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+        
+        /* 队长信息 */
+        .captain-team {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .captain-member {
+            text-align: center;
+            padding: 20px;            background: #f9f9f9;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+        
+        .captain-member:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .captain-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            background: #d1d5db;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            margin: 0 auto 15px;
+        }
+        
+        .captain-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .tags-row {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .tags-row:last-child {
+            margin-bottom: 0;
+        }
+        
+        .captain-title {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            background: #d1d5db;
+            color: #333;
+        }
+        
+        .subject-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            background: #e0e7ff;
+            color: #4338ca;
+        }
+        
+        .function-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        /* 咨询墙 */
+        .consultation-content {
+            width: 100%;
+        }
+        
+        .consultation-input {
+            margin-bottom: 30px;
+        }
+        
+        .consultation-input textarea {
+            width: 100%;
+            height: 120px;
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            resize: vertical;
+            font-size: 1em;
+            font-family: inherit;
+        }
+        
+        .consultation-input button {
+            display: block;
+            margin-top: 15px;
+            padding: 10px 30px;
+            background: #b91c1c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .consultation-input button:hover {
+            background: #991b1b;
+        }
+        
+        .consultation-messages {
+            border-top: 1px solid #e0e0e0;
+            padding-top: 20px;
+        }
+        
+        .consultation-message {
+            background: #f8f8f8;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .message-author {
+            font-weight: 500;
+            color: #b91c1c;
+        }
+        
+        .message-time {
+            font-size: 0.8em;
+            color: #999;
+        }
+        
+        .message-content {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .message-actions {
+            text-align: right;
+        }
+        
+        .reply-button {
+            background: none;
+            border: none;
+            color: #b91c1c;
+            cursor: pointer;
+            font-size: 0.9em;
+            padding: 5px 10px;
+        }
+        
+        .reply-button:hover {
+            text-decoration: underline;
+        }
+        
+        .reply-form {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .reply-form textarea {
+            width: 100%;
+            height: 80px;
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            resize: vertical;
+            font-size: 0.9em;
+            font-family: inherit;
+        }
+        
+        .reply-form button {
+            display: block;
+            margin-top: 10px;
+            padding: 8px 20px;
+            background: #b91c1c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .reply-form button:hover {
+            background: #991b1b;
+        }
+        
+        .message-replies {
+            margin-top: 15px;
+            padding-left: 20px;
+            border-left: 2px solid #e0e0e0;
+        }
+        
+        .message-reply {
+            background: #f0f0f0;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .reply-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        
+        .reply-author {
+            font-weight: 500;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .reply-time {
+            font-size: 0.7em;
+            color: #999;
+        }
+        
+        .reply-content {
+            color: #333;
+            font-size: 0.9em;
+        }
+        
+        /* 时间轴 */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #b91c1c;
+            z-index: 1;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #10b981;
+            z-index: 2;
+        }
+        
+        .timeline-item.completed::before {
+            background: #008000;
+            z-index: 2;
+        }
+        
+        .timeline-item.upcoming::before {
+            background: #008000;
+            z-index: 2;
+        }
+        
+        .timeline-item.upcoming {
+            opacity: 1;
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: #b91c1c;
+            margin-bottom: 5px;
+        }
+        
+        .timeline-content {
+            background: #f9f9f9;
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .timeline-item.upcoming .timeline-content {
+            background: #f5f5f5;
+        }
+        
+        .timeline-content h4 {
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 1.1em;
+        }
+        
+        .timeline-content p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .timeline-action {
+            display: inline-block;
+            background: #b91c1c;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+            font-size: 0.9em;
+        }
+        
+        .timeline-action:hover {
+            background: #991b1b;
+        }
+        
+        .timeline-item.upcoming .timeline-action {
+            background: #999;
+            cursor: not-allowed;
+        }
+        
+        /* 当届队员信息 */
+        .waiting-for-members {
+            text-align: center;
+            padding: 60px 20px;
+            background: #f9f9f9;
+            font-size: 1.2em;
+            color: #666;
+        }
+        
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .member-card {
+            text-align: center;
+            padding: 20px;
+            background: transparent;
+            transition: transform 0.3s ease;
+        }
+        
+        .member-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .member-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #b91c1c;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            margin: 0 auto 10px;
+        }
+        
+        .member-name {
+            font-weight: bold;
+            margin-bottom: 3px;
+            color: #333;
+            font-size: 0.9em;
+        }
+        
+        .member-role {
+            color: #666;
+            font-size: 0.8em;
+        }
+        
+        /* 主要内容区域 */
+        .team-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        /* 左侧内容 */
+        .left-content {
+            background: #ffffff;
+            padding: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        /* 统一表格样式 */
+        .unified-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+        }
+        
+        .unified-table th,
+        .unified-table td {
+            border: 1px solid #b91c1c;
+            padding: 12px;
+            text-align: center;
+        }
+        
+        .unified-table th {
+            background-color: #fef5f5;
+            color: #b91c1c;
+            font-weight: bold;
+        }
+        
+        .unified-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .unified-table tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        /* 页脚 */
+        footer {
+            background: #f8f8f8;
+            color: #333;
+            padding: 40px 0;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 150px 1fr 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 25px;
+            font-size: 1.2em;
+            color: #000000;
+            font-weight: bold;
+        }
+        
+        .footer-section p {
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+        
+        .footer-section:nth-child(2) {
+        padding: 0 40px; /* 核心：左右内边距，数值可自行调整（如10px/30px） */
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            text-decoration: none;
+            color: #666;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #b91c1c;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-wrap: wrap;
+            }
+            
+            .nav-links li {
+                margin-left: 15px;
+                margin-bottom: 10px;
+            }
+            
+            .timeline-section,
+            .consultation-wall,
+            .members-section {
+                padding: 20px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 主导航栏 -->
+    <nav class="main-nav">
+        <div class="container nav-container">
+            <div class="logo">
+                <img src="logo.png" alt="厦门大学西部梦想社团 固原支教队">
+                <div class="logo-text">
+                    <div class="small">厦门大学西部梦想社团</div>
+                    <div class="large">固原支教队</div>
+                </div>
+            </div>
+                                                                        <ul class="nav-links">
+                <li class="nav-home-dropdown">
+                    <a href="index.html">
+                        <span class="nav-icon nav-icon-home"><span></span></span>
+                        首页
+                    </a>
+                    <span class="nav-home-arrow"></span>
+                    <div class="nav-home-menu">
+                        <a href="team.html">队伍介绍</a>
+                        <a href="current.html">当届动态</a>
+                        <a href="past.html">朝花夕拾</a>
+                        <a href="resources.html">资料分享</a>
+                    </div>
+                </li>
+                <li><a href="discover.html"><span class="nav-icon nav-icon-discover"></span>发现</a></li>
+                <li><a href="profile.html"><span class="nav-icon nav-icon-profile"></span>我的</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- 主要内容 -->
+    <div class="container">
+        <!-- 页面标题 -->
+        <div class="team-title">
+            <h1>当届动态</h1>
+            <p class="team-slogan">2026届队伍最新动态</p>
+        </div>
+        
+        <!-- 主要内容区域 -->
+        <div class="team-content">
+            <!-- 左侧内容 -->
+            <div class="left-content">
+                <!-- 快速导航栏 -->
+                <div class="anchor-nav">
+                    <a href="#captain" class="anchor-link active">队长团</a>
+                    <a href="#members" class="anchor-link">当届队员</a>
+                    <a href="#consultation" class="anchor-link">问题解答</a>
+                    <a href="#timeline" class="anchor-link">时间轴</a>
+                </div>
+                
+                <!-- 队长信息 -->
+                <div class="content-section" id="captain">
+                    <div class="content-block">
+                        <h3>2026届队伍队长团成员</h3>
+                        <div class="captain-team">
+                            <div class="captain-member">
+                                <div class="captain-avatar">艺</div>
+                                <h2 class="captain-name">小艺</h2>
+                                <div class="tags-row">
+                                    <div class="captain-title">队长</div>
+                                </div>
+                                <div class="tags-row">
+                                    <div class="subject-tag">数学</div>
+                                    <div class="function-tag">神算子</div>
+                                </div>
+                            </div>
+                            <div class="captain-member">
+                                <div class="captain-avatar">米</div>
+                                <h2 class="captain-name">小米</h2>
+                                <div class="tags-row">
+                                    <div class="captain-title">副队长</div>
+                                </div>
+                                <div class="tags-row">
+                                    <div class="subject-tag">语文</div>
+                                    <div class="function-tag">原梦</div>
+                                </div>
+                            </div>
+                            <div class="captain-member">
+                                <div class="captain-avatar">梦</div>
+                                <h2 class="captain-name">小梦</h2>
+                                <div class="tags-row">
+                                    <div class="captain-title">副队长</div>
+                                </div>
+                                <div class="tags-row">
+                                    <div class="subject-tag">英语</div>
+                                    <div class="function-tag">原梦</div>
+                                </div>
+                            </div>
+                            <div class="captain-member">
+                                <div class="captain-avatar">苹</div>
+                                <h2 class="captain-name">苹果</h2>
+                                <div class="tags-row">
+                                    <div class="captain-title">副队长</div>
+                                </div>
+                                <div class="tags-row">
+                                    <div class="subject-tag">文艺</div>
+                                    <div class="function-tag">固梦</div>
+                                </div>
+                            </div>
+                            <div class="captain-member">
+                                <div class="captain-avatar">淇</div>
+                                <h2 class="captain-name">小淇</h2>
+                                <div class="tags-row">
+                                    <div class="captain-title">副队长</div>
+                                </div>
+                                <div class="tags-row">
+                                    <div class="subject-tag">百科</div>
+                                    <div class="function-tag">天机</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 当届队员信息 -->
+                <div class="content-section" id="members">
+                    <div class="content-block">
+                        <h3>当届队员信息</h3>
+                        <div class="waiting-for-members">
+                            <p>我们正在等待你的加入</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 问题解答 -->
+                <div class="content-section" id="consultation">
+                    <div class="content-block">
+                        <h3>问题解答</h3>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                            <!-- 问题1 -->
+                            <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; border: 1px solid #e0e0e0;">
+                                <p style="font-weight: bold; color: #b91c1c; margin-bottom: 10px;">Q：请问支教活动的具体时间安排是怎样的？需要准备哪些物品？</p>
+                                <p style="margin-bottom: 0;">A：支教活动通常在暑假期间进行，具体时间会根据学校放假时间确定。需要准备的物品包括个人洗漱用品、衣物、教学资料、小礼物等。我们会在出发前提供详细的物品清单。</p>
+                            </div>
+                            <!-- 问题2 -->
+                            <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; border: 1px solid #e0e0e0;">
+                                <p style="font-weight: bold; color: #b91c1c; margin-bottom: 10px;">Q：没有教学经验可以参加吗？需要具备哪些条件？</p>
+                                <p style="margin-bottom: 0;">A：没有教学经验也可以参加！我们会在出发前进行系统的教学培训，帮助你掌握基本的教学技能。参加的基本条件是有爱心、责任心，能够适应艰苦的环境，并且愿意为乡村教育贡献自己的力量。</p>
+                            </div>
+                            <!-- 问题3 -->
+                            <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; border: 1px solid #e0e0e0;">
+                                <p style="font-weight: bold; color: #b91c1c; margin-bottom: 10px;">Q：支教期间的住宿和饮食条件如何？</p>
+                                <p style="margin-bottom: 0;">A：支教期间我们会住在学校提供的宿舍，条件相对简单但基本舒适。饮食方面，我们会自己做饭，确保营养均衡。我们会提前了解当地情况，做好充分准备。</p>
+                            </div>
+                            <!-- 问题4 -->
+                            <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; border: 1px solid #e0e0e0;">
+                                <p style="font-weight: bold; color: #b91c1c; margin-bottom: 10px;">Q：如何报名参加固原支教队？</p>
+                                <p style="margin-bottom: 0;">A：每年3月份左右，我们会在厦门大学开展招募活动，包括宣讲会、面试等环节。你可以关注我们的官方微信公众号获取最新的招募信息，或者直接联系我们的负责人了解详情。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 时间轴 -->
+                <div class="content-section" id="timeline">
+                    <div class="content-block">
+                        <h3>2026届支教时间轴</h3>
+                        <div class="timeline" id="timelineContent">
+                            <!-- 动态内容将从后端加载 -->
+                            <div style="text-align: center; padding: 40px;">加载中...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>快速链接</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="discover.html">发现</a></li>
+                        <li><a href="profile.html">我的</a></li>
+                        <li><a href="team.html">队伍介绍</a></li>
+                        <li><a href="current.html">当届动态</a></li>
+                        <li><a href="past.html">朝花夕拾</a></li>
+                        <li><a href="resources.html">资料分享</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>固原支教队</h3>
+                    <p>用爱心点燃希望，用知识改变未来。</p>
+                    <p>我们致力于为宁夏回族自治区固原市隆德县的孩子们提供优质的教育资源，帮助他们实现梦想。</p>
+                </div>
+                <div class="footer-section">
+                    <h3>赞助方</h3>
+                    <ul style="list-style: none; padding-left: 0; color: #666;">
+                        <li style="margin-bottom: 8px;">厦门大学</li>
+                        <li style="margin-bottom: 8px;">共青团隆德县委员会</li>
+                        <li style="margin-bottom: 8px;">中国大学生知行促进计划</li>
+                        <li style="margin-bottom: 8px;">西门子爱绿教育计划</li>
+                        <li style="margin-bottom: 8px;">立邦为爱上色中国大学生农村支教奖</li>
+                        <li style="margin-bottom: 8px;">快乐学习</li>
+                        <li style="margin-bottom: 8px;">"鹏青杯" 大学生社会公益创投大赛</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>联系我们</h3>
+                    <p>地址：福建省厦门市思明区思明南路422号</p>
+                    <div style="margin-top: 15px; text-align: center;">
+                        <img src="CRcode/wx_gongzhonghao_logo.jpg" alt="固原支教队官方微信公众号" style="width: 100px; height: 100px;">
+                        <p style="margin-top: 10px; color: #666; font-size: 0.9em;">官方微信公众号</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 厦门大学西部梦想社团 固原支教队. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // 页面加载时获取数据
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTimelineData();
+        });
+        
+        // 加载时间轴数据
+        function loadTimelineData() {
+            // 模拟数据
+            const data = [
+                {
+                    id: 1,
+                    title: '分队大会',
+                    content: '2026年3月21日将举行西部梦想社团分队大会，届时可以选择心仪队伍报名，欢迎加入我们！',
+                    created_at: '2026-03-21 00:00:00'
+                }
+            ];
+            
+            const timelineContent = document.getElementById('timelineContent');
+            if (data.length === 0) {
+                timelineContent.innerHTML = '<div style="text-align: center; padding: 40px;">暂无动态</div>';
+                return;
+            }
+            
+            let timelineHTML = '';
+            data.forEach(post => {
+                const isCompleted = new Date(post.created_at) < new Date();
+                timelineHTML += `
+                    <div class="timeline-item ${isCompleted ? 'completed' : 'upcoming'}">
+                        <div class="timeline-date">${formatDate(post.created_at)}</div>
+                        <div class="timeline-content">
+                            <h4>${post.title} <span style="color: green;">(进行中)</span></h4>
+                            <p>${post.content}</p>
+                        </div>
+                    </div>
+                `;
+            });
+            timelineContent.innerHTML = timelineHTML;
+        }
+        
+        // 格式化日期
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.getFullYear() + '年' + (date.getMonth() + 1) + '月' + date.getDate() + '日';
+        }
+        
+    </script>
+</body>
+</html>

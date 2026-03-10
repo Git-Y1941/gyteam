@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>厦门大学西部梦想社团 固原支教队 - 队伍介绍</title>
+    <script type="text/javascript">
+        window._AMapSecurityConfig = {
+            securityJsCode: 'YOUR_SECURITY_KEY_HERE',
+        }
+    </script>
+    <script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=601c43d14c8cd7343f2fd3de4b5c6b12"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff9f0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 主导航栏 */
+        .main-nav {
+            background: #ffffff;
+            padding: 20px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-radius: 0 0 10px 10px;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+        }
+        
+        .logo-text {
+            text-align: left;
+        }
+        
+        .logo-text .large {
+            font-size: 1.7em;
+            font-weight: bold;
+            color: #b91c1c;
+        }
+        
+        .logo-text .small {
+            font-size: 1em;
+            color: #666;
+            margin-top: 2px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        /* 导航链接文字对齐 */
+        .nav-links a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+            padding-top: 3px;
+        }
+        
+        /* 导航图标 */
+        .nav-icon {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+            vertical-align: middle;
+            flex-shrink: 0;
+        }
+        
+        /* 首页图标 - 三条横杠 */
+        .nav-icon-home {
+            width: 18px;
+            height: 14px;
+            position: relative;
+        }
+        
+        .nav-icon-home::before,
+        .nav-icon-home::after,
+        .nav-icon-home span {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #b91c1c;
+        }
+        
+        .nav-icon-home::before {
+            top: 0;
+        }
+        
+        .nav-icon-home span {
+            top: 6px;
+        }
+        
+        .nav-icon-home::after {
+            bottom: 0;
+        }
+        
+        /* 发现图标 - 放大镜 */
+        .nav-icon-discover {
+            width: 16px;
+            height: 16px;
+            border: 2px solid #b91c1c;
+            border-radius: 50%;
+            position: relative;
+        }
+        
+        .nav-icon-discover::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 2px;
+            background-color: #b91c1c;
+            bottom: -3px;
+            right: -4px;
+            transform: rotate(45deg);
+        }
+        
+        /* 我的图标 - 小人 */
+        .nav-icon-profile {
+            width: 14px;
+            height: 16px;
+            position: relative;
+        }
+        
+        .nav-icon-profile::before {
+            content: '';
+            position: absolute;
+            left: 2px;
+            top: -2px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            border: solid 2px #b91c1c;
+        }
+        
+        .nav-icon-profile::after {
+            content: '';
+            position: absolute;
+            left: -1px;
+            bottom: -2px;
+            width: 14px;
+            height: 6px;
+            border-left: solid 2px #b91c1c;
+            border-right: solid 2px #b91c1c;
+            border-top: solid 2px #b91c1c;
+            border-bottom: solid 2px transparent;
+            border-radius: 8px 8px 0 0;
+        }
+        
+        /* 首页下拉菜单 */
+        .nav-home-dropdown {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-home-arrow {
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 5px solid #b91c1c;
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        
+        .nav-home-dropdown:hover .nav-home-arrow {
+            transform: rotate(180deg);
+        }
+        
+        .nav-home-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            min-width: 150px;
+            display: none;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            padding: 5px 0;
+        }
+        
+        .nav-home-dropdown {
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding-bottom: 10px;
+        }
+        
+        .nav-home-dropdown:hover .nav-home-menu {
+            display: block;
+        }
+        
+        .nav-home-menu a {
+            display: block;
+            padding: 10px 15px;
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .nav-home-menu a:last-child {
+            border-bottom: none;
+        }
+        
+        .nav-home-menu a:hover {
+            background: #f9f9f9;
+            color: #b91c1c;
+        }
+        
+        /* 队伍轮播图 */
+        .team-carousel {
+            position: relative;
+            height: 500px;
+            max-height: 500px;
+            overflow: hidden;
+            margin: 50px 0 30px;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+        }
+        
+        .team-carousel-inner {
+            display: flex;
+            height: 100%;
+        }
+        
+        .team-carousel-item {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+            display: none;
+        }
+        
+        .team-carousel-item.active {
+            display: block;
+        }
+        
+        .team-carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .team-carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            padding: 15px 20px;
+        }
+        
+        .team-carousel-caption h3 {
+            margin-bottom: 5px;
+        }
+        
+        .team-carousel-caption p {
+            margin-bottom: 0;
+        }
+        
+        .team-carousel-indicators {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+        
+        .team-carousel-indicator {
+            width: 20px;
+            height: 4px;
+            border-radius: 0;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .team-carousel-indicator.active {
+            background: white;
+        }
+        
+        /* 队伍标题 */
+        .team-title {
+            text-align: center;
+            margin-top: 80px;
+            margin-bottom: 50px;
+        }
+        
+        .team-title h1 {
+            font-size: 3em;
+            font-weight: bold;
+            color: #b91c1c;
+            margin-bottom: 30px;
+        }
+        
+        .team-slogan {
+            font-size: 1.2em;
+            color: #666;
+        }
+        
+        /* 主要内容区域 */
+        .team-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        /* 左侧内容 */
+        .left-content {
+            background: #ffffff;
+            padding: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        /* 筛选器 */
+        .filter-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #b91c1c;
+            padding-bottom: 10px;
+        }
+        
+        .filter-tab {
+            padding: 10px 20px;
+            background: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px 4px 0 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-tab.active {
+            background: #b91c1c;
+            color: white;
+            border-color: #b91c1c;
+        }
+        
+        /* 定位导航 */
+        .anchor-nav {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding: 15px;
+            background: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            flex-wrap: wrap;
+        }
+        
+        .anchor-link {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 8px 15px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+        
+        .anchor-link:hover {
+            color: #b91c1c;
+            background: #fff0f0;
+        }
+        
+        .anchor-link.active {
+            color: #b91c1c;
+            font-weight: bold;
+        }
+        
+        /* 内容区块 */
+        .content-section {
+            scroll-margin-top: 20px;
+        }
+        
+        .content-section h2 {
+            color: #b91c1c;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        
+        .content-section p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        /* 方块样式 */
+        .content-block {
+            padding: 25px;
+            margin-bottom: 30px;
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .content-block:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .content-block h3 {
+            color: #b91c1c;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            border-left: 4px solid #b91c1c;
+            padding-left: 10px;
+        }
+        
+        .content-block p {
+            line-height: 1.8;
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+
+        /* 队伍介绍列表优化 */
+        .team-intro-list {
+            padding-left: 25px;
+            margin: 10px 0 15px 0;
+        }
+        .team-intro-list li {
+            margin-bottom: 8px;
+            line-height: 1.7;
+        }
+
+        /* 图表容器统一样式 */
+        .charts-container {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+        .single-chart {
+            grid-column: 1 / -1;
+        }
+        .chart-card {
+            background: #fdfdfd;
+            border: 1px solid #e8e8e8;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .chart-card h4 {
+            color: #b91c1c;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        /* 统一表格样式 */
+        .unified-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+        }
+        
+        .unified-table th,
+        .unified-table td {
+            border: 1px solid #b91c1c;
+            padding: 12px;
+            text-align: center;
+        }
+        
+        .unified-table th {
+            background-color: #fef5f5;
+            color: #b91c1c;
+            font-weight: bold;
+        }
+        
+        .unified-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .unified-table tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        /* 地图模块 */
+        #team-map {
+            height: 300px;
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        /* 右侧荣誉墙 */
+        .right-content {
+            display: none;
+        }
+        
+        /* 时间轴 */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #b91c1c;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -25px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #b91c1c;
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: #b91c1c;
+            margin-bottom: 5px;
+        }
+        
+        .timeline-content {
+            background: #f9f9f9;
+            padding: 15px;
+            font-size: 0.9em;
+        }
+        
+        /* 赞助项目 */
+        .sponsorship {
+            display: none;
+        }
+        
+        /* 页脚 */
+        footer {
+            background: #f8f8f8;
+            color: #333;
+            padding: 40px 0;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 150px 1fr 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 25px;
+            font-size: 1.2em;
+            color: #000000;
+            font-weight: bold;
+        }
+        
+        .footer-section p {
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+        
+        .footer-section:nth-child(2) {
+        padding: 0 40px; /* 核心：左右内边距，数值可自行调整（如10px/30px） */
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            text-decoration: none;
+            color: #666;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #b91c1c;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .charts-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-wrap: wrap;
+            }
+            
+            .nav-links li {
+                margin-left: 15px;
+                margin-bottom: 10px;
+            }
+            
+            .team-carousel {
+                height: 250px;
+            }
+            
+            .team-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .left-content,
+            .right-content,
+            .sponsorship {
+                padding: 20px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .staff-table, .func-table, .org-table {
+                font-size: 12px;
+            }
+            
+            .org-table th,
+            .org-table td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 主导航栏 -->
+    <nav class="main-nav">
+        <div class="container nav-container">
+            <div class="logo">
+                <img src="logo.png" alt="厦门大学西部梦想社团 固原支教队">
+                <div class="logo-text">
+                    <div class="small">厦门大学西部梦想社团</div>
+                    <div class="large">固原支教队</div>
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li class="nav-home-dropdown">
+                    <a href="index.html">
+                        <span class="nav-icon nav-icon-home"><span></span></span>
+                        首页
+                    </a>
+                    <span class="nav-home-arrow"></span>
+                    <div class="nav-home-menu">
+                        <a href="team.html">队伍介绍</a>
+                        <a href="current.html">当届动态</a>
+                        <a href="past.html">朝花夕拾</a>
+                        <a href="resources.html">资料分享</a>
+                    </div>
+                </li>
+                <li><a href="discover.html"><span class="nav-icon nav-icon-discover"></span>发现</a></li>
+                <li><a href="profile.html"><span class="nav-icon nav-icon-profile"></span>我的</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- 主要内容 -->
+    <div class="container">
+        <!-- 队伍轮播图 -->
+        <div class="team-carousel">
+            <div class="team-carousel-inner">
+                <div class="team-carousel-item active">
+                    <img src="img/intro_01.jpg" alt="2025年支教活动">
+                    <div class="team-carousel-caption">
+                        <h3>2025年支教活动</h3>
+                    </div>
+                </div>
+                <div class="team-carousel-item">
+                    <img src="img/intro_02.jpg" alt="2024年支教活动">
+                    <div class="team-carousel-caption">
+                        <h3>2024年支教活动</h3>
+                    </div>
+                </div>
+                <div class="team-carousel-item">
+                    <img src="img/intro_03.jpg" alt="2023年支教活动">
+                    <div class="team-carousel-caption">
+                        <h3>2023年支教活动</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="team-carousel-indicators">
+                <div class="team-carousel-indicator active" data-index="0"></div>
+                <div class="team-carousel-indicator" data-index="1"></div>
+                <div class="team-carousel-indicator" data-index="2"></div>
+            </div>
+        </div>
+        
+        <!-- 队伍标题 -->
+        <div class="team-title">
+            <h1>固原支教队</h1>
+            <p class="team-slogan">固我所梦，原我所想，梦想永固，星火燎原</p>
+        </div>
+        
+        <!-- 主要内容区域 -->
+        <div class="team-content">
+            <!-- 左侧内容 -->
+            <div class="left-content">
+                <!-- 快速定位导航 -->
+                <div class="anchor-nav">
+                    <a href="#intro" class="anchor-link active">队伍介绍</a>
+                    <a href="#structure" class="anchor-link">队伍结构</a>
+                    <a href="#structure-charts" class="anchor-link">队伍结构详情</a>
+                    <a href="#training" class="anchor-link">队伍培训</a>
+                    <a href="#location" class="anchor-link">支教地简介</a>
+                    <a href="#promotion" class="anchor-link">队伍宣传</a>
+                    <a href="#sponsor" class="anchor-link">赞助方</a>
+                    <a href="#honor" class="anchor-link">荣誉墙</a>
+                </div>
+                
+                <!-- 内容区块第一排：队伍介绍和队伍结构 -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px; align-items: stretch;">
+                    <!-- 队伍介绍 -->
+                    <div class="content-section" id="intro">
+                        <div class="content-block" style="height: 100%; display: flex; flex-direction: column;">
+                            <h3>队伍介绍</h3>
+                            <p>厦门大学西部梦想社团固原队是由厦大学子组建的短期支教志愿团队，自2009年3月成立以来，始终秉持教育帮扶初心，已先后在多地开展支教活动：</p>
+                            <ul class="team-intro-list">
+                                <li>固原市彭阳小岔九年制义务中学</li>
+                                <li>固原市西吉县姚庄小学</li>
+                                <li>固原市西吉县田坪中学</li>
+                                <li>贵州省黔西南州望谟县牛场小学</li>
+                                <li>固原市隆德县杜川小学</li>
+                                <li>固原市隆德县沙塘镇中心小学</li>
+                            </ul>
+                            <p>团队致力于为乡村学生提供涵盖课内基础知识与素质拓展的多元课堂，用知识与爱心助力孩子们的成长。</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 队伍结构 -->
+                    <div class="content-section" id="structure">
+                        <div class="content-block" style="height: 100%; display: flex; flex-direction: column;">
+                            <h3>队伍结构</h3>
+                            <p>历经多年发展，固原队已形成完善的治理体系与教学架构，实现了管理专业化、教学多元化的发展目标。</p>
+                            <p><strong>管理体系</strong>：队长团分工协作，下设四大职能组承接核心事务，保障队伍高效运转。</p>
+                            <p><strong>遴选机制</strong>：新成员需通过个人能力、教学水平等多维度评比，历经四个月考核后方可正式加入。</p>
+                            <p><strong>教学体系</strong>：设置三大基础学科组与两大素质拓展组，兼顾知识巩固与兴趣培养。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 队伍结构配套图表 -->
+                <div class="content-section" id="structure-charts">
+                    <div class="content-block">
+                        <h3>队伍结构详情</h3>
+                        <div class="charts-container">
+                            <!-- 人员架构表 -->
+                            <div class="chart-card">
+                                <h4>人员规模架构</h4>
+                                <table class="unified-table">
+                                    <tbody>
+                                        <tr>
+                                            <td>队长</td>
+                                            <td>1名</td>
+                                            <td rowspan="2">往届成员</td>
+                                        </tr>
+                                        <tr>
+                                            <td>副队长</td>
+                                            <td>3-4名</td>
+                                        </tr>
+                                        <tr>
+                                            <td>队员</td>
+                                            <td>14名左右</td>
+                                            <td>待选拔新成员</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- 组织架构表格 -->
+                            <div class="chart-card">
+                                <h4>核心组织架构</h4>
+                                <table class="unified-table">
+                                    <thead>
+                                        <tr>
+                                            <th>组别</th>
+                                            <th>具体内容</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>学科组</td>
+                                            <td>语文、数学、英语、文艺、百科</td>
+                                        </tr>
+                                        <tr>
+                                            <td>职能组</td>
+                                            <td>财务组、联络组、影宣组、文宣组</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- 职能组详情表 -->
+                            <div class="chart-card single-chart">
+                                <h4>职能组分工详情</h4>
+                                <table class="unified-table">
+                                    <thead>
+                                        <tr>
+                                            <th>职能组</th>
+                                            <th>名称</th>
+                                            <th>任务</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>财务组</td>
+                                            <td>神算子事务所</td>
+                                            <td>会计、出纳、采购、预算表、决算表、物资采购、发票管理等财务相关</td>
+                                        </tr>
+                                        <tr>
+                                            <td>联络组</td>
+                                            <td>天机办公室</td>
+                                            <td>策划大团建、安排夜训、安排课表与实地安排表</td>
+                                        </tr>
+                                        <tr>
+                                            <td>影宣组</td>
+                                            <td>固梦工作室</td>
+                                            <td>影像拍摄、视频剪辑、海报制作、视频平台宣传运营</td>
+                                        </tr>
+                                        <tr>
+                                            <td>文宣组</td>
+                                            <td>原梦工作室</td>
+                                            <td>文案写作、推送制作、日常微博运营、微信公众号运营</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 队伍培训 -->
+                <div class="content-section" id="training">
+                    <div class="content-block">
+                        <h3>队伍培训</h3>
+                        
+                        <!-- 1. 选拔 -->
+                        <h4 style="color: #b91c1c; margin-top: 20px; margin-bottom: 15px;">1. 选拔</h4>
+                        <p>团队招募从3月份西部梦想社团内部大会开始，至6月份第15个教学周结束。团队招募将分别历经"招募新成员""教案试讲培训""策划能力锻炼""中期试讲考核""终期试讲考核"五大环节，最终通过综合考核结合面试表现确定最终的入队名单。拟招募14名新成员。</p>
+                        
+                        <!-- 时间线表格 -->
+                        <h5 style="margin-top: 20px; margin-bottom: 10px;">时间线安排</h5>
+                        <table class="unified-table">
+                            <thead>
+                                <tr>
+                                    <th>时间</th>
+                                    <th>教案</th>
+                                    <th>试讲</th>
+                                    <th>策划</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>第二周</td>
+                                    <td colspan="3">分队大会，招募新成员</td>
+                                </tr>
+                                <tr>
+                                    <td>第三周</td>
+                                    <td colspan="3">新成员破冰、介绍固原队历史与组织架构</td>
+                                </tr>
+                                <tr>
+                                    <td>第四周</td>
+                                    <td>提交教学大纲</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>第五周</td>
+                                    <td>完善教学大纲</td>
+                                    <td>试讲教学框架</td>
+                                    <td>策划第一次队伍团建</td>
+                                </tr>
+                                <tr>
+                                    <td>第六周</td>
+                                    <td>教案撰写培训</td>
+                                    <td>试讲培训</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>第七周</td>
+                                    <td>第一篇教案</td>
+                                    <td>第一次试讲</td>
+                                    <td>第一次团建</td>
+                                </tr>
+                                <tr>
+                                    <td>第八周</td>
+                                    <td>第二篇教案</td>
+                                    <td>第二次试讲</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>第九周</td>
+                                    <td>第三篇教案</td>
+                                    <td>第三次试讲</td>
+                                    <td>策划第二次队伍团建</td>
+                                </tr>
+                                <tr>
+                                    <td>第十周</td>
+                                    <td colspan="2">中期试讲考核（初筛）</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>第十一周</td>
+                                    <td>第五篇教案</td>
+                                    <td>第五次试讲</td>
+                                    <td>第二次团建</td>
+                                </tr>
+                                <tr>
+                                    <td>第十二周</td>
+                                    <td>第六篇教案</td>
+                                    <td>第六次试讲</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>第十三周</td>
+                                    <td colspan="2">终期试讲考核（终筛）</td>
+                                    <td>策划第三次队伍团建</td>
+                                </tr>
+                                <tr>
+                                    <td>第十四周</td>
+                                    <td colspan="2">面试，确定最终名单</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>第十五周</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>第三次团建</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <p style="margin-top: 15px;">在社团统一组织举行分队大会后，加入固原队的新队员将通过双向选择进入其所对应的学科组，并在学科组负责人（对应队长团中的一人）的指导下完成贯穿整个长学期的试讲，大部分时间内其需要一周完成一篇教案、一次20分钟的试讲。为充分调动新队员积极性并保证教学质量，负责人将在学期中将设置一次集中考核，并根据实际教学情况淘汰一部分浑水摸鱼的成员。之后，为考察新队员的团队协作能力、创新能力，队长团将在继续安排新成员组成团队撰写策划案。完成以上流程后，再经过面试，明确每个人的性格特点、具体身体情况、想去支教的原因、具体能力和支教意愿的坚定度后，最终确定前往实地教学的队员。</p>
+                        
+                        <!-- 选拔标准表格 -->
+                        <h5 style="margin-top: 20px; margin-bottom: 10px;">选拔标准</h5>
+                        <table class="unified-table">
+                            <thead>
+                                <tr>
+                                    <th>指标</th>
+                                    <th>占比</th>
+                                    <th>评判标准</th>
+                                    <th>得分明细</th>
+                                    <th>得分</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>教学能力</td>
+                                    <td>30%</td>
+                                    <td>基于平时教案的撰写与试讲情况对新成员的支教能力进行评价</td>
+                                    <td>教案质量（15%）<br>试讲情况（15%）</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>团队协作能力</td>
+                                    <td>30%</td>
+                                    <td>依据几次团建的组织情况与小组任务的完成情况，通过组内成员互评的方式评价新成员的团队协作能力</td>
+                                    <td>策划参与度（10%）<br>组内互评（10%）<br>队长团评（10%）</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>支教意愿</td>
+                                    <td>20%</td>
+                                    <td>从队员关于试讲过程、队伍内部活动的出勤率、参与程度进行支教意愿的评估</td>
+                                    <td>出勤率（10%）<br>试讲参与率（10%）</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>个人特长</td>
+                                    <td>10%</td>
+                                    <td>队员个人特长加分，如视频剪辑等</td>
+                                    <td>个人能力（10%）</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>面试</td>
+                                    <td>10%</td>
+                                    <td>通过面试深入评估新成员的其他表现</td>
+                                    <td>面试表现（10%）</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">总得分</td>
+                                    <td colspan="3"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <!-- 2. 磨合 -->
+                        <h4 style="color: #b91c1c; margin-top: 20px; margin-bottom: 15px;">2. 磨合</h4>
+                        <p>在新成员选拔结束后，队长团将提前联系对接小学的校长，明确实地学生情况，根据学生人数安排课程表和课程数量。同时寻找基金会，保证队伍资金运转；规划行程路线，确保队伍出行安全，组织每周一次的例会。</p>
+                        <p>普通队员需要完成每周两次的交叉试讲，并且听别的学科组队员试讲至少一次，努力提升教学能力和教学质量。同时，普通队员需要轮流组织夜训策划，完成每周2-3次的夜训，在提高身体素质的同时培养团队精神；同时将组队进行实地活动和班级见面会的策划，并在每周的例会上进行展示。</p>
+                        
+                        <!-- 磨合安排表格 -->
+                        <h5 style="margin-top: 20px; margin-bottom: 10px;">磨合安排</h5>
+                        <table class="unified-table">
+                            <thead>
+                                <tr>
+                                    <th>时间</th>
+                                    <th>周一</th>
+                                    <th>周二</th>
+                                    <th>周三</th>
+                                    <th>周四</th>
+                                    <th>周五</th>
+                                    <th>周六</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>一二节</td>
+                                    <td>外语组试讲<br>思维组听讲</td>
+                                    <td></td>
+                                    <td>外语组试讲<br>思维组听讲</td>
+                                    <td></td>
+                                    <td>文学组试讲</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>三四节</td>
+                                    <td></td>
+                                    <td>文学组试讲</td>
+                                    <td></td>
+                                    <td>文学组试讲</td>
+                                    <td></td>
+                                    <td>外语组听讲</td>
+                                </tr>
+                                <tr>
+                                    <td>中午</td>
+                                    <td></td>
+                                    <td>外语组听讲</td>
+                                    <td></td>
+                                    <td>百科组听讲</td>
+                                    <td></td>
+                                    <td>例会</td>
+                                </tr>
+                                <tr>
+                                    <td>五六节</td>
+                                    <td>文艺组试讲<br>百科组听讲</td>
+                                    <td></td>
+                                    <td>百科组试讲<br>文学组听讲</td>
+                                    <td></td>
+                                    <td>百科组试讲<br>文学组听讲</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>七八节</td>
+                                    <td></td>
+                                    <td>思维组试讲<br>文艺组听讲</td>
+                                    <td></td>
+                                    <td>思维组试讲<br>文艺组听讲</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>夜晚</td>
+                                    <td>夜训</td>
+                                    <td></td>
+                                    <td>夜训</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>夜训</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <!-- 3. 培训 -->
+                        <h4 style="color: #b91c1c; margin-top: 20px; margin-bottom: 15px;">3. 培训</h4>
+                        
+                        <!-- 培训安排表格 -->
+                        <table class="unified-table">
+                            <thead>
+                                <tr>
+                                    <th>时间</th>
+                                    <th>主题</th>
+                                    <th>人次</th>
+                                    <th>培训内容</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>3月19日</td>
+                                    <td>团队、基本认知</td>
+                                    <td>50</td>
+                                    <td>对于团队、讲课的基本认知，日程安排、教案撰写的要求、教学分组</td>
+                                </tr>
+                                <tr>
+                                    <td>3月26日</td>
+                                    <td>教案、试讲培训</td>
+                                    <td>30</td>
+                                    <td>教案撰写、讲课技巧、数学分组</td>
+                                </tr>
+                                <tr>
+                                    <td>5月21日</td>
+                                    <td>科技、环保活动策划培训和撰写</td>
+                                    <td>30</td>
+                                    <td>确定活动内容、公损撰写技巧、环保活动策划案</td>
+                                </tr>
+                                <tr>
+                                    <td>5月25日</td>
+                                    <td>支教的意义感悟会</td>
+                                    <td>30</td>
+                                    <td>对支教意义进行思考，深刻理解要去做什么</td>
+                                </tr>
+                                <tr>
+                                    <td>5月30日</td>
+                                    <td>社团干训</td>
+                                    <td>30</td>
+                                    <td>了解社团，能力培养和观察，最终社团换届</td>
+                                </tr>
+                                <tr>
+                                    <td>6月5日</td>
+                                    <td>科技、环保课程探讨会</td>
+                                    <td>20</td>
+                                    <td>探讨科技和环保课程的具体教学内容和教学方式</td>
+                                </tr>
+                                <tr>
+                                    <td>7月2日</td>
+                                    <td>团队建设</td>
+                                    <td>20</td>
+                                    <td>队长组织破冰团建，促进新队员相互认识</td>
+                                </tr>
+                                <tr>
+                                    <td>7月4日</td>
+                                    <td>沟通技能培训</td>
+                                    <td>20</td>
+                                    <td>对实地队员进行沟通技能培训</td>
+                                </tr>
+                                <tr>
+                                    <td>6月28日-7月13日</td>
+                                    <td>科技、环保活动策划展示</td>
+                                    <td>20</td>
+                                    <td>各提案展示对比及讨论，并对策划案进行修改</td>
+                                </tr>
+                                <tr>
+                                    <td>7月1日-7月14日</td>
+                                    <td>教学技能展开培训</td>
+                                    <td>20</td>
+                                    <td>对实地队员进行教学技能培训</td>
+                                </tr>
+                                <tr>
+                                    <td>7月15日-7月19日</td>
+                                    <td>宣传培训</td>
+                                    <td>8</td>
+                                    <td>对宣传组队员进行重点培训</td>
+                                </tr>
+                                <tr>
+                                    <td>7月15日-7月19日</td>
+                                    <td>健康卫生</td>
+                                    <td>3</td>
+                                    <td>对后勤负责人、安全员和卫生员进行培训</td>
+                                </tr>
+                                <tr>
+                                    <td>6月24日-7月21日</td>
+                                    <td>体训</td>
+                                    <td>20</td>
+                                    <td>对实地队员进行更强化的体能锻炼</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- 内容区块第二排：支教地简介和队伍宣传 -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px; align-items: stretch;">
+                    <div class="content-section" id="location">
+                        <div class="content-block" style="height: 100%; display: flex; flex-direction: column;">
+                            <h3>支教地简介</h3>
+                            <p>支教队目前支教的地点是宁夏回族自治区固原市隆德县沙塘镇中心小学。</p>
+                            
+                            <h4 style="color: #b91c1c; margin-top: 20px; margin-bottom: 15px;">学校基本情况</h4>
+                            <p><strong>地理位置：</strong>位于宁夏固原市隆德县沙塘镇，属于典型的西部乡村学校。</p>
+                            <p><strong>硬件设施：</strong>学校拥有计算机室、科学实验室等现代化教学设施，但部分设施存在利用率不高的情况。</p>
+                            <p><strong>师资情况：</strong>存在专业师资短缺的问题，特别是在艺术、科技等拓展类课程方面。</p>
+                            
+                            <h4 style="color: #b91c1c; margin-top: 20px; margin-bottom: 15px;">学生与教育现状</h4>
+                            <p><strong>学生特点：</strong>学生多为留守儿童或来自周边乡村，部分孩子因家庭结构原因存在强烈的情感表达需求。</p>
+                            <p><strong>教育观念：</strong>部分家长存在"重分数轻成长"的传统观念，也存在着部分重男轻女现象。</p>
+                            <p><strong>课程需求：</strong>学校在艺术、科技、心理健康等素质教育课程方面有较大需求，这也是支教队重点补充的方向。</p>
+                            
+                            <!-- 地图模块 -->
+                            <div id="team-map" style="height: 300px; width: 100%; margin-top: 20px;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="content-section" id="promotion">
+                        <div class="content-block" style="height: 100%; display: flex; flex-direction: column;">
+                            <h3>队伍宣传</h3>
+                            <p>固原队始终坚持在扎实开展支教工作、做好队伍建设与教学服务的同时，积极对外传递支教声音、讲好支教故事，展现青年学子的责任担当与公益初心。</p>
+                            <p>目前，队伍已建立起覆盖多平台的官方宣传矩阵，在微信公众号、微信视频号、微博、抖音、哔哩哔哩、小红书等主流内容平台均设有官方账号，定期发布队伍动态、支教纪实、课程成果、队员感悟与乡村儿童成长故事，用文字与影像记录支教路上的温暖与力量。</p>
+                            <p>我们真诚欢迎社会各界关注厦门大学西部梦想社团固原支教队，与我们一同见证成长、传递温暖、共筑梦想。</p>
+                            
+                            <!-- 二维码 -->
+                            <div style="display: flex; justify-content: center; gap: 40px; margin-top: 20px;">
+                                <div style="text-align: center;">
+                                    <img src="CRcode/wx_gongzhonghao_logo.jpg" alt="微信公众号" style="width: 150px; height: 150px;">
+                                    <p style="margin-top: 10px; font-weight: 500; text-align: center;">微信公众号</p>
+                                </div>
+                                <div style="text-align: center;">
+                                    <img src="CRcode/douyin.png" alt="抖音" style="width: 150px; height: 150px;">
+                                    <p style="margin-top: 10px; font-weight: 500; text-align: center;">抖音</p>
+                                </div>
+                            </div>
+                            
+                            <!-- 平台信息 -->
+                            <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 30px;">
+                                <div style="background: #f9f9f9; padding: 10px; border-radius: 8px; text-align: center; height: 60px; display: flex; align-items: center; justify-content: center;">
+                                    <p style="font-weight: 500; margin: 0;">微博：厦门大学西部梦想社团固原队</p>
+                                </div>
+                                <div style="background: #f9f9f9; padding: 10px; border-radius: 8px; text-align: center; height: 60px; display: flex; align-items: center; justify-content: center;">
+                                    <p style="font-weight: 500; margin: 0;">视频号：西梦固原</p>
+                                </div>
+                                <div style="background: #f9f9f9; padding: 10px; border-radius: 8px; text-align: center; height: 60px; display: flex; align-items: center; justify-content: center;">
+                                    <p style="font-weight: 500; margin: 0;">小红书：厦大西梦固原支教队</p>
+                                </div>
+                                <div style="background: #f9f9f9; padding: 10px; border-radius: 8px; text-align: center; height: 60px; display: flex; align-items: center; justify-content: center;">
+                                    <p style="font-weight: 500; margin: 0;">Bilibili：西梦固原</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 赞助方 -->
+                <div class="content-section" id="sponsor">
+                    <div class="content-block">
+                        <h3>赞助方</h3>
+                        <p>长期以来，固原支教队始终与学校、地方单位及社会各界爱心组织保持良好合作，各项支教活动的顺利开展离不开各方的鼎力支持。在此，谨向长期关心与支持我们的单位及企业致以最诚挚的感谢：</p>
+                        <ul style="list-style: none; padding-left: 0; margin-top: 15px;">
+                            <li style="margin-bottom: 10px;">• 厦门大学</li>
+                            <li style="margin-bottom: 10px;">• 共青团隆德县委员会</li>
+                            <li style="margin-bottom: 10px;">• 中国大学生知行促进计划</li>
+                            <li style="margin-bottom: 10px;">• 知行计划・西门子爱绿教育计划（第七、八届）</li>
+                            <li style="margin-bottom: 10px;">• 知行计划・立邦为爱上色中国大学生农村支教奖（第七届）</li>
+                            <li style="margin-bottom: 10px;">• 快乐学习</li>
+                            <li style="margin-bottom: 10px;">• "鹏青杯" 大学生社会公益创投大赛（第一、二、三届）</li>
+                        </ul>
+                        <p>更多合作单位与赞助详情，欢迎关注固原支教队官方微信公众号，获取最新动态与完整名单。</p>
+                    </div>
+                </div>
+                
+                <!-- 荣誉墙 -->
+                <div class="content-section" id="honor">
+                    <div class="content-block">
+                        <h3>荣誉墙</h3>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-date">2025</div>
+                                <div class="timeline-content">
+                                    <ul style="list-style: none; padding-left: 0;">
+                                        <li style="margin-bottom: 5px;">• 2025年厦门大学校重点优秀社会实践队伍</li>
+                                        <li style="margin-bottom: 5px;">• 2025西门子爱绿教育计划中国大学生社会实践项目（全国铜奖）</li>
+                                        <li style="margin-bottom: 5px;">• "榜样100"大学生社团优秀案例</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-date">2024</div>
+                                <div class="timeline-content">
+                                    <ul style="list-style: none; padding-left: 0;">
+                                        <li style="margin-bottom: 5px;">• 2024年厦门大学校重点优秀社会实践队伍</li>
+                                        <li style="margin-bottom: 5px;">• 2024西门子爱绿教育计划中国大学生社会实践项目（全国银奖）</li>
+                                        <li style="margin-bottom: 5px;">• 2024西门子爱绿教育计划中国大学生社会实践项目（最佳课程奖）</li>
+                                        <li style="margin-bottom: 5px;">• "榜样100"大学生社团优秀案例</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-date">2023</div>
+                                <div class="timeline-content">
+                                    <ul style="list-style: none; padding-left: 0;">
+                                        <li style="margin-bottom: 5px;">• 2023年厦门大学校重点优秀社会实践队伍</li>
+                                        <li style="margin-bottom: 5px;">• 2023年第九届厦门大学社会实践调研报告大赛（三等奖）</li>
+                                        <li style="margin-bottom: 5px;">• 2023第七届立邦为爱上色中国大学生农村支教奖（全国优秀奖）</li>
+                                        <li style="margin-bottom: 5px;">• 2023第七届立邦为爱上色中国大学生农村支教奖（最佳视频奖）</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>快速链接</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="discover.html">发现</a></li>
+                        <li><a href="profile.html">我的</a></li>
+                        <li><a href="team.html">队伍介绍</a></li>
+                        <li><a href="current.html">当届动态</a></li>
+                        <li><a href="past.html">朝花夕拾</a></li>
+                        <li><a href="resources.html">资料分享</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>固原支教队</h3>
+                    <p>用爱心点燃希望，用知识改变未来。</p>
+                    <p>我们致力于为宁夏回族自治区固原市隆德县的孩子们提供优质的教育资源，帮助他们实现梦想。</p>
+                </div>
+                <div class="footer-section">
+                    <h3>赞助方</h3>
+                    <ul style="list-style: none; padding-left: 0; color: #666;">
+                        <li style="margin-bottom: 8px;">厦门大学</li>
+                        <li style="margin-bottom: 8px;">共青团隆德县委员会</li>
+                        <li style="margin-bottom: 8px;">中国大学生知行促进计划</li>
+                        <li style="margin-bottom: 8px;">西门子爱绿教育计划</li>
+                        <li style="margin-bottom: 8px;">立邦为爱上色中国大学生农村支教奖</li>
+                        <li style="margin-bottom: 8px;">快乐学习</li>
+                        <li style="margin-bottom: 8px;">"鹏青杯" 大学生社会公益创投大赛</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>联系我们</h3>
+                    <p>地址：福建省厦门市思明区思明南路422号</p>
+                    <div style="margin-top: 15px; text-align: center;">
+                        <img src="CRcode/wx_gongzhonghao_logo.jpg" alt="固原支教队官方微信公众号" style="width: 100px; height: 100px;">
+                        <p style="margin-top: 10px; color: #666; font-size: 0.9em;">官方微信公众号</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 厦门大学西部梦想社团 固原支教队. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // 轮播图功能
+        const carousel = document.querySelector('.team-carousel');
+        const carouselInner = carousel.querySelector('.team-carousel-inner');
+        const carouselItems = carousel.querySelectorAll('.team-carousel-item');
+        const indicators = carousel.querySelectorAll('.team-carousel-indicator');
+        let currentIndex = 0;
+        
+        function updateCarousel() {
+            carouselItems.forEach((item, i) => {
+                item.classList.remove('active');
+            });
+            carouselItems[currentIndex].classList.add('active');
+            
+            // 更新指示器
+            indicators.forEach((indicator, index) => {
+                indicator.classList.remove('active');
+                if (index === currentIndex) {
+                    indicator.classList.add('active');
+                }
+            });
+        }
+        
+        // 自动轮播
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % carouselItems.length;
+            updateCarousel();
+        }, 5000);
+        
+        // 指示器点击事件
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                currentIndex = index;
+                updateCarousel();
+            });
+        });
+        
+        // 高德地图初始化
+        function initMap() {
+            const map = new AMap.Map('team-map', {
+                zoom: 15,
+                center: [106.1488, 35.6369]
+            });
+            
+            const marker = new AMap.Marker({
+                position: [106.1488, 35.6369],
+                title: '沙塘中心小学'
+            });
+            
+            marker.setMap(map);
+            
+            const infoWindow = new AMap.InfoWindow({
+                content: '<div style="padding: 10px;">沙塘中心小学</div>',
+                offset: new AMap.Pixel(0, -30)
+            });
+            
+            marker.on('click', function() {
+                infoWindow.open(map, marker.getPosition());
+            });
+        }
+        
+        // 快速定位功能
+        const anchorLinks = document.querySelectorAll('.anchor-link');
+        const contentSections = document.querySelectorAll('.content-section');
+        
+        // 监听滚动事件，更新激活的链接
+        window.addEventListener('scroll', () => {
+            let currentSection = '';
+            contentSections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                if (window.scrollY >= sectionTop - 100) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            anchorLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // 点击链接滚动到对应位置
+        anchorLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                const targetPosition = targetSection.offsetTop - 100;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // 页面加载完成后初始化地图
+        window.addEventListener('load', initMap);
+    </script>
+</body>
+</html>

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>固原支教队 - 登录</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        
+        .login-page {
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+        }
+        
+        /* 轮播图部分 */
+        .carousel-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        .carousel {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        
+        .carousel-slide.active {
+            opacity: 1;
+        }
+        
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* 登录表单部分 */
+        .login-container {
+            position: absolute;
+            top: 50%;
+            right: 10%;
+            transform: translateY(-50%);
+            width: 420px;
+            background: rgba(245, 245, 245, 0.9);
+            padding: 50px 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 2;
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #b91c1c;
+        }
+        
+        .login-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            background: none;
+            border: none;
+            font-size: 1em;
+            font-weight: 500;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-btn.active {
+            color: #b91c1c;
+            border-bottom: 2px solid #b91c1c;
+        }
+        
+        .form-container {
+            height: 250px;
+        }
+        
+        .login-form {
+            display: none;
+            height: 100%;
+        }
+        
+        .login-form.active {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        #member-form {
+            justify-content: space-between;
+        }
+        
+        #guest-form {
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #b91c1c;
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: #b91c1c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .login-btn:hover {
+            background: #991b1b;
+        }
+        
+        .guest-login {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .guest-btn {
+            background: none;
+            border: 1px solid #991b1b;
+            color: #991b1b;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .guest-btn:hover {
+            background: #991b1b;
+            color: white;
+        }
+        
+        .error-message {
+            color: #e53e3e;
+            font-size: 0.9em;
+            margin-top: 10px;
+            display: none;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .login-container {
+                position: static;
+                width: 90%;
+                margin: 50px auto;
+                transform: none;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            }
+            
+            .carousel-container {
+                position: fixed;
+                z-index: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-page">
+        <!-- 轮播图 -->
+        <div class="carousel-container">
+            <div class="carousel">
+                <div class="carousel-slide active">
+                    <img src="img/login/001.jpg" alt="支教活动照片1">
+                </div>
+                <div class="carousel-slide">
+                    <img src="img/login/002.jpg" alt="支教活动照片2">
+                </div>
+                <div class="carousel-slide">
+                    <img src="img/login/003.jpg" alt="支教活动照片3">
+                </div>
+                <div class="carousel-slide">
+                    <img src="img/login/004.jpg" alt="支教活动照片4">
+                </div>
+            </div>
+        </div>
+        
+        <!-- 登录表单 -->
+        <div class="login-container">
+            <div class="logo">
+                <img src="logo.png" alt="厦门大学西部梦想社团 固原支教队" style="width: 70px; height: 88px; margin-bottom: 15px;">
+                <div style="text-align: center;">
+                    <div style="font-size: 0.8em; color: #666; margin-bottom: 5px;">厦门大学西部梦想社团</div>
+                    <h1>固原支教队</h1>
+                </div>
+            </div>
+            
+            <div class="login-tabs">
+                <button class="tab-btn active" data-tab="member">队员登录</button>
+                <button class="tab-btn" data-tab="guest">游客登录</button>
+            </div>
+            
+            <div class="form-container">
+                <!-- 队员登录表单 -->
+                <div class="login-form active" id="member-form">
+                    <div class="form-group">
+                        <label for="member-username">用户名</label>
+                        <input type="text" id="member-username" placeholder="请输入队员账号">
+                    </div>
+                    <div class="form-group">
+                        <label for="member-password">密码</label>
+                        <input type="password" id="member-password" placeholder="请输入密码">
+                    </div>
+                    <div class="error-message" id="member-error"></div>
+                    <button class="login-btn" onclick="memberLogin()">登录</button>
+                </div>
+                
+                <!-- 游客登录表单 -->
+                <div class="login-form" id="guest-form">
+                    <div class="guest-login">
+                        <button class="guest-btn" onclick="guestLogin()">游客直接游览</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 轮播图功能
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+            });
+            slides[index].classList.add('active');
+        }
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+        
+        // 自动轮播
+        setInterval(nextSlide, 4000);
+        
+        // 切换登录标签
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // 移除所有标签的active类
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                // 添加当前标签的active类
+                this.classList.add('active');
+                
+                // 隐藏所有表单
+                document.querySelectorAll('.login-form').forEach(form => form.classList.remove('active'));
+                // 显示对应表单
+                const tab = this.getAttribute('data-tab');
+                document.getElementById(`${tab}-form`).classList.add('active');
+            });
+        });
+        
+        // 队员登录
+        function memberLogin() {
+            const username = document.getElementById('member-username').value;
+            const password = document.getElementById('member-password').value;
+            const errorElement = document.getElementById('member-error');
+            const loginBtn = document.querySelector('.login-btn');
+            
+            // 简单验证
+            if (!username || !password) {
+                errorElement.textContent = '请输入用户名和密码';
+                errorElement.style.display = 'block';
+                return;
+            }
+            
+            // 显示加载状态
+            loginBtn.disabled = true;
+            loginBtn.textContent = '登录中...';
+            errorElement.style.display = 'none';
+            
+            // 模拟登录成功
+            // 实际项目中应该调用后端API
+            setTimeout(() => {
+                // 登录成功，存储用户信息
+                localStorage.setItem('userType', 'member');
+                localStorage.setItem('username', username);
+                // 设置标签信息
+                const userTags = [
+                    { type: '届数', text: '26届' },
+                    { type: '学科组', text: '语文组' },
+                    { type: '职能组', text: '固梦组' }
+                ];
+                localStorage.setItem('userTags', JSON.stringify(userTags));
+                window.location.href = 'profile.html';
+            }, 1000);
+        }
+        
+        // 微信登录
+        function wechatLogin() {
+            // 模拟微信登录
+            localStorage.setItem('userType', 'guest');
+            localStorage.setItem('username', '微信用户');
+            window.location.href = 'index.html';
+        }
+        
+        // 游客登录
+        function guestLogin() {
+            localStorage.setItem('userType', 'guest');
+            // 不设置username，让profile.html自动生成带乱码的游客ID
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

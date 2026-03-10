@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>支教社团 - 个人中心</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff9f0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 主导航栏 */
+        .main-nav {
+            background: #ffffff;
+            padding: 20px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-radius: 0 0 10px 10px;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+        }
+        
+        .logo-text {
+            text-align: left;
+        }
+        
+        .logo-text .large {
+            font-size: 1.7em;
+            font-weight: bold;
+            color: #b91c1c;
+        }
+        
+        .logo-text .small {
+            font-size: 1em;
+            color: #666;
+            margin-top: 2px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        /* 导航链接文字对齐 */
+        .nav-links a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+            padding-top: 3px;
+        }
+        
+        /* 导航图标 */
+        .nav-icon {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+            vertical-align: middle;
+            flex-shrink: 0;
+        }
+        
+        /* 首页图标 - 三条横杠 */
+        .nav-icon-home {
+            width: 18px;
+            height: 14px;
+            position: relative;
+        }
+        
+        .nav-icon-home::before,
+        .nav-icon-home::after,
+        .nav-icon-home span {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #b91c1c;
+        }
+        
+        .nav-icon-home::before {
+            top: 0;
+        }
+        
+        .nav-icon-home span {
+            top: 6px;
+        }
+        
+        .nav-icon-home::after {
+            bottom: 0;
+        }
+        
+        /* 发现图标 - 放大镜 */
+        .nav-icon-discover {
+            width: 16px;
+            height: 16px;
+            border: 2px solid #b91c1c;
+            border-radius: 50%;
+            position: relative;
+        }
+        
+        .nav-icon-discover::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 2px;
+            background-color: #b91c1c;
+            bottom: -3px;
+            right: -4px;
+            transform: rotate(45deg);
+        }
+        
+        /* 我的图标 - 小人 */
+        .nav-icon-profile {
+            width: 14px;
+            height: 16px;
+            position: relative;
+        }
+        
+        .nav-icon-profile::before {
+            content: '';
+            position: absolute;
+            left: 2px;
+            top: -2px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            border: solid 2px #b91c1c;
+        }
+        
+        .nav-icon-profile::after {
+            content: '';
+            position: absolute;
+            left: -1px;
+            bottom: -2px;
+            width: 14px;
+            height: 6px;
+            border-left: solid 2px #b91c1c;
+            border-right: solid 2px #b91c1c;
+            border-top: solid 2px #b91c1c;
+            border-bottom: solid 2px transparent;
+            border-radius: 8px 8px 0 0;
+        }
+        
+        /* 首页下拉菜单 */
+        .nav-home-dropdown {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-home-arrow {
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 5px solid #b91c1c;
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        
+        .nav-home-dropdown:hover .nav-home-arrow {
+            transform: rotate(180deg);
+        }
+        
+        .nav-home-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            min-width: 150px;
+            display: none;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            padding: 5px 0;
+        }
+        
+        .nav-home-dropdown {
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding-bottom: 10px;
+        }
+        
+        .nav-home-dropdown:hover .nav-home-menu {
+            display: block;
+        }
+        
+        .nav-home-menu a {
+            display: block;
+            padding: 10px 15px;
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .nav-home-menu a:last-child {
+            border-bottom: none;
+        }
+        
+        .nav-home-menu a:hover {
+            background: #f9f9f9;
+            color: #b91c1c;
+        }
+        
+        /* 个人信息卡片 */
+        .profile-card {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            padding: 40px;
+            margin: 40px 0;
+            text-align: center;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .profile-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            background: #ffe1e1;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2em;
+            font-weight: bold;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .profile-avatar:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(185, 28, 28, 0.3);
+        }
+        
+        .profile-name {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #b91c1c;
+        }
+        
+        .profile-role {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        /* 个人信息详情 */
+        .profile-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .detail-card {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            padding: 25px;
+        }
+        
+        .detail-card h3 {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: #b91c1c;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+        
+        .detail-item {
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .detail-label {
+            font-weight: 500;
+            color: #666;
+        }
+        
+        .detail-value {
+            color: #333;
+        }
+        
+        /* 功能按钮 */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .action-btn {
+            background: #ffffff;
+            border: 1px solid #b91c1c;
+            color: #b91c1c;
+            padding: 12px 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1em;
+            border-radius: 8px;
+        }
+        
+        .action-btn:hover {
+            background: #b91c1c;
+            color: white;
+        }
+        
+        .action-btn.primary {
+            background: #b91c1c;
+            color: white;
+            border: 1px solid #991b1b;
+        }
+        
+        .action-btn.primary:hover {
+            background: #991b1b;
+        }
+        
+        /* 标签样式 */
+        .profile-tags {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .tag {
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+        
+        .tag届数 {
+            background: #e0e7ff;
+            color: #4338ca;
+        }
+        
+        .tag学科组 {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        .tag职能组 {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        /* 队员列表 */
+        .member-list {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            padding: 25px;
+            margin: 40px 0;
+        }
+        
+        .member-list h3 {
+            font-size: 1.2em;
+            margin-bottom: 25px;
+            color: #b91c1c;
+        }
+        
+        .member-filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-select {
+            padding: 10px 15px;
+            border: 1px solid #e0e0e0;
+            font-size: 0.9em;
+            transition: border-color 0.3s ease;
+        }
+        
+        .filter-select:focus {
+            outline: none;
+            border-color: #1a365d;
+        }
+        
+        .member-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .member-item {
+            background: #f8f8f8;
+            border: 1px solid #e0e0e0;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .member-item:hover {
+            border-color: #1a365d;
+            background: #f0f2f5;
+        }
+        
+        .member-item .avatar {
+            width: 60px;
+            height: 60px;
+            background: #1a365d;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            margin: 0 auto 10px;
+        }
+        
+        .member-item .name {
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: #1a365d;
+        }
+        
+        .member-item .info {
+            font-size: 0.8em;
+            color: #666;
+        }
+        
+        /* 页脚 */
+        footer {
+            background: #f8f8f8;
+            color: #333;
+            padding: 40px 0;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 130px 1fr 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            color: #000000;
+            font-weight: bold;
+        }
+        
+        .footer-section p {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .footer-section:nth-child(2) {
+        padding: 0 40px; /* 核心：左右内边距，数值可自行调整（如10px/30px） */
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            text-decoration: none;
+            color: #666;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #000000;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-wrap: wrap;
+            }
+            
+            .nav-links li {
+                margin-left: 15px;
+                margin-bottom: 10px;
+            }
+            
+            .profile-details {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .member-items {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 主导航栏 -->
+    <nav class="main-nav">
+        <div class="container nav-container">
+            <div class="logo">
+            <img src="logo.png" alt="厦门大学西部梦想社团 固原支教队">
+            <div class="logo-text">
+                <div class="small">厦门大学西部梦想社团</div>
+                <div class="large">固原支教队</div>
+            </div>
+        </div>
+                                                                        <ul class="nav-links">
+                <li class="nav-home-dropdown">
+                    <a href="index.html">
+                        <span class="nav-icon nav-icon-home"><span></span></span>
+                        首页
+                    </a>
+                    <span class="nav-home-arrow"></span>
+                    <div class="nav-home-menu">
+                        <a href="team.html">队伍介绍</a>
+                        <a href="current.html">当届动态</a>
+                        <a href="past.html">朝花夕拾</a>
+                        <a href="resources.html">资料分享</a>
+                    </div>
+                </li>
+                <li><a href="discover.html"><span class="nav-icon nav-icon-discover"></span>发现</a></li>
+                <li><a href="profile.html"><span class="nav-icon nav-icon-profile"></span>我的</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- 主要内容 -->
+    <div class="container">
+        <!-- 个人信息卡片 -->
+        <div class="profile-card">
+            <div class="profile-avatar" id="profileAvatar">
+                <img src="logo.png" alt="队伍logo" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+            <div class="profile-name" id="profileName">游客</div>
+            <div class="profile-tags" id="profileTags">
+                <!-- 标签将通过JavaScript动态添加 -->
+            </div>
+        </div>
+        
+        <!-- 功能按钮 -->
+        <div class="action-buttons" id="actionButtons">
+            <!-- 按钮将通过JavaScript动态添加 -->
+        </div>
+        
+        <!-- 个人信息详情 -->
+        <div class="profile-details">
+            <div class="detail-card">
+                <h3>基本信息</h3>
+                <div class="detail-item">
+                    <span class="detail-label">昵称：</span>
+                    <span class="detail-value">张三</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">届数：</span>
+                    <span class="detail-value">26届</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">队员编号：</span>
+                    <span class="detail-value">2601</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">加入时间：</span>
+                    <span class="detail-value">2026-02-01</span>
+                </div>
+            </div>
+            
+            <div class="detail-card">
+                <h3>团队信息</h3>
+                <div class="detail-item">
+                    <span class="detail-label">学科组：</span>
+                    <span class="detail-value">语文组</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">职能组：</span>
+                    <span class="detail-value">固梦组</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">成员身份：</span>
+                    <span class="detail-value">队员</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">队长：</span>
+                    <span class="detail-value">赵六</span>
+                </div>
+            </div>
+            
+            <div class="detail-card">
+                <h3>联系方式</h3>
+                <div class="detail-item">
+                    <span class="detail-label">邮箱：</span>
+                    <span class="detail-value">zhangsan@example.com</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">电话：</span>
+                    <span class="detail-value">138****1234</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">微信：</span>
+                    <span class="detail-value">zhangsan123</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 队员列表 -->
+        <div class="member-list">
+            <h3>26届队员列表</h3>
+            <div class="member-filters">
+                <select class="filter-select" onchange="filterMembers()">
+                    <option value="all">全部届数</option>
+                    <option value="26" selected>26届</option>
+                    <option value="25">25届</option>
+                    <option value="24">24届</option>
+                </select>
+                <select class="filter-select" onchange="filterMembers()">
+                    <option value="all">全部学科组</option>
+                    <option value="语文">语文组</option>
+                    <option value="数学">数学组</option>
+                    <option value="英语">英语组</option>
+                    <option value="百科">百科组</option>
+                    <option value="文艺">文艺组</option>
+                </select>
+                <select class="filter-select" onchange="filterMembers()">
+                    <option value="all">全部职能组</option>
+                    <option value="固梦">固梦组</option>
+                    <option value="原梦">原梦组</option>
+                    <option value="天机">天机组</option>
+                    <option value="神算子">神算子组</option>
+                </select>
+                <select class="filter-select" onchange="filterMembers()">
+                    <option value="all">全部身份</option>
+                    <option value="队长">队长</option>
+                    <option value="副队长">副队长</option>
+                    <option value="队员">队员</option>
+                </select>
+            </div>
+            <div class="member-items">
+                <div class="member-item">
+                    <div class="avatar">赵</div>
+                    <div class="name">赵六</div>
+                    <div class="info">26届 | 队长 | 数学组</div>
+                </div>
+                <div class="member-item">
+                    <div class="avatar">钱</div>
+                    <div class="name">钱七</div>
+                    <div class="info">26届 | 副队长 | 英语组</div>
+                </div>
+                <div class="member-item">
+                    <div class="avatar">孙</div>
+                    <div class="name">孙八</div>
+                    <div class="info">26届 | 队员 | 百科组</div>
+                </div>
+                <div class="member-item">
+                    <div class="avatar">周</div>
+                    <div class="name">周九</div>
+                    <div class="info">26届 | 队员 | 文艺组</div>
+                </div>
+                <div class="member-item">
+                    <div class="avatar">吴</div>
+                    <div class="name">吴十</div>
+                    <div class="info">26届 | 队员 | 语文组</div>
+                </div>
+                <div class="member-item">
+                    <div class="avatar">郑</div>
+                    <div class="name">郑一</div>
+                    <div class="info">26届 | 队员 | 数学组</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>快速链接</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="discover.html">发现</a></li>
+                        <li><a href="profile.html">我的</a></li>
+                        <li><a href="team.html">队伍介绍</a></li>
+                        <li><a href="current.html">当届动态</a></li>
+                        <li><a href="past.html">朝花夕拾</a></li>
+                        <li><a href="resources.html">资料分享</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>固原支教队</h3>
+                    <p>用爱心点燃希望，用知识改变未来。</p>
+                    <p>我们致力于为宁夏回族自治区固原市隆德县的孩子们提供优质的教育资源，帮助他们实现梦想。</p>
+                </div>
+                <div class="footer-section">
+                    <h3>赞助方</h3>
+                    <ul style="list-style: none; padding-left: 0; color: #666;">
+                        <li style="margin-bottom: 8px;">厦门大学</li>
+                        <li style="margin-bottom: 8px;">共青团隆德县委员会</li>
+                        <li style="margin-bottom: 8px;">中国大学生知行促进计划</li>
+                        <li style="margin-bottom: 8px;">西门子爱绿教育计划</li>
+                        <li style="margin-bottom: 8px;">立邦为爱上色中国大学生农村支教奖</li>
+                        <li style="margin-bottom: 8px;">快乐学习</li>
+                        <li style="margin-bottom: 8px;">"鹏青杯" 大学生社会公益创投大赛</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>联系我们</h3>
+                    <p>地址：福建省厦门市思明区思明南路422号</p>
+                    <div style="margin-top: 15px; text-align: center;">
+                        <img src="CRcode/wx_gongzhonghao_logo.jpg" alt="固原支教队官方微信公众号" style="width: 100px; height: 100px;">
+                        <p style="margin-top: 10px; color: #666; font-size: 0.9em;">官方微信公众号</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 厦门大学西部梦想社团 固原支教队. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // 生成随机乱码
+        function generateRandomString(length) {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let result = '';
+            for (let i = 0; i < length; i++) {
+                result += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            return result;
+        }
+        
+        // 编辑资料
+        function editProfile() {
+            // 这里可以添加编辑资料的逻辑
+            alert('编辑资料功能开发中...');
+        }
+        
+        // 退出登录
+        function logout() {
+            localStorage.removeItem('userType');
+            localStorage.removeItem('username');
+            localStorage.removeItem('userTags');
+            window.location.href = 'login.html';
+        }
+        
+        // 检查登录状态
+        function checkLoginStatus() {
+            const userType = localStorage.getItem('userType');
+            if (!userType) {
+                // 未登录，跳转到登录页
+                window.location.href = 'login.html';
+            }
+        }
+        
+        // 根据用户类型显示不同内容
+        function displayUserContent() {
+            let userType = localStorage.getItem('userType');
+            let username = localStorage.getItem('username');
+            let userTags = localStorage.getItem('userTags');
+            
+            // 如果是游客登录但没有用户名，生成游客ID
+            if (userType === 'guest' && !username) {
+                username = '游客' + generateRandomString(6);
+                localStorage.setItem('username', username);
+            }
+            
+            const profileAvatar = document.getElementById('profileAvatar');
+            const profileName = document.getElementById('profileName');
+            const profileTags = document.getElementById('profileTags');
+            const actionButtons = document.getElementById('actionButtons');
+            const profileDetails = document.querySelector('.profile-details');
+            const memberList = document.querySelector('.member-list');
+            
+            if (userType === 'member') {
+                // 队员界面
+                profileName.textContent = username || '队员';
+                
+                // 显示标签
+                profileTags.innerHTML = '';
+                if (userTags) {
+                    const tags = JSON.parse(userTags);
+                    tags.forEach(tag => {
+                        const tagElement = document.createElement('span');
+                        tagElement.className = `tag tag${tag.type}`;
+                        tagElement.textContent = tag.text;
+                        profileTags.appendChild(tagElement);
+                    });
+                }
+                
+                // 显示按钮
+                actionButtons.innerHTML = `
+                    <button class="action-btn" onclick="editProfile()">编辑资料</button>
+                    <button class="action-btn" onclick="logout()">退出登录</button>
+                `;
+                
+                // 显示详细信息和队员列表
+                profileDetails.style.display = 'grid';
+                memberList.style.display = 'block';
+            } else if (userType === 'guest') {
+                // 游客界面
+                profileName.textContent = username;
+                
+                // 清空标签
+                profileTags.innerHTML = '';
+                
+                // 只显示退出登录按钮
+                actionButtons.innerHTML = `
+                    <button class="action-btn" onclick="logout()">退出登录</button>
+                `;
+                
+                // 隐藏详细信息和队员列表
+                profileDetails.style.display = 'none';
+                memberList.style.display = 'none';
+            }
+        }
+        
+        // 页面加载时检查登录状态并显示用户内容
+        checkLoginStatus();
+        displayUserContent();
+        
+                                        
+    </script>
+</body>
+</html>

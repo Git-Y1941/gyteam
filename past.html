@@ -1,0 +1,1873 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>支教社团 - 朝花夕拾</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff9f0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 主导航栏 */
+        .main-nav {
+            background: #ffffff;
+            padding: 20px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-radius: 0 0 10px 10px;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+        }
+        
+        .logo-text {
+            text-align: left;
+        }
+        
+        .logo-text .large {
+            font-size: 1.7em;
+            font-weight: bold;
+            color: #b91c1c;
+        }
+        
+        .logo-text .small {
+            font-size: 1em;
+            color: #666;
+            margin-top: 2px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        /* 导航链接文字对齐 */
+        .nav-links a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+            padding-top: 3px;
+        }
+        
+        /* 导航图标 */
+        .nav-icon {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+            vertical-align: middle;
+            flex-shrink: 0;
+        }
+        
+        /* 首页图标 - 三条横杠 */
+        .nav-icon-home {
+            width: 18px;
+            height: 14px;
+            position: relative;
+        }
+        
+        .nav-icon-home::before,
+        .nav-icon-home::after,
+        .nav-icon-home span {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #b91c1c;
+        }
+        
+        .nav-icon-home::before {
+            top: 0;
+        }
+        
+        .nav-icon-home span {
+            top: 6px;
+        }
+        
+        .nav-icon-home::after {
+            bottom: 0;
+        }
+        
+        /* 发现图标 - 放大镜 */
+        .nav-icon-discover {
+            width: 16px;
+            height: 16px;
+            border: 2px solid #b91c1c;
+            border-radius: 50%;
+            position: relative;
+        }
+        
+        .nav-icon-discover::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 2px;
+            background-color: #b91c1c;
+            bottom: -3px;
+            right: -4px;
+            transform: rotate(45deg);
+        }
+        
+        /* 我的图标 - 小人 */
+        .nav-icon-profile {
+            width: 14px;
+            height: 16px;
+            position: relative;
+        }
+        
+        .nav-icon-profile::before {
+            content: '';
+            position: absolute;
+            left: 2px;
+            top: -2px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            border: solid 2px #b91c1c;
+        }
+        
+        .nav-icon-profile::after {
+            content: '';
+            position: absolute;
+            left: -1px;
+            bottom: -2px;
+            width: 14px;
+            height: 6px;
+            border-left: solid 2px #b91c1c;
+            border-right: solid 2px #b91c1c;
+            border-top: solid 2px #b91c1c;
+            border-bottom: solid 2px transparent;
+            border-radius: 8px 8px 0 0;
+        }
+        
+        /* 首页下拉菜单 */
+        .nav-home-dropdown {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-home-arrow {
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 5px solid #b91c1c;
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        
+        .nav-home-dropdown:hover .nav-home-arrow {
+            transform: rotate(180deg);
+        }
+        
+        .nav-home-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            min-width: 150px;
+            display: none;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            padding: 5px 0;
+        }
+        
+        .nav-home-dropdown {
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding-bottom: 10px;
+        }
+        
+        .nav-home-dropdown:hover .nav-home-menu {
+            display: block;
+        }
+        
+        .nav-home-menu a {
+            display: block;
+            padding: 10px 15px;
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .nav-home-menu a:last-child {
+            border-bottom: none;
+        }
+        
+        .nav-home-menu a:hover {
+            background: #f9f9f9;
+            color: #b91c1c;
+        }
+        
+        /* 队伍标题 */
+        .team-title {
+            text-align: center;
+            margin-top: 80px;
+            margin-bottom: 50px;
+        }
+        
+        .team-title h1 {
+            font-size: 3em;
+            font-weight: bold;
+            color: #b91c1c;
+            margin-bottom: 30px;
+        }
+        
+        .team-slogan {
+            font-size: 1.2em;
+            color: #666;
+        }
+        
+        /* 快速定位导航 */
+        .anchor-nav {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding: 15px;
+            background: #f9f9f9;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .anchor-link {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 8px 15px;
+            border-radius: 4px;
+        }
+        
+        .anchor-link:hover {
+            color: #b91c1c;
+            background: #fff0f0;
+        }
+        
+        .anchor-link.active {
+            color: #b91c1c;
+            font-weight: bold;
+        }
+        
+        /* 方块样式 */
+        .content-block {
+            padding: 25px;
+            margin-bottom: 30px;
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .content-block:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .content-block h3 {
+            color: #b91c1c;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            border-left: 4px solid #b91c1c;
+            padding-left: 10px;
+        }
+        
+        .content-block p {
+            line-height: 1.8;
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+        
+        /* 主要内容区域 */
+        .team-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        /* 左侧内容 */
+        .left-content {
+            background: #ffffff;
+            padding: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .content-section {
+            margin-bottom: 30px;
+        }
+        
+        /* 年份筛选器 */
+        .year-filter {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #b91c1c;
+            padding-bottom: 10px;
+        }
+        
+        .filter-tab {
+            padding: 10px 20px;
+            background: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+        }
+        
+        .filter-tab.active {
+            background: #b91c1c;
+            color: white;
+            border-color: #b91c1c;
+            border-radius: 8px;
+        }
+        
+        /* 年份模块 */
+        .year-section {
+            background: #ffffff;
+            padding: 40px;
+            margin: 30px 0;
+            border: 1px solid #e0e0e0;
+            display: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .year-section:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .year-section.active {
+            display: block;
+        }
+        
+        .year-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .year-title {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #b91c1c;
+        }
+        
+        .year-location {
+            font-size: 1.1em;
+            color: #666;
+        }
+        
+        /* 队长信息 */
+        .captain-team {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .captain-member {
+            text-align: center;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+        
+        .captain-member:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .captain-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            background: #d1d5db;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            margin: 0 auto 15px;
+        }
+        
+        .captain-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .tags-row {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .tags-row:last-child {
+            margin-bottom: 0;
+        }
+        
+        .captain-title {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            background: #d1d5db;
+            color: #333;
+        }
+        
+        .subject-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            background: #e0e7ff;
+            color: #4338ca;
+        }
+        
+        .function-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        /* 当届队员信息 */
+        .waiting-for-members {
+            text-align: center;
+            padding: 60px 20px;
+            background: #f9f9f9;
+            font-size: 1.2em;
+            color: #666;
+        }
+        
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .member-card {
+            text-align: center;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+        
+        .member-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .member-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            background: #d1d5db;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            margin: 0 auto 15px;
+        }
+        
+        .member-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .member-role {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            background: #d1d5db;
+            color: #333;
+        }
+        
+        /* 时间轴 */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #b91c1c;
+            z-index: 1;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #b91c1c;
+            z-index: 2;
+        }
+        
+        .timeline-item.completed::before {
+            background: #b91c1c;
+            z-index: 2;
+        }
+        
+        .timeline-item.upcoming::before {
+            background: #b91c1c;
+            z-index: 2;
+        }
+        
+        .timeline-item.upcoming {
+            opacity: 1;
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: #b91c1c;
+            margin-bottom: 5px;
+        }
+        
+        .timeline-content {
+            background: #f9f9f9;
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .timeline-item.upcoming .timeline-content {
+            background: #f5f5f5;
+        }
+        
+        .timeline-content h4 {
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 1.1em;
+        }
+        
+        .timeline-content p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .timeline-action {
+            display: inline-block;
+            background: #b91c1c;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+            font-size: 0.9em;
+        }
+        
+        .timeline-action:hover {
+            background: #991b1b;
+        }
+        
+        .timeline-item.upcoming .timeline-action {
+            background: #999;
+            cursor: not-allowed;
+        }
+        
+        /* 页脚 */
+        footer {
+            background: #f8f8f8;
+            color: #333;
+            padding: 40px 0;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 150px 1fr 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 25px;
+            font-size: 1.2em;
+            color: #000000;
+            font-weight: bold;
+        }
+        
+        .footer-section p {
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+        
+        .footer-section:nth-child(2) {
+        padding: 0 40px; /* 核心：左右内边距，数值可自行调整（如10px/30px） */
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            text-decoration: none;
+            color: #666;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #b91c1c;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-wrap: wrap;
+            }
+            
+            .nav-links li {
+                margin-left: 15px;
+                margin-bottom: 10px;
+            }
+            
+            .year-section {
+                padding: 20px;
+            }
+            
+            .captain-info {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .captain-avatar {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 主导航栏 -->
+    <nav class="main-nav">
+        <div class="container nav-container">
+            <div class="logo">
+            <img src="logo.png" alt="厦门大学西部梦想社团 固原支教队">
+            <div class="logo-text">
+                <div class="small">厦门大学西部梦想社团</div>
+                <div class="large">固原支教队</div>
+            </div>
+        </div>
+                                                                        <ul class="nav-links">
+                <li class="nav-home-dropdown">
+                    <a href="index.html">
+                        <span class="nav-icon nav-icon-home"><span></span></span>
+                        首页
+                    </a>
+                    <span class="nav-home-arrow"></span>
+                    <div class="nav-home-menu">
+                        <a href="team.html">队伍介绍</a>
+                        <a href="current.html">当届动态</a>
+                        <a href="past.html">朝花夕拾</a>
+                        <a href="resources.html">资料分享</a>
+                    </div>
+                </li>
+                <li><a href="discover.html"><span class="nav-icon nav-icon-discover"></span>发现</a></li>
+                <li><a href="profile.html"><span class="nav-icon nav-icon-profile"></span>我的</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- 主要内容 -->
+    <div class="container">
+        <!-- 页面标题 -->
+        <div class="team-title">
+            <h1>朝花夕拾</h1>
+            <p class="team-slogan">往届支教活动回顾</p>
+        </div>
+        
+        <!-- 年份筛选器 -->
+        <div class="year-filter">
+            <div class="filter-tab active" onclick="filterYear('2025', event)">2025年</div>
+            <div class="filter-tab" onclick="filterYear('2024', event)">2024年</div>
+            <div class="filter-tab" onclick="filterYear('2023', event)">2023年</div>
+        </div>
+        
+        <!-- 2025届 -->
+        <div class="year-section active" id="2025">
+            <div class="year-header">
+                <h2 class="year-title">2025届</h2>
+                <p class="year-location">支教地点：固原市隆德县沙塘镇中心小学</p>
+            </div>
+            
+            <!-- 主要内容区域 -->
+            <div class="team-content">
+                <!-- 左侧内容 -->
+                <div class="left-content">
+                    <!-- 快速导航栏 -->
+                    <div class="anchor-nav">
+                        <a href="#captain-2025" class="anchor-link active">队长团</a>
+                        <a href="#members-2025" class="anchor-link">当届队员</a>
+                        <a href="#timeline-2025" class="anchor-link">时间轴</a>
+                    </div>
+                    
+                    <!-- 队长信息 -->
+                    <div class="content-section" id="captain-2025">
+                        <div class="content-block">
+                            <h3>2025届队伍队长团成员</h3>
+                            <div class="captain-team">
+                                <div class="captain-member">
+                                    <div class="captain-avatar">西</div>
+                                    <h2 class="captain-name">西西</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队长</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">原梦</div>
+                                        <div class="subject-tag">文艺</div>
+                                    </div>
+                                </div>
+                                <div class="captain-member">
+                                    <div class="captain-avatar">玉</div>
+                                    <h2 class="captain-name">小玉</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">副队长</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">原梦</div>
+                                        <div class="subject-tag">语文</div>
+                                    </div>
+                                </div>
+                                <div class="captain-member">
+                                    <div class="captain-avatar">桃</div>
+                                    <h2 class="captain-name">桃桃</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">副队长</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">固梦</div>
+                                        <div class="subject-tag">英语</div>
+                                    </div>
+                                </div>
+                                <div class="captain-member">
+                                    <div class="captain-avatar">花</div>
+                                    <h2 class="captain-name">花花</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">副队长</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">神算子</div>
+                                        <div class="subject-tag">百科</div>
+                                    </div>
+                                </div>
+                                <div class="captain-member">
+                                    <div class="captain-avatar">通</div>
+                                    <h2 class="captain-name">通通</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">副队长</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">天机</div>
+                                        <div class="subject-tag">数学</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 当届队员信息 -->
+                    <div class="content-section" id="members-2025">
+                        <div class="content-block">
+                            <h3>当届队员信息</h3>
+                            <div class="members-grid">
+                                <div class="member-card">
+                                    <div class="member-avatar">艺</div>
+                                    <h2 class="member-name">小艺</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">神算子</div>
+                                        <div class="subject-tag">百科</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">糖</div>
+                                    <h2 class="member-name">糖果</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">原梦</div>
+                                        <div class="subject-tag">文艺</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">淇</div>
+                                    <h2 class="member-name">小淇</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">天机</div>
+                                        <div class="subject-tag">百科</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">橙</div>
+                                    <h2 class="member-name">橙子</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">固梦</div>
+                                        <div class="subject-tag">文艺</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">梦</div>
+                                    <h2 class="member-name">小梦</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">原梦</div>
+                                        <div class="subject-tag">语文</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">芽</div>
+                                    <h2 class="member-name">芽芽</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">神算子</div>
+                                        <div class="subject-tag">英语</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">肖</div>
+                                    <h2 class="member-name">肖肖</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">天机</div>
+                                        <div class="subject-tag">英语</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">东</div>
+                                    <h2 class="member-name">东东</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">固梦</div>
+                                        <div class="subject-tag">数学</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">米</div>
+                                    <h2 class="member-name">小米</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">原梦</div>
+                                        <div class="subject-tag">语文</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">鱼</div>
+                                    <h2 class="member-name">鱼鱼</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">固梦</div>
+                                        <div class="subject-tag">文艺</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">金</div>
+                                    <h2 class="member-name">小金</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">神算子</div>
+                                        <div class="subject-tag">语文</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">月</div>
+                                    <h2 class="member-name">月月</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">原梦</div>
+                                        <div class="subject-tag">数学</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">兔</div>
+                                    <h2 class="member-name">小兔</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">天机</div>
+                                        <div class="subject-tag">数学</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">苹</div>
+                                    <h2 class="member-name">苹果</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">固梦</div>
+                                        <div class="subject-tag">百科</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 时间轴 -->
+                    <div class="content-section" id="timeline-2025">
+                        <div class="content-block">
+                            <h3>2025届支教时间轴</h3>
+                            <div class="timeline">
+                                <div class="timeline-item completed">
+                                    <div class="timeline-date">2025年3月30日</div>
+                                    <div class="timeline-content">
+                                        <h4>分队大会</h4>
+                                        <p>西梦社团在自钦楼多功能厅举行纳新大会，各支教队（固原、西望、贵州）进行风采展示，邀请新成员加入。</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item completed">
+                                    <div class="timeline-date">2025年5月</div>
+                                    <div class="timeline-content">
+                                        <h4>中期考核</h4>
+                                        <p>队伍成员通过试讲、体能测试等环节进行筛选，确认最终支教名单（具体日期未公布，常规在5月进行）。</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item completed">
+                                    <div class="timeline-date">2025年6月25日</div>
+                                    <div class="timeline-content">
+                                        <h4>队伍正式确认</h4>
+                                        <p>公众号发布《出发！共赴山海》，正式公布了2025年固原支教队的成员名单与风采介绍。</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item completed">
+                                    <div class="timeline-date">2025年7月8日</div>
+                                    <div class="timeline-content">
+                                        <h4>大团建</h4>
+                                        <p>队伍出发前组织的内部团建活动，旨在增强团队凝聚力。</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item completed">
+                                    <div class="timeline-date">2025年7月15日</div>
+                                    <div class="timeline-content">
+                                        <h4>出发/抵达</h4>
+                                        <p>队伍乘坐绿皮火车与汽车抵达宁夏固原沙塘镇中心小学。</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item completed">
+                                    <div class="timeline-date">2025年7月19日</div>
+                                    <div class="timeline-content">
+                                        <h4>"无碍共融"主题活动</h4>
+                                        <p>开展了"无碍共融"主题活动。通过科普和体验活动，引导学生理解残障人群，传递尊重与互助的理念。</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item completed">
+                                    <div class="timeline-date">2025年7月21日</div>
+                                    <div class="timeline-content">
+                                        <h4>爱绿行动</h4>
+                                        <p>队伍在支教地举办了"绿芽行动"游园会，通过"追寻生命之种"、"再造金色沃土"等趣味环节，寓教于乐。</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item completed">
+                                    <div class="timeline-date">2025年7月27日</div>
+                                    <div class="timeline-content">
+                                        <h4>家访</h4>
+                                        <p>队员们走进学生家中，与家长进行深入交流，了解学生的家庭背景和学习情况，为后续教学提供更有针对性的支持。</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item completed">
+                                    <div class="timeline-date">2025年7月29日</div>
+                                    <div class="timeline-content">
+                                        <h4>趣味运动会</h4>
+                                        <p>组织了一场丰富多彩的趣味运动会，设置了接力赛、跳绳比赛、拔河等项目，让学生在运动中感受团队合作的重要性，增强体质。</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item completed">
+                                    <div class="timeline-date">2025年7月31日</div>
+                                    <div class="timeline-content">
+                                        <h4>AI科技日</h4>
+                                        <p>开展了"AI科技日"活动，通过趣味实验和互动展示，向学生介绍人工智能的基本原理和应用，激发学生对科技的兴趣和探索精神。</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item completed">
+                                    <div class="timeline-date">2025年8月7日</div>
+                                    <div class="timeline-content">
+                                        <h4>离开</h4>
+                                        <p>支教活动结束，队伍离开固原返回家乡。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 2024届 -->
+        <div class="year-section" id="2024">
+            <div class="year-header">
+                <h2 class="year-title">2024届</h2>
+                <p class="year-location">支教地点：固原市隆德县杜川小学</p>
+            </div>
+            
+            <!-- 主要内容区域 -->
+            <div class="team-content">
+                <!-- 左侧内容 -->
+                <div class="left-content">
+                    <!-- 快速导航栏 -->
+                    <div class="anchor-nav">
+                        <a href="#captain-2024" class="anchor-link active">队长团</a>
+                        <a href="#members-2024" class="anchor-link">当届队员</a>
+                        <a href="#timeline-2024" class="anchor-link">时间轴</a>
+                    </div>
+                    
+                    <!-- 队长信息 -->
+                    <div class="content-section" id="captain-2024">
+                        <div class="content-block">
+                            <h3>2024届队伍队长团成员</h3>
+                            <div class="captain-team">
+                                <div class="captain-member">
+                                    <div class="captain-avatar">麦</div>
+                                    <h2 class="captain-name">小麦</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队长</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">原梦</div>
+                                        <div class="subject-tag">文艺</div>
+                                    </div>
+                                </div>
+                                <div class="captain-member">
+                                    <div class="captain-avatar">加</div>
+                                    <h2 class="captain-name">加加</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">副队长</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">神算子</div>
+                                        <div class="subject-tag">数学</div>
+                                    </div>
+                                </div>
+                                <div class="captain-member">
+                                    <div class="captain-avatar">0</div>
+                                    <h2 class="captain-name">00</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">副队长</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">原梦</div>
+                                        <div class="subject-tag">英语</div>
+                                    </div>
+                                </div>
+                                <div class="captain-member">
+                                    <div class="captain-avatar">多</div>
+                                    <h2 class="captain-name">多多</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">副队长</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">天机</div>
+                                        <div class="subject-tag">百科</div>
+                                    </div>
+                                </div>
+                                <div class="captain-member">
+                                    <div class="captain-avatar">咸</div>
+                                    <h2 class="captain-name">咸鱼</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">副队长</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">固梦</div>
+                                        <div class="subject-tag">语文</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 当届队员信息 -->
+                    <div class="content-section" id="members-2024">
+                        <div class="content-block">
+                            <h3>当届队员信息</h3>
+                            <div class="members-grid">
+                                <div class="member-card">
+                                    <div class="member-avatar">玉</div>
+                                    <h2 class="member-name">小玉</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">原梦</div>
+                                        <div class="subject-tag">百科</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">栀</div>
+                                    <h2 class="member-name">栀子</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">原梦</div>
+                                        <div class="subject-tag">语文</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">毛</div>
+                                    <h2 class="member-name">毛毛</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">神算子</div>
+                                        <div class="subject-tag">数学</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">桃</div>
+                                    <h2 class="member-name">桃桃</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">固梦</div>
+                                        <div class="subject-tag">英语</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">通</div>
+                                    <h2 class="member-name">通通</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">天机</div>
+                                        <div class="subject-tag">数学</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">花</div>
+                                    <h2 class="member-name">花花</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">天机</div>
+                                        <div class="subject-tag">百科</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">彩</div>
+                                    <h2 class="member-name">彩虹</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">固梦</div>
+                                        <div class="subject-tag">文艺</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">土</div>
+                                    <h2 class="member-name">土豆</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">神算子</div>
+                                        <div class="subject-tag">英语</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">狼</div>
+                                    <h2 class="member-name">小狼</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">固梦</div>
+                                        <div class="subject-tag">语文</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">蛙</div>
+                                    <h2 class="member-name">蛙蛙</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">天机</div>
+                                        <div class="subject-tag">文艺</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">米</div>
+                                    <h2 class="member-name">米拉</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">固梦</div>
+                                        <div class="subject-tag">语文</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">优</div>
+                                    <h2 class="member-name">优优</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">原梦</div>
+                                        <div class="subject-tag">百科</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">木</div>
+                                    <h2 class="member-name">木子</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">神算子</div>
+                                        <div class="subject-tag">数学</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">西</div>
+                                    <h2 class="member-name">西西</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">原梦</div>
+                                        <div class="subject-tag">文艺</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 时间轴 -->
+                    <div class="content-section" id="timeline-2024">
+                        <div class="content-block">
+                            <h3>2024届支教时间轴</h3>
+                            <div class="timeline">
+                                <div class="timeline-item completed">
+                                    <div class="timeline-date">2024年3月</div>
+                                    <div class="timeline-content">
+                                        <h4>分队大会</h4>
+                                        <p>西部梦想社团举行内部大会，启动招募流程，新队员在此后通过双向选择进入学科组。</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item completed">
+                                    <div class="timeline-date">2024年5月</div>
+                                    <div class="timeline-content">
+                                        <h4>中期考核</h4>
+                                        <p>经过两个多月的准备，队伍进行中期试讲考核，检验队员们的教学能力和教案设计水平，并淘汰部分成员。</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item completed">
+                                    <div class="timeline-date">2024年6月</div>
+                                    <div class="timeline-content">
+                                        <h4>队伍正式确认</h4>
+                                        <p>至第15教学周结束，队伍通过终期试讲考核和面试，综合确定最终前往实地教学的14名新队员名单。</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item completed">
+                                    <div class="timeline-date">2024年7月12日-13日</div>
+                                    <div class="timeline-content">
+                                        <h4>大团建</h4>
+                                        <p>队员们进行厨艺展示和游戏之夜，并在凌晨5点奔赴海边，共同观看日出，凝聚团队情感。</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item completed">
+                                    <div class="timeline-date">2024年7月22日</div>
+                                    <div class="timeline-content">
+                                        <h4>出发</h4>
+                                        <p>固原er们从厦门出发，经历一天一夜的绿皮火车旅程，抵达宁夏固原，随后乘车到达杜川小学。</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item completed">
+                                    <div class="timeline-date">2024年7月26日</div>
+                                    <div class="timeline-content">
+                                        <h4>西门子捐赠仪式</h4>
+                                        <p>西门子中国商务团队向杜川小学捐赠打印机及耗材，固原队协助举办捐赠仪式并与导师进行交流。</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item completed">
+                                    <div class="timeline-date">2024年7月28日</div>
+                                    <div class="timeline-content">
+                                        <h4>教学与策划讨论</h4>
+                                        <p>队员们在杜川小学进行日常教学，晚上召开例会讨论DEI活动策划，并处理队务。</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item completed">
+                                    <div class="timeline-date">2024年8月2日</div>
+                                    <div class="timeline-content">
+                                        <h4>科技活动与家访准备</h4>
+                                        <p>队员们开展"科技"主题的游园式策划演练，并分组讨论家访问题，为后续活动做准备。</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item completed">
+                                    <div class="timeline-date">2024年8月10日左右</div>
+                                    <div class="timeline-content">
+                                        <h4>研学与音乐节</h4>
+                                        <p>队伍组织学生进行研学之旅，孩子们走过2.5公里长征小路，参观红军长征纪念馆；晚上举办草地音乐节暨队长团卸任仪式。</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item completed">
+                                    <div class="timeline-date">2024年8月11日</div>
+                                    <div class="timeline-content">
+                                        <h4>离开</h4>
+                                        <p>为期21天的暑期支教实践活动结束，队伍离开杜川小学返回厦门。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 2023届 -->
+        <div class="year-section" id="2023">
+            <div class="year-header">
+                <h2 class="year-title">2023届</h2>
+                <p class="year-location">支教地点：固原市隆德县杜川小学</p>
+            </div>
+            
+            <!-- 主要内容区域 -->
+            <div class="team-content">
+                <!-- 左侧内容 -->
+                <div class="left-content">
+                    <!-- 快速导航栏 -->
+                    <div class="anchor-nav">
+                        <a href="#captain-2023" class="anchor-link active">队长团</a>
+                        <a href="#members-2023" class="anchor-link">当届队员</a>
+                        <a href="#timeline-2023" class="anchor-link">时间轴</a>
+                    </div>
+                    
+                    <!-- 队长信息 -->
+                    <div class="content-section" id="captain-2023">
+                        <div class="content-block">
+                            <h3>2023届队伍队长团成员</h3>
+                            <div class="captain-team">
+                                <div class="captain-member">
+                                    <div class="captain-avatar">田</div>
+                                    <h2 class="captain-name">田田</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队长</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">神算子</div>
+                                        <div class="subject-tag">百科/英语</div>
+                                    </div>
+                                </div>
+                                <div class="captain-member">
+                                    <div class="captain-avatar">捧</div>
+                                    <h2 class="captain-name">捧杯</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">副队长</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">天机</div>
+                                        <div class="subject-tag">数学</div>
+                                    </div>
+                                </div>
+                                <div class="captain-member">
+                                    <div class="captain-avatar">一</div>
+                                    <h2 class="captain-name">一一</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">副队长</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">原梦</div>
+                                        <div class="subject-tag">语文</div>
+                                    </div>
+                                </div>
+                                <div class="captain-member">
+                                    <div class="captain-avatar">糖</div>
+                                    <h2 class="captain-name">糖糖</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">副队长</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">固梦</div>
+                                        <div class="subject-tag">文艺</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 当届队员信息 -->
+                    <div class="content-section" id="members-2023">
+                        <div class="content-block">
+                            <h3>当届队员信息</h3>
+                            <div class="members-grid">
+                                <div class="member-card">
+                                    <div class="member-avatar">椰</div>
+                                    <h2 class="member-name">椰子</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">神算子</div>
+                                        <div class="subject-tag">文艺</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">麦</div>
+                                    <h2 class="member-name">小麦</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">原梦</div>
+                                        <div class="subject-tag">文艺</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">涛</div>
+                                    <h2 class="member-name">涛涛</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">固梦</div>
+                                        <div class="subject-tag">百科</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">冰</div>
+                                    <h2 class="member-name">冰淇淋</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">天机</div>
+                                        <div class="subject-tag">英语</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">火</div>
+                                    <h2 class="member-name">火火</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">天机</div>
+                                        <div class="subject-tag">文艺</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">多</div>
+                                    <h2 class="member-name">多多</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">天机</div>
+                                        <div class="subject-tag">百科</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">林</div>
+                                    <h2 class="member-name">小林</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">宣传</div>
+                                        <div class="subject-tag">数学</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">咸</div>
+                                    <h2 class="member-name">咸鱼</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">固梦</div>
+                                        <div class="subject-tag">语文</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">0</div>
+                                    <h2 class="member-name">00</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">固梦</div>
+                                        <div class="subject-tag">语文</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">新</div>
+                                    <h2 class="member-name">新月</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">神算子</div>
+                                        <div class="subject-tag">百科</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">婷</div>
+                                    <h2 class="member-name">婷婷</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">原梦</div>
+                                        <div class="subject-tag">英语</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">亦</div>
+                                    <h2 class="member-name">亦柒</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">固梦</div>
+                                        <div class="subject-tag">数学</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">加</div>
+                                    <h2 class="member-name">加加</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">神算子</div>
+                                        <div class="subject-tag">数学</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar">霜</div>
+                                    <h2 class="member-name">霜霜</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">原梦</div>
+                                        <div class="subject-tag">语文</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 时间轴 -->
+                    <div class="content-section" id="timeline-2023">
+                        <div class="content-block">
+                            <h3>2023届支教时间轴</h3>
+                            <div class="timeline">
+                                <div class="timeline-item completed">
+                                    <div class="timeline-date">2023年3月</div>
+                                    <div class="timeline-content">
+                                        <h4>分队大会</h4>
+                                        <p>西部梦想社团举行内部大会，启动招募流程，新队员在此后通过双向选择进入学科组。</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item completed">
+                                    <div class="timeline-date">2023年5月</div>
+                                    <div class="timeline-content">
+                                        <h4>中期考核</h4>
+                                        <p>经过两个多月的准备，队伍进行中期试讲考核，检验队员们的教学能力和教案设计水平，并淘汰部分成员。</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item completed">
+                                    <div class="timeline-date">2023年6月</div>
+                                    <div class="timeline-content">
+                                        <h4>队伍正式确认</h4>
+                                        <p>至第15教学周结束，队伍通过终期试讲考核和面试，综合确定最终前往实地教学的14名新队员名单。</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item completed">
+                                    <div class="timeline-date">2023年8月2日 早5点</div>
+                                    <div class="timeline-content">
+                                        <h4>出发</h4>
+                                        <p>全体队员在白城校门集合，打包行李与爱心，早7点乘火车开启前往宁夏固原的支教之旅。</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item completed">
+                                    <div class="timeline-date">2023年8月5日</div>
+                                    <div class="timeline-content">
+                                        <h4>开营第一课</h4>
+                                        <p>各老师开展绘画、神话、非遗扎染等课程，课堂孩子积极互动，课后师生相伴玩耍。</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item completed">
+                                    <div class="timeline-date">2023年8月6日</div>
+                                    <div class="timeline-content">
+                                        <h4>小小萌探团主题活动</h4>
+                                        <p>开展早读、静电魔术实验课，孩子在协作游戏中完成任务，展现超强想象力与共情力。</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item completed">
+                                    <div class="timeline-date">2023年8月8日</div>
+                                    <div class="timeline-content">
+                                        <h4>中华传统节日主题活动</h4>
+                                        <p>分年级围绕七夕、端午、春节设计趣味挑战，孩子在游戏中了解传统节日文化。</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item completed">
+                                    <div class="timeline-date">2023年8月9日</div>
+                                    <div class="timeline-content">
+                                        <h4>杨氏彩塑非遗调研</h4>
+                                        <p>队员前往杨氏彩塑艺术馆，了解非遗传承故事，校内开设彩虹风车手工课并为家访踩点。</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item completed">
+                                    <div class="timeline-date">2023年8月10日</div>
+                                    <div class="timeline-content">
+                                        <h4>植物拓印 + 非遗采色行动</h4>
+                                        <p>校内开设植物拓印手工课，队员再次前往杨氏彩塑馆开展拍摄、调研等采色行动。</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item completed">
+                                    <div class="timeline-date">2023年8月11日</div>
+                                    <div class="timeline-content">
+                                        <h4>彩塑工艺学习</h4>
+                                        <p>队员到杨氏彩塑馆学习彩塑工艺流程，返程后偶遇双彩虹，记录下美好瞬间。</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item completed">
+                                    <div class="timeline-date">2023年8月13日</div>
+                                    <div class="timeline-content">
+                                        <h4>"我的情绪我做主" 班会</h4>
+                                        <p>孩子自主齐心布置班会黑板，课间师生欢乐互动，孩子为老师送上暖心花束。</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item completed">
+                                    <div class="timeline-date">2023年8月14日</div>
+                                    <div class="timeline-content">
+                                        <h4>家访专项活动</h4>
+                                        <p>队员走访孩子家中，了解家庭情况与留守儿童现状，搭建家校沟通的桥梁。</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item completed">
+                                    <div class="timeline-date">2023年8月15日</div>
+                                    <div class="timeline-content">
+                                        <h4>大团建</h4>
+                                        <p>队员为伽伽庆生，夜晚围坐草坪看星空、唱队歌、吃蛋糕，开展队内暖心团建活动。</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item completed">
+                                    <div class="timeline-date">2023年8月18日</div>
+                                    <div class="timeline-content">
+                                        <h4>三十六计语文计划日</h4>
+                                        <p>以三十六计为核心设计趣味游戏，寓教于乐，带领孩子学习中华传统文化。</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item completed">
+                                    <div class="timeline-date">2023年8月19日</div>
+                                    <div class="timeline-content">
+                                        <h4>最后一课 + 汇演筹备</h4>
+                                        <p>开展支教最后一堂课，师生互赠离别礼物，队员全力排练、布置文艺汇演场地。</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item completed">
+                                    <div class="timeline-date">2023年8月20日</div>
+                                    <div class="timeline-content">
+                                        <h4>文艺汇演 + 离开</h4>
+                                        <p>举办支教收官文艺汇演，师生同台表演，汇演后颁奖赠礼、合唱，结束本次固原支教之旅。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>快速链接</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="discover.html">发现</a></li>
+                        <li><a href="profile.html">我的</a></li>
+                        <li><a href="team.html">队伍介绍</a></li>
+                        <li><a href="current.html">当届动态</a></li>
+                        <li><a href="past.html">朝花夕拾</a></li>
+                        <li><a href="resources.html">资料分享</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>固原支教队</h3>
+                    <p>用爱心点燃希望，用知识改变未来。</p>
+                    <p>我们致力于为宁夏回族自治区固原市隆德县的孩子们提供优质的教育资源，帮助他们实现梦想。</p>
+                </div>
+                <div class="footer-section">
+                    <h3>赞助方</h3>
+                    <ul style="list-style: none; padding-left: 0; color: #666;">
+                        <li style="margin-bottom: 8px;">厦门大学</li>
+                        <li style="margin-bottom: 8px;">共青团隆德县委员会</li>
+                        <li style="margin-bottom: 8px;">中国大学生知行促进计划</li>
+                        <li style="margin-bottom: 8px;">西门子爱绿教育计划</li>
+                        <li style="margin-bottom: 8px;">立邦为爱上色中国大学生农村支教奖</li>
+                        <li style="margin-bottom: 8px;">快乐学习</li>
+                        <li style="margin-bottom: 8px;">"鹏青杯" 大学生社会公益创投大赛</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>联系我们</h3>
+                    <p>地址：福建省厦门市思明区思明南路422号</p>
+                    <div style="margin-top: 15px; text-align: center;">
+                        <img src="CRcode/wx_gongzhonghao_logo.jpg" alt="固原支教队官方微信公众号" style="width: 100px; height: 100px;">
+                        <p style="margin-top: 10px; color: #666; font-size: 0.9em;">官方微信公众号</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 厦门大学西部梦想社团 固原支教队. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // 年份筛选功能
+        function filterYear(year, event) {
+            // 移除所有年份模块的active类
+            document.querySelectorAll('.year-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // 移除所有筛选标签的active类
+            document.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // 为选中的年份模块和标签添加active类
+            document.getElementById(year).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+        
+        // 打开贴文
+        function openPost(title) {
+            event.preventDefault();
+            // 这里可以添加打开贴文的逻辑
+            alert(`${title}详情页面开发中...`);
+        }
+        
+
+    </script>
+</body>
+</html>
