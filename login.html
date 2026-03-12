@@ -205,17 +205,148 @@
         
         /* 响应式设计 */
         @media (max-width: 768px) {
+            .login-page {
+                height: auto;
+                min-height: 100vh;
+            }
+            
             .login-container {
                 position: static;
                 width: 90%;
-                margin: 50px auto;
+                max-width: 400px;
+                margin: 30px auto;
                 transform: none;
                 box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+                padding: 30px 25px;
+                border-radius: 10px;
             }
             
             .carousel-container {
                 position: fixed;
                 z-index: -1;
+                height: 100vh;
+            }
+            
+            .logo {
+                margin-bottom: 25px;
+            }
+            
+            .logo img {
+                width: 50px !important;
+                height: 63px !important;
+                margin-bottom: 10px;
+            }
+            
+            .logo h1 {
+                font-size: 1.5em;
+            }
+            
+            .logo > div:first-child {
+                font-size: 0.7em !important;
+            }
+            
+            .login-tabs {
+                margin-bottom: 20px;
+            }
+            
+            .tab-btn {
+                padding: 10px;
+                font-size: 0.9em;
+            }
+            
+            .form-container {
+                height: auto;
+            }
+            
+            .login-form.active {
+                height: auto;
+            }
+            
+            .form-group {
+                margin-bottom: 15px;
+            }
+            
+            .form-group label {
+                font-size: 0.9em;
+                margin-bottom: 6px;
+            }
+            
+            .form-group input {
+                padding: 10px 12px;
+                font-size: 0.95em;
+            }
+            
+            .login-btn {
+                padding: 12px;
+                font-size: 0.95em;
+            }
+            
+            .guest-btn {
+                padding: 10px 20px;
+                font-size: 0.95em;
+            }
+            
+            .error-message {
+                font-size: 0.85em;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .login-container {
+                width: 92%;
+                margin: 20px auto;
+                padding: 25px 20px;
+                border-radius: 8px;
+            }
+            
+            .logo {
+                margin-bottom: 20px;
+            }
+            
+            .logo img {
+                width: 45px !important;
+                height: 57px !important;
+                margin-bottom: 8px;
+            }
+            
+            .logo h1 {
+                font-size: 1.3em;
+            }
+            
+            .logo > div:first-child {
+                font-size: 0.65em !important;
+            }
+            
+            .login-tabs {
+                margin-bottom: 15px;
+            }
+            
+            .tab-btn {
+                padding: 8px;
+                font-size: 0.85em;
+            }
+            
+            .form-group {
+                margin-bottom: 12px;
+            }
+            
+            .form-group label {
+                font-size: 0.85em;
+            }
+            
+            .form-group input {
+                padding: 9px 10px;
+                font-size: 0.9em;
+            }
+            
+            .login-btn {
+                padding: 11px;
+                font-size: 0.9em;
+            }
+            
+            .guest-btn {
+                padding: 9px 18px;
+                font-size: 0.9em;
             }
         }
     </style>
@@ -226,16 +357,16 @@
         <div class="carousel-container">
             <div class="carousel">
                 <div class="carousel-slide active">
-                    <img src="img/login/001.jpg" alt="支教活动照片1">
+                    <img src="login/001.jpg" alt="支教活动照片1">
                 </div>
                 <div class="carousel-slide">
-                    <img src="img/login/002.jpg" alt="支教活动照片2">
+                    <img src="login/002.jpg" alt="支教活动照片2">
                 </div>
                 <div class="carousel-slide">
-                    <img src="img/login/003.jpg" alt="支教活动照片3">
+                    <img src="login/003.jpg" alt="支教活动照片3">
                 </div>
                 <div class="carousel-slide">
-                    <img src="img/login/004.jpg" alt="支教活动照片4">
+                    <img src="login/004.jpg" alt="支教活动照片4">
                 </div>
             </div>
         </div>
