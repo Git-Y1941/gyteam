@@ -69,6 +69,19 @@
             color: #b91c1c;
         }
         
+        .version-badge {
+            font-size: 0.35em;
+            font-weight: normal;
+            color: #999;
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            margin-left: 8px;
+            vertical-align: middle;
+            display: inline-block;
+            line-height: 1.4;
+        }
+        
         .logo-text .small {
             font-size: 1em;
             color: #666;
@@ -78,10 +91,11 @@
         .nav-links {
             display: flex;
             list-style: none;
+            gap: 30px;
         }
         
         .nav-links li {
-            margin-left: 30px;
+            margin-left: 0;
         }
         
         /* 导航链接文字对齐 */
@@ -94,6 +108,34 @@
             transition: color 0.3s ease;
             text-transform: uppercase;
             padding-top: 3px;
+            font-size: 14.4px;
+        }
+        
+        .nav-links a:hover {
+            color: #b91c1c;
+            font-weight: bold;
+        }
+        
+        .nav-links a:active {
+            color: #991b1b;
+            transform: scale(0.98);
+        }
+        
+        .nav-links a.active {
+            color: #b91c1c;
+            font-weight: bold;
+            position: relative;
+        }
+        
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #b91c1c;
+            border-radius: 1px;
         }
         
         /* 导航图标 */
@@ -104,6 +146,8 @@
             margin-right: 8px;
             vertical-align: middle;
             flex-shrink: 0;
+            flex-grow: 0;
+            flex-basis: auto;
         }
         
         /* 首页图标 - 三条横杠 */
@@ -220,8 +264,10 @@
             min-width: 150px;
             display: none;
             z-index: 1000;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            padding: 5px 0;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+            padding: 8px 0;
+            border-radius: 12px;
+            overflow: hidden;
         }
         
         .nav-home-dropdown {
@@ -237,10 +283,11 @@
         
         .nav-home-menu a {
             display: block;
-            padding: 10px 15px;
+            padding: 12px 20px;
             color: #333;
             text-decoration: none;
-            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.2s ease;
+            font-size: 0.95em;
         }
         
         .nav-home-menu a:last-child {
@@ -248,8 +295,28 @@
         }
         
         .nav-home-menu a:hover {
-            background: #f9f9f9;
+            background: linear-gradient(135deg, #fef5f5 0%, #fff0f0 100%);
             color: #b91c1c;
+            padding-left: 25px;
+        }
+        
+        /* 队伍标题 */
+        .team-title {
+            text-align: center;
+            margin-top: 80px;
+            margin-bottom: 50px;
+        }
+        
+        .team-title h1 {
+            font-size: 3em;
+            font-weight: bold;
+            color: #b91c1c;
+            margin-bottom: 30px;
+        }
+        
+        .team-slogan {
+            font-size: 1.2em;
+            color: #666;
         }
         
         /* 队伍轮播图 */
@@ -644,47 +711,416 @@
         }
 
         /* 响应式设计 */
-        @media (max-width: 992px) {
-            .charts-container {
-                grid-template-columns: 1fr;
-            }
-        }
-        
         @media (max-width: 768px) {
+            /* 导航栏 */
+            .nav-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+                text-align: center;
+            }
+            
             .nav-links {
-                flex-wrap: wrap;
+                width: 100%;
+                flex-direction: row;
+                justify-content: space-around;
+                gap: 10px;
             }
             
             .nav-links li {
-                margin-left: 15px;
+                margin-left: 0;
+                margin-bottom: 0;
+            }
+            
+            .nav-links a {
+                padding: 5px 0;
+                border-bottom: none;
+                font-size: 14.4px;
+                display: flex;
+                align-items: center;
+                font-weight: 500;
+                text-transform: uppercase;
+                padding-top: 3px;
+            }
+            
+            .nav-icon {
+                margin-right: 8px;
+                display: inline-block;
+                vertical-align: middle;
+                flex-shrink: 0;
+            }
+            
+            /* 首页下拉菜单 - 移动端 */
+            .nav-home-menu {
+                border-radius: 8px;
+                min-width: 140px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            }
+            
+            .nav-home-menu a {
+                font-size: 0.85em;
+                padding: 10px 15px;
+            }
+            
+            .nav-home-menu a:hover {
+                padding-left: 20px;
+            }
+            
+            .logo-text .large {
+                font-size: 1.4em;
+            }
+            
+            .version-badge {
+                font-size: 0.4em;
+                padding: 2px 5px;
+                margin-left: 5px;
+            }
+            
+            .logo-text .small {
+                font-size: 0.8em;
+            }
+            
+            /* 轮播图 */
+            .team-carousel {
+                height: 200px;
+                margin: 30px 0 20px;
+            }
+            
+            /* 队伍标题 */
+            .team-title {
+                margin-top: 40px;
+                margin-bottom: 30px;
+            }
+            
+            .team-title h1 {
+                font-size: 2em;
+                margin-bottom: 15px;
+            }
+            
+            .team-slogan {
+                font-size: 1em;
+            }
+            
+            /* 主要内容 */
+            .team-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .left-content {
+                padding: 15px;
+            }
+            
+            /* 快速定位导航 */
+            .anchor-nav {
+                gap: 8px;
+                padding: 10px;
+                flex-wrap: wrap;
+            }
+            
+            .anchor-link {
+                padding: 6px 10px;
+                font-size: 0.85em;
+            }
+            
+            /* 内容区块 */
+            .content-block {
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+            
+            .content-block h3 {
+                font-size: 1.1em;
+                margin-bottom: 10px;
+                padding-left: 8px;
+            }
+            
+            .content-block p {
+                font-size: 0.9em;
+                line-height: 1.6;
+                margin-bottom: 8px;
+            }
+            
+            /* 队伍介绍列表 */
+            .team-intro-list {
+                padding-left: 20px;
+                margin: 8px 0 12px 0;
+            }
+            
+            .team-intro-list li {
+                margin-bottom: 6px;
+                font-size: 0.9em;
+                line-height: 1.5;
+            }
+            
+            /* 图表容器 */
+            .charts-container {
+                gap: 15px;
+                margin-top: 15px;
+            }
+            
+            .chart-card {
+                padding: 15px;
+            }
+            
+            .chart-card h4 {
+                font-size: 1em;
                 margin-bottom: 10px;
             }
             
-            .team-carousel {
-                height: 250px;
+            /* 表格样式 */
+            .unified-table {
+                font-size: 11px;
             }
             
-            .team-content {
-                grid-template-columns: 1fr;
+            .unified-table th,
+            .unified-table td {
+                padding: 6px;
             }
             
+            /* 确保整个页面宽度不超出屏幕 */
+            body {
+                overflow-x: hidden;
+                width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            
+            .container {
+                width: 100%;
+                max-width: 100%;
+                padding: 0 20px;
+                box-sizing: border-box;
+            }
+            
+            /* 确保所有容器都不超出屏幕 */
+            .team-content,
             .left-content,
-            .right-content,
-            .sponsorship {
-                padding: 20px;
+            .charts-container,
+            .chart-card {
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+            
+            /* 二级标题 */
+            h4 {
+                font-size: 1em;
+                margin-top: 15px;
+                margin-bottom: 10px;
+            }
+            
+            /* 三级标题 */
+            h5 {
+                font-size: 0.95em;
+                margin-top: 15px;
+                margin-bottom: 8px;
+            }
+            
+            /* 地图模块 */
+            #team-map {
+                height: 250px;
+                margin-top: 15px;
+            }
+            
+            /* 页脚 */
+            footer {
+                padding: 30px 0;
+                margin-top: 40px;
             }
             
             .footer-content {
                 grid-template-columns: 1fr;
-            }
-
-            .staff-table, .func-table, .org-table {
-                font-size: 12px;
+                gap: 20px;
+                padding: 0 20px;
             }
             
-            .org-table th,
-            .org-table td {
-                padding: 8px;
+            .footer-section h3 {
+                font-size: 1.1em;
+                margin-bottom: 15px;
+            }
+            
+            .footer-section p {
+                font-size: 0.85em;
+            }
+            
+            .footer-section:nth-child(2) {
+                padding: 0;
+            }
+            
+            .footer-bottom {
+                margin-top: 30px;
+                padding-top: 15px;
+                font-size: 0.8em;
+            }
+            
+            /* 调整两列布局为单列 */
+            .team-content > div,
+            .team-content > div > div {
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
+            }
+            
+            /* 确保内容不超出屏幕 */
+            .content-section,
+            .content-block {
+                width: 95%;
+                max-width: 95%;
+                overflow: visible;
+                height: auto !important;
+                margin: 0 auto;
+            }
+            
+            /* 确保文字不超出屏幕 */
+            p,
+            li,
+            h3,
+            h4,
+            h5 {
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+            }
+            
+            /* 赞助方栏目字体统一 */
+            #sponsor p,
+            #sponsor li {
+                font-size: 0.9em;
+                line-height: 1.6;
+            }
+            
+            /* 移除表格容器的水平滚动 */
+            .chart-card {
+                overflow-x: hidden;
+            }
+            
+            /* 确保表格内容不超出屏幕 */
+            .unified-table {
+                width: 100%;
+                table-layout: fixed;
+            }
+            
+            .unified-table th,
+            .unified-table td {
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+            }
+        }
+        
+        /* 针对小屏幕手机的额外适配 */
+        /* 小屏幕手机适配 */
+        @media (max-width: 480px) {
+            /* 导航栏 */
+            .logo img {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .logo-text .large {
+                font-size: 1.5em;
+            }
+            
+            .version-badge {
+                font-size: 0.45em;
+                padding: 2px 4px;
+                margin-left: 4px;
+            }
+            
+            .logo-text .small {
+                font-size: 0.9em;
+            }
+            
+            .nav-links a {
+                display: flex;
+                align-items: center;
+                font-size: 14.4px;
+                font-weight: 500;
+                text-transform: uppercase;
+                padding-top: 3px;
+            }
+            
+            /* 确保图标不形变 */
+            .nav-icon {
+                width: 16px !important;
+                height: 16px !important;
+                flex-shrink: 0 !important;
+                flex-grow: 0 !important;
+                flex-basis: auto !important;
+            }
+            
+            .nav-icon-home {
+                width: 18px !important;
+                height: 14px !important;
+            }
+            
+            /* 首页下拉菜单 - 小屏移动端 */
+            .nav-home-menu {
+                border-radius: 6px;
+                min-width: 120px;
+            }
+            
+            .nav-home-menu a {
+                font-size: 0.8em;
+                padding: 8px 12px;
+            }
+            
+            .nav-home-menu a:hover {
+                padding-left: 18px;
+            }
+            
+            .team-title h1 {
+                font-size: 1.8em;
+            }
+            
+            .content-block {
+                padding: 12px;
+                height: auto !important;
+                overflow: visible !important;
+                width: 95%;
+                max-width: 95%;
+                box-sizing: border-box;
+                margin: 0 auto;
+            }
+            
+            .unified-table {
+                font-size: 10px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            
+            .unified-table th,
+            .unified-table td {
+                padding: 4px;
+                box-sizing: border-box;
+            }
+            
+            /* 确保表格在小屏幕上不超出 */
+            .chart-card {
+                overflow: visible;
+                height: auto !important;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            
+
+            
+            /* 确保所有容器在小屏幕上都不超出 */
+            .container {
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+                padding: 0 15px;
+            }
+            
+            .team-content,
+            .left-content,
+            .charts-container {
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+                padding: 0;
             }
         }
     </style>
@@ -694,13 +1130,13 @@
     <nav class="main-nav">
         <div class="container nav-container">
             <div class="logo">
-                <img src="logo.png" alt="厦门大学西部梦想社团 固原支教队">
+                <img data-src="logo.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Crect width='80' height='80' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="厦门大学西部梦想社团 固原支教队">
                 <div class="logo-text">
                     <div class="small">厦门大学西部梦想社团</div>
-                    <div class="large">固原支教队</div>
+                    <div class="large">固原支教队 <span class="version-badge">测试版v-0.3</span></div>
                 </div>
             </div>
-            <ul class="nav-links">
+                                                                        <ul class="nav-links">
                 <li class="nav-home-dropdown">
                     <a href="index.html">
                         <span class="nav-icon nav-icon-home"><span></span></span>
@@ -1498,5 +1934,6 @@
         // 页面加载完成后初始化地图
         window.addEventListener('load', initMap);
     </script>
+    <script src="js/lazyload.js"></script>
 </body>
 </html>
