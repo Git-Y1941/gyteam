@@ -93,12 +93,16 @@
             margin-left: 0;
         }
         
+        /* 导航链接文字对齐 - 修复核心：删除重复定义，修正拼写错误 */
         .nav-links a {
+            display: flex; /* 修正：原来是dis: flex 拼写错误 */
+            align-items: center;
             text-decoration: none;
             color: #333;
             font-weight: 500;
             transition: color 0.3s ease;
             text-transform: uppercase;
+            padding-top: 3px;
         }
         
         .nav-links a:hover {
@@ -128,21 +132,9 @@
             border-radius: 1px;
         }
         
-        /* 导航链接文字对齐 */
-        .nav-links a {
-            dis: flex;
-            align-items: center;
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            text-transform: uppercase;
-            padding-top: 3px;
-        }
-        
-        /* 导航图标 */
+        /* 导航图标 - 修复核心：修正拼写错误 */
         .nav-icon {
-            dis: inline-block;
+            display: inline-block; /* 修正：原来是dis: inline-block 拼写错误 */
             width: 16px;
             height: 16px;
             margin-right: 8px;
@@ -771,7 +763,6 @@
         padding: 0 40px; /* 核心：左右内边距，数值可自行调整（如10px/30px） */
         }
 
-
         .footer-links {
             list-style: none;
         }
@@ -1181,8 +1172,6 @@
         </div>
     </div>
     
-
-    
     <!-- 页脚 -->
     <footer>
         <div class="container">
@@ -1336,8 +1325,3 @@
     <script src="js/lazyload.js"></script>
 </body>
 </html>
-
-
-
-
-
