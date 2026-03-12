@@ -63,6 +63,19 @@
             color: #b91c1c;
         }
         
+        .version-badge {
+            font-size: 0.35em;
+            font-weight: normal;
+            color: #999;
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            margin-left: 8px;
+            vertical-align: middle;
+            display: inline-block;
+            line-height: 1.4;
+        }
+        
         .logo-text .small {
             font-size: 1em;
             color: #666;
@@ -72,10 +85,11 @@
         .nav-links {
             display: flex;
             list-style: none;
+            gap: 30px;
         }
         
         .nav-links li {
-            margin-left: 30px;
+            margin-left: 0;
         }
         
         /* 导航链接文字对齐 */
@@ -88,6 +102,33 @@
             transition: color 0.3s ease;
             text-transform: uppercase;
             padding-top: 3px;
+        }
+        
+        .nav-links a:hover {
+            color: #b91c1c;
+            font-weight: bold;
+        }
+        
+        .nav-links a:active {
+            color: #991b1b;
+            transform: scale(0.98);
+        }
+        
+        .nav-links a.active {
+            color: #b91c1c;
+            font-weight: bold;
+            position: relative;
+        }
+        
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #b91c1c;
+            border-radius: 1px;
         }
         
         /* 导航图标 */
@@ -214,8 +255,10 @@
             min-width: 150px;
             display: none;
             z-index: 1000;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            padding: 5px 0;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+            padding: 8px 0;
+            border-radius: 12px;
+            overflow: hidden;
         }
         
         .nav-home-dropdown {
@@ -231,10 +274,11 @@
         
         .nav-home-menu a {
             display: block;
-            padding: 10px 15px;
+            padding: 12px 20px;
             color: #333;
             text-decoration: none;
-            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.2s ease;
+            font-size: 0.95em;
         }
         
         .nav-home-menu a:last-child {
@@ -242,8 +286,9 @@
         }
         
         .nav-home-menu a:hover {
-            background: #f9f9f9;
+            background: linear-gradient(135deg, #fef5f5 0%, #fff0f0 100%);
             color: #b91c1c;
+            padding-left: 25px;
         }
         
         /* 队伍标题 */
@@ -407,8 +452,14 @@
         /* 队长信息 */
         .captain-team {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 20px;
+        }
+        
+        @media (min-width: 1200px) {
+            .captain-team {
+                grid-template-columns: repeat(5, 1fr);
+            }
         }
         
         .captain-member {
@@ -502,9 +553,15 @@
         
         .members-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 20px;
             margin-top: 30px;
+        }
+        
+        @media (min-width: 1200px) {
+            .members-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
         }
         
         .member-card {
@@ -715,31 +772,449 @@
         
         /* 响应式设计 */
         @media (max-width: 768px) {
+            /* 导航栏 */
+            .nav-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+                text-align: center;
+            }
+            
             .nav-links {
-                flex-wrap: wrap;
+                width: 100%;
+                flex-direction: row;
+                justify-content: space-around;
+                gap: 10px;
             }
             
             .nav-links li {
-                margin-left: 15px;
+                margin-left: 0;
+                margin-bottom: 0;
+            }
+            
+            .nav-links a {
+                padding: 5px 0;
+                border-bottom: none;
+                font-size: 14.4px;
+                display: flex;
+                align-items: center;
+                font-weight: 500;
+                text-transform: uppercase;
+                padding-top: 3px;
+            }
+            
+            .nav-icon {
+                margin-right: 8px;
+                display: inline-block;
+                vertical-align: middle;
+                flex-shrink: 0;
+            }
+            
+            /* 首页下拉菜单 - 移动端 */
+            .nav-home-menu {
+                border-radius: 8px;
+                min-width: 140px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            }
+            
+            .nav-home-menu a {
+                font-size: 0.85em;
+                padding: 10px 15px;
+            }
+            
+            .nav-home-menu a:hover {
+                padding-left: 20px;
+            }
+            
+            .logo-text .large {
+                font-size: 1.4em;
+            }
+            
+            .version-badge {
+                font-size: 0.4em;
+                padding: 2px 5px;
+                margin-left: 5px;
+            }
+            
+            .logo-text .small {
+                font-size: 0.8em;
+            }
+            
+            /* 队伍标题 */
+            .team-title {
+                margin-top: 30px;
+                margin-bottom: 20px;
+            }
+            
+            .team-title h1 {
+                font-size: 2em;
                 margin-bottom: 10px;
             }
             
+            .team-slogan {
+                font-size: 1em;
+            }
+            
+            /* 年份筛选器 */
+            .year-filter {
+                flex-wrap: wrap;
+                gap: 8px;
+                padding: 10px;
+            }
+            
+            .filter-tab {
+                flex: 1;
+                min-width: 80px;
+                text-align: center;
+                font-size: 0.9em;
+                padding: 8px 10px;
+            }
+            
+            /* 年份模块 */
             .year-section {
                 padding: 20px;
             }
             
-            .captain-info {
+            .year-header {
                 flex-direction: column;
-                text-align: center;
+                align-items: flex-start;
+                gap: 10px;
             }
             
-            .captain-avatar {
-                margin-right: 0;
+            .year-header h2 {
+                font-size: 1.5em;
+            }
+            
+            .year-info {
+                font-size: 0.9em;
+            }
+            
+            /* 内容区块 */
+            .content-block {
+                padding: 20px;
+            }
+            
+            .content-block h3 {
+                font-size: 1.2em;
+            }
+            
+            .content-block p {
+                font-size: 0.95em;
+            }
+            
+            /* 队长和队员网格 */
+            .captain-team,
+            .members-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 15px;
+            }
+            
+            .captain-member,
+            .member-card {
+                padding: 15px;
+            }
+            
+            .captain-avatar,
+            .member-avatar {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .captain-name,
+            .member-name {
+                font-size: 1.1em;
+            }
+            
+            .captain-title,
+            .subject-tag,
+            .function-tag,
+            .member-role {
+                font-size: 0.8em;
+                padding: 3px 8px;
+            }
+            
+            /* 时间轴 */
+            .timeline {
+                padding-left: 25px;
+            }
+            
+            .timeline-date {
+                font-size: 0.95em;
+            }
+            
+            .timeline-content {
+                padding: 12px;
+            }
+            
+            .timeline-content h4 {
+                font-size: 1em;
+            }
+            
+            .timeline-content p {
+                font-size: 0.9em;
+            }
+            
+            .timeline-action {
+                font-size: 0.85em;
+                padding: 6px 12px;
+            }
+            
+            /* 快速导航 */
+            .anchor-nav {
+                flex-wrap: wrap;
+                gap: 10px;
+                padding: 10px;
+            }
+            
+            .anchor-link {
+                flex: 1;
+                min-width: 80px;
+                text-align: center;
+                font-size: 0.9em;
+                padding: 6px 10px;
+            }
+            
+            /* 页脚 */
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .footer-section:nth-child(2) {
+                padding: 0;
+            }
+            
+            .footer-section h3 {
+                font-size: 1.1em;
                 margin-bottom: 15px;
             }
             
+            .footer-section p {
+                font-size: 0.85em;
+            }
+        }
+        
+        /* 小屏幕手机适配 */
+        @media (max-width: 480px) {
+            /* 导航栏 */
+            .logo img {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .logo-text .large {
+                font-size: 1.5em;
+            }
+            
+            .version-badge {
+                font-size: 0.45em;
+                padding: 2px 4px;
+                margin-left: 4px;
+            }
+            
+            .logo-text .small {
+                font-size: 0.9em;
+            }
+            
+            .nav-links a {
+                display: flex;
+                align-items: center;
+                font-size: 14.4px;
+                font-weight: 500;
+                text-transform: uppercase;
+                padding-top: 3px;
+            }
+            
+            .nav-icon {
+                width: 16px !important;
+                height: 16px !important;
+                flex-shrink: 0 !important;
+                flex-grow: 0 !important;
+                flex-basis: auto !important;
+            }
+            
+            .nav-icon-home {
+                width: 18px !important;
+                height: 14px !important;
+            }
+            
+            /* 首页下拉菜单 - 小屏移动端 */
+            .nav-home-menu {
+                border-radius: 6px;
+                min-width: 120px;
+            }
+            
+            .nav-home-menu a {
+                font-size: 0.8em;
+                padding: 8px 12px;
+            }
+            
+            .nav-home-menu a:hover {
+                padding-left: 18px;
+            }
+            
+            .nav-icon-home {
+                width: 18px !important;
+                height: 14px !important;
+            }
+            
+            /* 队伍标题 */
+            .team-title {
+                margin-top: 20px;
+                margin-bottom: 15px;
+            }
+            
+            .team-title h1 {
+                font-size: 1.8em;
+                margin-bottom: 8px;
+            }
+            
+            .team-slogan {
+                font-size: 0.95em;
+            }
+            
+            /* 年份筛选器 */
+            .year-filter {
+                gap: 5px;
+                padding: 8px;
+            }
+            
+            .filter-tab {
+                font-size: 0.85em;
+                padding: 6px 8px;
+                min-width: 60px;
+            }
+            
+            /* 年份模块 */
+            .year-section {
+                padding: 15px;
+            }
+            
+            .year-header h2 {
+                font-size: 1.3em;
+            }
+            
+            .year-info {
+                font-size: 0.85em;
+            }
+            
+            /* 内容区块 */
+            .content-block {
+                padding: 15px;
+            }
+            
+            .content-block h3 {
+                font-size: 1.1em;
+            }
+            
+            .content-block p {
+                font-size: 0.9em;
+                line-height: 1.6;
+            }
+            
+            /* 队长和队员网格 */
+            .captain-team,
+            .members-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 12px;
+            }
+            
+            .captain-member,
+            .member-card {
+                padding: 12px;
+            }
+            
+            .captain-avatar,
+            .member-avatar {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .captain-name,
+            .member-name {
+                font-size: 1em;
+            }
+            
+            .captain-title,
+            .subject-tag,
+            .function-tag,
+            .member-role {
+                font-size: 0.75em;
+                padding: 2px 6px;
+            }
+            
+            /* 时间轴 */
+            .timeline {
+                padding-left: 20px;
+            }
+            
+            .timeline::before {
+                left: 3px;
+            }
+            
+            .timeline-item::before {
+                left: -20px;
+                width: 10px;
+                height: 10px;
+            }
+            
+            .timeline-date {
+                font-size: 0.9em;
+            }
+            
+            .timeline-content {
+                padding: 10px;
+            }
+            
+            .timeline-content h4 {
+                font-size: 0.95em;
+            }
+            
+            .timeline-content p {
+                font-size: 0.85em;
+                margin-bottom: 10px;
+            }
+            
+            .timeline-action {
+                font-size: 0.8em;
+                padding: 5px 10px;
+            }
+            
+            /* 快速导航 */
+            .anchor-nav {
+                gap: 8px;
+                padding: 8px;
+            }
+            
+            .anchor-link {
+                font-size: 0.85em;
+                padding: 5px 8px;
+            }
+            
+            /* 页脚 */
             .footer-content {
-                grid-template-columns: 1fr;
+                padding: 0 15px;
+            }
+            
+            .footer-section h3 {
+                font-size: 1em;
+                margin-bottom: 12px;
+            }
+            
+            .footer-section p {
+                font-size: 0.8em;
+                line-height: 1.5;
+            }
+            
+            /* 确保所有容器在小屏幕上不超出 */
+            .container {
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+                padding: 0 15px;
             }
         }
     </style>
@@ -749,10 +1224,10 @@
     <nav class="main-nav">
         <div class="container nav-container">
             <div class="logo">
-            <img src="logo.png" alt="厦门大学西部梦想社团 固原支教队">
+            <img data-src="logo.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Crect width='80' height='80' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="厦门大学西部梦想社团 固原支教队">
             <div class="logo-text">
                 <div class="small">厦门大学西部梦想社团</div>
-                <div class="large">固原支教队</div>
+                <div class="large">固原支教队 <span class="version-badge">测试版v-0.3</span></div>
             </div>
         </div>
                                                                         <ul class="nav-links">
@@ -814,7 +1289,7 @@
                             <h3>2025届队伍队长团成员</h3>
                             <div class="captain-team">
                                 <div class="captain-member">
-                                    <div class="captain-avatar"><img src="avatar/2025/xixi.png" alt="西西"></div>
+                                    <div class="captain-avatar"><img data-src="avatar/2025/xixi.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E"2025/xixi.png" alt="西西"></div>
                                     <h2 class="captain-name">西西</h2>
                                     <div class="tags-row">
                                         <div class="captain-title">队长</div>
@@ -825,7 +1300,7 @@
                                     </div>
                                 </div>
                                 <div class="captain-member">
-                                    <div class="captain-avatar"><img src="avatar/2025/xiaoyu.png" alt="小玉"></div>
+                                    <div class="captain-avatar"><img data-src="avatar/2025/xiaoyu.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E"2025/xiaoyu.png" alt="小玉"></div>
                                     <h2 class="captain-name">小玉</h2>
                                     <div class="tags-row">
                                         <div class="captain-title">副队长</div>
@@ -836,7 +1311,7 @@
                                     </div>
                                 </div>
                                 <div class="captain-member">
-                                    <div class="captain-avatar"><img src="avatar/2025/taotao.png" alt="桃桃"></div>
+                                    <div class="captain-avatar"><img data-src="avatar/2025/taotao.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E"2025/taotao.png" alt="桃桃"></div>
                                     <h2 class="captain-name">桃桃</h2>
                                     <div class="tags-row">
                                         <div class="captain-title">副队长</div>
@@ -847,7 +1322,7 @@
                                     </div>
                                 </div>
                                 <div class="captain-member">
-                                    <div class="captain-avatar"><img src="avatar/2025/huahua.png" alt="花花"></div>
+                                    <div class="captain-avatar"><img data-src="avatar/2025/huahua.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E"2025/huahua.png" alt="花花"></div>
                                     <h2 class="captain-name">花花</h2>
                                     <div class="tags-row">
                                         <div class="captain-title">副队长</div>
@@ -858,7 +1333,7 @@
                                     </div>
                                 </div>
                                 <div class="captain-member">
-                                    <div class="captain-avatar"><img src="avatar/2025/tongtong.png" alt="通通"></div>
+                                    <div class="captain-avatar"><img data-src="avatar/2025/tongtong.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E"2025/tongtong.png" alt="通通"></div>
                                     <h2 class="captain-name">通通</h2>
                                     <div class="tags-row">
                                         <div class="captain-title">副队长</div>
@@ -878,7 +1353,7 @@
                             <h3>当届队员信息</h3>
                             <div class="members-grid">
                                 <div class="member-card">
-                                    <div class="member-avatar"><img src="avatar/2025/xiaoyi.png" alt="小艺"></div>
+                                    <div class="member-avatar"><img data-src="avatar/2025/xiaoyi.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E"2025/xiaoyi.png" alt="小艺"></div>
                                     <h2 class="member-name">小艺</h2>
                                     <div class="tags-row">
                                         <div class="captain-title">队员</div>
@@ -889,7 +1364,7 @@
                                     </div>
                                 </div>
                                 <div class="member-card">
-                                    <div class="member-avatar"><img src="avatar/2025/tangguo.png" alt="糖果"></div>
+                                    <div class="member-avatar"><img data-src="avatar/2025/tangguo.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E"2025/tangguo.png" alt="糖果"></div>
                                     <h2 class="member-name">糖果</h2>
                                     <div class="tags-row">
                                         <div class="captain-title">队员</div>
@@ -900,7 +1375,7 @@
                                     </div>
                                 </div>
                                 <div class="member-card">
-                                    <div class="member-avatar"><img src="avatar/2025/xiaoqi.png" alt="小淇"></div>
+                                    <div class="member-avatar"><img data-src="avatar/2025/xiaoqi.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E"2025/xiaoqi.png" alt="小淇"></div>
                                     <h2 class="member-name">小淇</h2>
                                     <div class="tags-row">
                                         <div class="captain-title">队员</div>
@@ -911,7 +1386,7 @@
                                     </div>
                                 </div>
                                 <div class="member-card">
-                                    <div class="member-avatar"><img src="avatar/2025/chengzi.png" alt="橙子"></div>
+                                    <div class="member-avatar"><img data-src="avatar/2025/chengzi.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E"2025/chengzi.png" alt="橙子"></div>
                                     <h2 class="member-name">橙子</h2>
                                     <div class="tags-row">
                                         <div class="captain-title">队员</div>
@@ -922,7 +1397,7 @@
                                     </div>
                                 </div>
                                 <div class="member-card">
-                                    <div class="member-avatar"><img src="avatar/2025/xiaomeng.png" alt="小梦"></div>
+                                    <div class="member-avatar"><img data-src="avatar/2025/xiaomeng.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E"2025/xiaomeng.png" alt="小梦"></div>
                                     <h2 class="member-name">小梦</h2>
                                     <div class="tags-row">
                                         <div class="captain-title">队员</div>
@@ -933,7 +1408,7 @@
                                     </div>
                                 </div>
                                 <div class="member-card">
-                                    <div class="member-avatar"><img src="avatar/2025/yaya.png" alt="芽芽"></div>
+                                    <div class="member-avatar"><img data-src="avatar/2025/xiaotu.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E"2025/xiaotu.png" alt="芽芽"></div>
                                     <h2 class="member-name">芽芽</h2>
                                     <div class="tags-row">
                                         <div class="captain-title">队员</div>
@@ -944,7 +1419,7 @@
                                     </div>
                                 </div>
                                 <div class="member-card">
-                                    <div class="member-avatar"><img src="avatar/2025/xiaoxiao.png" alt="肖肖"></div>
+                                    <div class="member-avatar"><img data-src="avatar/2025/xiaoxiao.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E"2025/xiaoxiao.png" alt="肖肖"></div>
                                     <h2 class="member-name">肖肖</h2>
                                     <div class="tags-row">
                                         <div class="captain-title">队员</div>
@@ -955,7 +1430,7 @@
                                     </div>
                                 </div>
                                 <div class="member-card">
-                                    <div class="member-avatar"><img src="avatar/2025/dongdong.png" alt="东东"></div>
+                                    <div class="member-avatar"><img data-src="avatar/2025/dongdong.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E"2025/dongdong.png" alt="东东"></div>
                                     <h2 class="member-name">东东</h2>
                                     <div class="tags-row">
                                         <div class="captain-title">队员</div>
@@ -966,7 +1441,7 @@
                                     </div>
                                 </div>
                                 <div class="member-card">
-                                    <div class="member-avatar"><img src="avatar/2025/xiaomi.png" alt="小米"></div>
+                                    <div class="member-avatar"><img data-src="avatar/2025/xiaomi.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E"2025/xiaomi.png" alt="小米"></div>
                                     <h2 class="member-name">小米</h2>
                                     <div class="tags-row">
                                         <div class="captain-title">队员</div>
@@ -977,7 +1452,18 @@
                                     </div>
                                 </div>
                                 <div class="member-card">
-                                    <div class="member-avatar"><img src="avatar/2025/xiaojin.png" alt="小金"></div>
+                                    <div class="member-avatar"><img data-src="avatar/2025/yaya.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E"2025/yaya.png" alt="鱼鱼"></div>
+                                    <h2 class="member-name">鱼鱼</h2>
+                                    <div class="tags-row">
+                                        <div class="captain-title">队员</div>
+                                    </div>
+                                    <div class="tags-row">
+                                        <div class="function-tag">固梦</div>
+                                        <div class="subject-tag">文艺</div>
+                                    </div>
+                                </div>
+                                <div class="member-card">
+                                    <div class="member-avatar"><img data-src="avatar/2025/xiaojin.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E"2025/xiaojin.png" alt="小金"></div>
                                     <h2 class="member-name">小金</h2>
                                     <div class="tags-row">
                                         <div class="captain-title">队员</div>
@@ -988,7 +1474,7 @@
                                     </div>
                                 </div>
                                 <div class="member-card">
-                                    <div class="member-avatar"><img src="avatar/2025/yueyue.png" alt="月月"></div>
+                                    <div class="member-avatar"><img data-src="avatar/2025/yueyue.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E"2025/yueyue.png" alt="月月"></div>
                                     <h2 class="member-name">月月</h2>
                                     <div class="tags-row">
                                         <div class="captain-title">队员</div>
@@ -999,7 +1485,7 @@
                                     </div>
                                 </div>
                                 <div class="member-card">
-                                    <div class="member-avatar"><img src="avatar/2025/xiaotu.png" alt="小兔"></div>
+                                    <div class="member-avatar"><img data-src="avatar/2025/xiaotu.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E"2025/xiaotu.png" alt="小兔"></div>
                                     <h2 class="member-name">小兔</h2>
                                     <div class="tags-row">
                                         <div class="captain-title">队员</div>
@@ -1010,7 +1496,7 @@
                                     </div>
                                 </div>
                                 <div class="member-card">
-                                    <div class="member-avatar"><img src="avatar/2025/pingguo.png" alt="苹果"></div>
+                                    <div class="member-avatar"><img data-src="avatar/2025/pingguo.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E"2025/pingguo.png" alt="苹果"></div>
                                     <h2 class="member-name">苹果</h2>
                                     <div class="tags-row">
                                         <div class="captain-title">队员</div>
@@ -1464,7 +1950,7 @@
                             <h3>2023届队伍队长团成员</h3>
                             <div class="captain-team">
                                 <div class="captain-member">
-                                    <div class="captain-avatar"><img src="avatar/2023/tiantian.png" alt="田田"></div>
+                                    <div class="captain-avatar"><img data-src="avatar/2023/tiantian.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E"2023/tiantian.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="田田"></div>
                                     <h2 class="captain-name">田田</h2>
                                     <div class="tags-row">
                                         <div class="captain-title">队长</div>
@@ -1475,7 +1961,7 @@
                                     </div>
                                 </div>
                                 <div class="captain-member">
-                                    <div class="captain-avatar"><img src="avatar/2023/pengbei.png" alt="捧杯"></div>
+                                    <div class="captain-avatar"><img data-src="avatar/2023/pengbei.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E"2023/pengbei.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="捧杯"></div>
                                     <h2 class="captain-name">捧杯</h2>
                                     <div class="tags-row">
                                         <div class="captain-title">副队长</div>
@@ -1486,7 +1972,7 @@
                                     </div>
                                 </div>
                                 <div class="captain-member">
-                                    <div class="captain-avatar"><img src="avatar/2023/yiyi.png" alt="一一"></div>
+                                    <div class="captain-avatar"><img data-src="avatar/2023/yiyi.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E"2023/yiyi.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="一一"></div>
                                     <h2 class="captain-name">一一</h2>
                                     <div class="tags-row">
                                         <div class="captain-title">副队长</div>
@@ -1497,7 +1983,7 @@
                                     </div>
                                 </div>
                                 <div class="captain-member">
-                                    <div class="captain-avatar"><img src="avatar/2023/tangtang.png" alt="糖糖"></div>
+                                    <div class="captain-avatar"><img data-src="avatar/2023/tangtang.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E"2023/tangtang.png" alt="糖糖"></div>
                                     <h2 class="captain-name">糖糖</h2>
                                     <div class="tags-row">
                                         <div class="captain-title">副队长</div>
@@ -1517,7 +2003,7 @@
                             <h3>当届队员信息</h3>
                             <div class="members-grid">
                                 <div class="member-card">
-                                    <div class="member-avatar"><img src="avatar/2023/xianyu.png" alt="椰子"></div>
+                                    <div class="member-avatar"><img data-src="avatar/2023/yezi.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E"2023/xianyu.png" alt="椰子"></div>
                                     <h2 class="member-name">椰子</h2>
                                     <div class="tags-row">
                                         <div class="captain-title">队员</div>
@@ -1528,7 +2014,7 @@
                                     </div>
                                 </div>
                                 <div class="member-card">
-                                    <div class="member-avatar"><img src="avatar/2023/xiaomai.png" alt="小麦"></div>
+                                    <div class="member-avatar"><img data-src="avatar/2023/xiaomai.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E"2023/xiaomai.png" alt="小麦"></div>
                                     <h2 class="member-name">小麦</h2>
                                     <div class="tags-row">
                                         <div class="captain-title">队员</div>
@@ -1539,7 +2025,7 @@
                                     </div>
                                 </div>
                                 <div class="member-card">
-                                    <div class="member-avatar"><img src="avatar/2023/taotao.png" alt="涛涛"></div>
+                                    <div class="member-avatar"><img data-src="avatar/2023/taotao.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E"2023/taotao.png" alt="涛涛"></div>
                                     <h2 class="member-name">涛涛</h2>
                                     <div class="tags-row">
                                         <div class="captain-title">队员</div>
@@ -1550,7 +2036,7 @@
                                     </div>
                                 </div>
                                 <div class="member-card">
-                                    <div class="member-avatar"><img src="avatar/2023/bignqiling.png" alt="冰淇淋"></div>
+                                    <div class="member-avatar"><img data-src="avatar/2023/bignqiling.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E"2023/bignqiling.png" alt="冰淇淋"></div>
                                     <h2 class="member-name">冰淇淋</h2>
                                     <div class="tags-row">
                                         <div class="captain-title">队员</div>
@@ -1561,7 +2047,7 @@
                                     </div>
                                 </div>
                                 <div class="member-card">
-                                    <div class="member-avatar"><img src="avatar/2023/huohuo.png" alt="火火"></div>
+                                    <div class="member-avatar"><img data-src="avatar/2023/huohuo.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E"2023/huohuo.png" alt="火火"></div>
                                     <h2 class="member-name">火火</h2>
                                     <div class="tags-row">
                                         <div class="captain-title">队员</div>
@@ -1572,7 +2058,7 @@
                                     </div>
                                 </div>
                                 <div class="member-card">
-                                    <div class="member-avatar"><img src="avatar/2023/duoduo.png" alt="多多"></div>
+                                    <div class="member-avatar"><img data-src="avatar/2023/duoduo.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E"2023/duoduo.png" alt="多多"></div>
                                     <h2 class="member-name">多多</h2>
                                     <div class="tags-row">
                                         <div class="captain-title">队员</div>
@@ -1583,7 +2069,7 @@
                                     </div>
                                 </div>
                                 <div class="member-card">
-                                    <div class="member-avatar"><img src="avatar/2023/xiaolin.png" alt="小林"></div>
+                                    <div class="member-avatar"><img data-src="avatar/2023/xiaolin.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E"2023/xiaolin.png" alt="小林"></div>
                                     <h2 class="member-name">小林</h2>
                                     <div class="tags-row">
                                         <div class="captain-title">队员</div>
@@ -1594,7 +2080,7 @@
                                     </div>
                                 </div>
                                 <div class="member-card">
-                                    <div class="member-avatar"><img src="avatar/2023/xianyu.png" alt="咸鱼"></div>
+                                    <div class="member-avatar"><img data-src="avatar/2023/xianyu.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E"2023/xianyu.png" alt="咸鱼"></div>
                                     <h2 class="member-name">咸鱼</h2>
                                     <div class="tags-row">
                                         <div class="captain-title">队员</div>
@@ -1605,7 +2091,7 @@
                                     </div>
                                 </div>
                                 <div class="member-card">
-                                    <div class="member-avatar"><img src="avatar/2023/lingling.png" alt="00"></div>
+                                    <div class="member-avatar"><img data-src="avatar/2023/lingling.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E"2023/lingling.png" alt="00"></div>
                                     <h2 class="member-name">00</h2>
                                     <div class="tags-row">
                                         <div class="captain-title">队员</div>
@@ -1616,7 +2102,7 @@
                                     </div>
                                 </div>
                                 <div class="member-card">
-                                    <div class="member-avatar"><img src="avatar/2023/xinyue.png" alt="新月"></div>
+                                    <div class="member-avatar"><img data-src="avatar/2023/xinyue.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E"2023/xinyue.png" alt="新月"></div>
                                     <h2 class="member-name">新月</h2>
                                     <div class="tags-row">
                                         <div class="captain-title">队员</div>
@@ -1627,7 +2113,7 @@
                                     </div>
                                 </div>
                                 <div class="member-card">
-                                    <div class="member-avatar"><img src="avatar/2023/tingzi.png" alt="婷子"></div>
+                                    <div class="member-avatar"><img data-src="avatar/2023/tingzi.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E"2023/tingzi.png" alt="婷子"></div>
                                     <h2 class="member-name">婷子</h2>
                                     <div class="tags-row">
                                         <div class="captain-title">队员</div>
@@ -1638,7 +2124,7 @@
                                     </div>
                                 </div>
                                 <div class="member-card">
-                                    <div class="member-avatar"><img src="avatar/2023/yiqi.png" alt="亦柒"></div>
+                                    <div class="member-avatar"><img data-src="avatar/2023/yiqi.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E"2023/yiqi.png" alt="亦柒"></div>
                                     <h2 class="member-name">亦柒</h2>
                                     <div class="tags-row">
                                         <div class="captain-title">队员</div>
@@ -1649,7 +2135,7 @@
                                     </div>
                                 </div>
                                 <div class="member-card">
-                                    <div class="member-avatar"><img src="avatar/2023/jiajia.png" alt="加加"></div>
+                                    <div class="member-avatar"><img data-src="avatar/2023/jiajia.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E"2023/jiajia.png" alt="加加"></div>
                                     <h2 class="member-name">加加</h2>
                                     <div class="tags-row">
                                         <div class="captain-title">队员</div>
@@ -1660,7 +2146,7 @@
                                     </div>
                                 </div>
                                 <div class="member-card">
-                                    <div class="member-avatar"><img src="avatar/2023/shuanghsuang.png" alt="霜霜"></div>
+                                    <div class="member-avatar"><img data-src="avatar/2023/shuanghsuang.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E"2023/shuanghsuang.png" alt="霜霜"></div>
                                     <h2 class="member-name">霜霜</h2>
                                     <div class="tags-row">
                                         <div class="captain-title">队员</div>
@@ -1871,9 +2357,7 @@
             // 这里可以添加打开贴文的逻辑
             alert(`${title}详情页面开发中...`);
         }
-        
-
     </script>
+    <script src="js/lazyload.js"></script>
 </body>
 </html>
-
