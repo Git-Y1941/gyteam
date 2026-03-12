@@ -63,6 +63,19 @@
             color: #b91c1c;
         }
         
+        .version-badge {
+            font-size: 0.35em;
+            font-weight: normal;
+            color: #999;
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            margin-left: 8px;
+            vertical-align: middle;
+            display: inline-block;
+            line-height: 1.4;
+        }
+        
         .logo-text .small {
             font-size: 1em;
             color: #666;
@@ -72,10 +85,11 @@
         .nav-links {
             display: flex;
             list-style: none;
+            gap: 30px;
         }
         
         .nav-links li {
-            margin-left: 30px;
+            margin-left: 0;
         }
         
         /* 导航链接文字对齐 */
@@ -88,6 +102,33 @@
             transition: color 0.3s ease;
             text-transform: uppercase;
             padding-top: 3px;
+        }
+        
+        .nav-links a:hover {
+            color: #b91c1c;
+            font-weight: bold;
+        }
+        
+        .nav-links a:active {
+            color: #991b1b;
+            transform: scale(0.98);
+        }
+        
+        .nav-links a.active {
+            color: #b91c1c;
+            font-weight: bold;
+            position: relative;
+        }
+        
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #b91c1c;
+            border-radius: 1px;
         }
         
         /* 导航图标 */
@@ -214,8 +255,10 @@
             min-width: 150px;
             display: none;
             z-index: 1000;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            padding: 5px 0;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+            padding: 8px 0;
+            border-radius: 12px;
+            overflow: hidden;
         }
         
         .nav-home-dropdown {
@@ -231,10 +274,11 @@
         
         .nav-home-menu a {
             display: block;
-            padding: 10px 15px;
+            padding: 12px 20px;
             color: #333;
             text-decoration: none;
-            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.2s ease;
+            font-size: 0.95em;
         }
         
         .nav-home-menu a:last-child {
@@ -242,8 +286,9 @@
         }
         
         .nav-home-menu a:hover {
-            background: #f9f9f9;
+            background: linear-gradient(135deg, #fef5f5 0%, #fff0f0 100%);
             color: #b91c1c;
+            padding-left: 25px;
         }
         
         /* 队伍标题 */
@@ -326,8 +371,14 @@
         /* 队长信息 */
         .captain-team {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 20px;
+        }
+        
+        @media (min-width: 1200px) {
+            .captain-team {
+                grid-template-columns: repeat(5, 1fr);
+            }
         }
         
         .captain-member {
@@ -819,23 +870,579 @@
         
         /* 响应式设计 */
         @media (max-width: 768px) {
+            /* 导航栏 */
+            .nav-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+                text-align: center;
+            }
+            
             .nav-links {
-                flex-wrap: wrap;
+                width: 100%;
+                flex-direction: row;
+                justify-content: space-around;
+                gap: 10px;
             }
             
             .nav-links li {
-                margin-left: 15px;
+                margin-left: 0;
+                margin-bottom: 0;
+            }
+            
+            .nav-links a {
+                padding: 5px 0;
+                border-bottom: none;
+                font-size: 14.4px;
+                display: flex;
+                align-items: center;
+                font-weight: 500;
+                text-transform: uppercase;
+                padding-top: 3px;
+            }
+            
+            .nav-icon {
+                margin-right: 8px;
+                display: inline-block;
+                vertical-align: middle;
+                flex-shrink: 0;
+            }
+            
+            /* 首页下拉菜单 - 移动端 */
+            .nav-home-menu {
+                border-radius: 8px;
+                min-width: 140px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            }
+            
+            .nav-home-menu a {
+                font-size: 0.85em;
+                padding: 10px 15px;
+            }
+            
+            .nav-home-menu a:hover {
+                padding-left: 20px;
+            }
+            
+            .logo-text .large {
+                font-size: 1.4em;
+            }
+            
+            .version-badge {
+                font-size: 0.4em;
+                padding: 2px 5px;
+                margin-left: 5px;
+            }
+            
+            .logo-text .small {
+                font-size: 0.8em;
+            }
+            
+            /* 队伍标题 */
+            .team-title {
+                margin-top: 30px;
+                margin-bottom: 20px;
+            }
+            
+            .team-title h1 {
+                font-size: 2em;
                 margin-bottom: 10px;
             }
             
-            .timeline-section,
-            .consultation-wall,
-            .members-section {
+            .team-slogan {
+                font-size: 1em;
+            }
+            
+            /* 快速导航 */
+            .anchor-nav {
+                flex-wrap: wrap;
+                gap: 10px;
+                padding: 10px;
+            }
+            
+            .anchor-link {
+                flex: 1;
+                min-width: 80px;
+                text-align: center;
+                font-size: 0.9em;
+                padding: 6px 10px;
+            }
+            
+            /* 内容区块 */
+            .content-block {
                 padding: 20px;
             }
             
+            .content-block h3 {
+                font-size: 1.2em;
+            }
+            
+            .content-block p {
+                font-size: 0.95em;
+            }
+            
+            /* 队长和队员网格 */
+            .captain-team {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 15px;
+            }
+            
+            .captain-member {
+                padding: 15px;
+            }
+            
+            .captain-avatar {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .captain-name {
+                font-size: 1.1em;
+            }
+            
+            .captain-title,
+            .subject-tag,
+            .function-tag {
+                font-size: 0.8em;
+                padding: 3px 8px;
+            }
+            
+            /* 时间轴 */
+            .timeline {
+                padding-left: 25px;
+            }
+            
+            .timeline-date {
+                font-size: 0.95em;
+            }
+            
+            .timeline-content {
+                padding: 12px;
+            }
+            
+            .timeline-content h4 {
+                font-size: 1em;
+            }
+            
+            .timeline-content p {
+                font-size: 0.9em;
+            }
+            
+            .timeline-action {
+                font-size: 0.85em;
+                padding: 6px 12px;
+            }
+            
+            /* 咨询墙 */
+            .consultation-input textarea {
+                font-size: 0.95em;
+                height: 100px;
+            }
+            
+            .consultation-input button {
+                font-size: 0.95em;
+                padding: 8px 20px;
+            }
+            
+            .consultation-message {
+                padding: 12px;
+            }
+            
+            .message-author {
+                font-size: 0.95em;
+            }
+            
+            .message-content {
+                font-size: 0.9em;
+            }
+            
+            .reply-form textarea {
+                font-size: 0.85em;
+            }
+            
+            .reply-form button {
+                font-size: 0.85em;
+            }
+            
+            .reply-author,
+            .reply-content {
+                font-size: 0.85em;
+            }
+            
+            /* 队员信息 */
+            .members-grid {
+                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+                gap: 10px;
+            }
+            
+            .member-card {
+                padding: 15px 10px;
+            }
+            
+            .member-avatar {
+                width: 50px;
+                height: 50px;
+                font-size: 1em;
+            }
+            
+            .member-name {
+                font-size: 0.85em;
+            }
+            
+            .member-role {
+                font-size: 0.75em;
+            }
+            
+            .waiting-for-members {
+                padding: 40px 15px;
+                font-size: 1em;
+            }
+            
+            /* 表格 */
+            .unified-table {
+                font-size: 12px;
+            }
+            
+            .unified-table th,
+            .unified-table td {
+                padding: 8px 4px;
+            }
+            
+            /* 问题解答 */
+            #consultation .content-block > div {
+                grid-template-columns: 1fr !important;
+                gap: 15px;
+            }
+            
+            #consultation .content-block > div > div {
+                padding: 15px;
+            }
+            
+            #consultation .content-block > div > div p {
+                font-size: 0.9em;
+            }
+            
+            /* 页脚 */
             .footer-content {
                 grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .footer-section:nth-child(2) {
+                padding: 0;
+            }
+            
+            .footer-section h3 {
+                font-size: 1.1em;
+                margin-bottom: 15px;
+            }
+            
+            .footer-section p {
+                font-size: 0.85em;
+            }
+        }
+        
+        /* 小屏幕手机适配 */
+        @media (max-width: 480px) {
+            /* 导航栏 */
+            .logo img {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .logo-text .large {
+                font-size: 1.5em;
+            }
+            
+            .version-badge {
+                font-size: 0.45em;
+                padding: 2px 4px;
+                margin-left: 4px;
+            }
+            
+            .logo-text .small {
+                font-size: 0.9em;
+            }
+            
+            .nav-links a {
+                display: flex;
+                align-items: center;
+                font-size: 14.4px;
+                font-weight: 500;
+                text-transform: uppercase;
+                padding-top: 3px;
+            }
+            
+            .nav-icon {
+                width: 16px !important;
+                height: 16px !important;
+                flex-shrink: 0 !important;
+                flex-grow: 0 !important;
+                flex-basis: auto !important;
+            }
+            
+            .nav-icon-home {
+                width: 18px !important;
+                height: 14px !important;
+            }
+            
+            /* 首页下拉菜单 - 小屏移动端 */
+            .nav-home-menu {
+                border-radius: 6px;
+                min-width: 120px;
+            }
+            
+            .nav-home-menu a {
+                font-size: 0.8em;
+                padding: 8px 12px;
+            }
+            
+            .nav-home-menu a:hover {
+                padding-left: 18px;
+            }
+            
+            .nav-icon-home {
+                width: 18px !important;
+                height: 14px !important;
+            }
+            
+            /* 队伍标题 */
+            .team-title {
+                margin-top: 20px;
+                margin-bottom: 15px;
+            }
+            
+            .team-title h1 {
+                font-size: 1.8em;
+                margin-bottom: 8px;
+            }
+            
+            .team-slogan {
+                font-size: 0.95em;
+            }
+            
+            /* 快速导航 */
+            .anchor-nav {
+                gap: 8px;
+                padding: 8px;
+            }
+            
+            .anchor-link {
+                font-size: 0.85em;
+                padding: 5px 8px;
+            }
+            
+            /* 内容区块 */
+            .content-block {
+                padding: 15px;
+            }
+            
+            .content-block h3 {
+                font-size: 1.1em;
+            }
+            
+            .content-block p {
+                font-size: 0.9em;
+                line-height: 1.6;
+            }
+            
+            /* 队长网格 */
+            .captain-team {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 12px;
+            }
+            
+            .captain-member {
+                padding: 12px;
+            }
+            
+            .captain-avatar {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .captain-name {
+                font-size: 1em;
+            }
+            
+            .captain-title,
+            .subject-tag,
+            .function-tag {
+                font-size: 0.75em;
+                padding: 2px 6px;
+            }
+            
+            /* 时间轴 */
+            .timeline {
+                padding-left: 20px;
+            }
+            
+            .timeline::before {
+                left: 3px;
+            }
+            
+            .timeline-item::before {
+                left: -20px;
+                width: 10px;
+                height: 10px;
+            }
+            
+            .timeline-date {
+                font-size: 0.9em;
+            }
+            
+            .timeline-content {
+                padding: 10px;
+            }
+            
+            .timeline-content h4 {
+                font-size: 0.95em;
+            }
+            
+            .timeline-content p {
+                font-size: 0.85em;
+                margin-bottom: 10px;
+            }
+            
+            .timeline-action {
+                font-size: 0.8em;
+                padding: 5px 10px;
+            }
+            
+            /* 咨询墙 */
+            .consultation-input textarea {
+                font-size: 0.9em;
+                height: 80px;
+                padding: 10px;
+            }
+            
+            .consultation-input button {
+                font-size: 0.9em;
+                padding: 8px 16px;
+                width: 100%;
+            }
+            
+            .consultation-message {
+                padding: 10px;
+            }
+            
+            .message-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+            
+            .message-author {
+                font-size: 0.9em;
+            }
+            
+            .message-time {
+                font-size: 0.7em;
+            }
+            
+            .message-content {
+                font-size: 0.85em;
+            }
+            
+            .reply-form textarea {
+                font-size: 0.8em;
+                height: 60px;
+            }
+            
+            .reply-form button {
+                font-size: 0.8em;
+                padding: 6px 12px;
+            }
+            
+            .reply-author,
+            .reply-content {
+                font-size: 0.8em;
+            }
+            
+            .message-replies {
+                padding-left: 15px;
+            }
+            
+            /* 队员信息 */
+            .members-grid {
+                grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+                gap: 8px;
+            }
+            
+            .member-card {
+                padding: 12px 8px;
+            }
+            
+            .member-avatar {
+                width: 45px;
+                height: 45px;
+                font-size: 0.9em;
+            }
+            
+            .member-name {
+                font-size: 0.8em;
+            }
+            
+            .member-role {
+                font-size: 0.7em;
+            }
+            
+            .waiting-for-members {
+                padding: 30px 15px;
+                font-size: 0.95em;
+            }
+            
+            /* 表格 */
+            .unified-table {
+                font-size: 10px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            
+            .unified-table th,
+            .unified-table td {
+                padding: 4px;
+                box-sizing: border-box;
+            }
+            
+            /* 问题解答 */
+            #consultation .content-block > div {
+                grid-template-columns: 1fr !important;
+                gap: 12px;
+            }
+            
+            #consultation .content-block > div > div {
+                padding: 12px;
+            }
+            
+            #consultation .content-block > div > div p {
+                font-size: 0.85em;
+            }
+            
+            /* 页脚 */
+            .footer-content {
+                padding: 0 15px;
+            }
+            
+            .footer-section h3 {
+                font-size: 1em;
+                margin-bottom: 12px;
+            }
+            
+            .footer-section p {
+                font-size: 0.8em;
+                line-height: 1.5;
+            }
+            
+            /* 确保所有容器在小屏幕上不超出 */
+            .container {
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+                padding: 0 15px;
             }
         }
     </style>
@@ -845,10 +1452,10 @@
     <nav class="main-nav">
         <div class="container nav-container">
             <div class="logo">
-                <img src="logo.png" alt="厦门大学西部梦想社团 固原支教队">
+                <img data-src="logo.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Crect width='80' height='80' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="厦门大学西部梦想社团 固原支教队">
                 <div class="logo-text">
                     <div class="small">厦门大学西部梦想社团</div>
-                    <div class="large">固原支教队</div>
+                    <div class="large">固原支教队 <span class="version-badge">测试版v-0.3</span></div>
                 </div>
             </div>
                                                                         <ul class="nav-links">
@@ -897,7 +1504,7 @@
                         <h3>2026届队伍队长团成员</h3>
                         <div class="captain-team">
                             <div class="captain-member">
-                                <div class="captain-avatar"><img src="avatar/2025/xiaoyi.png" alt="小艺"></div>
+                                <div class="captain-avatar"><img data-src="avatar/2025/xiaoyi.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="小艺"></div>
                                 <h2 class="captain-name">小艺</h2>
                                 <div class="tags-row">
                                     <div class="captain-title">队长</div>
@@ -908,7 +1515,7 @@
                                 </div>
                             </div>
                             <div class="captain-member">
-                                <div class="captain-avatar"><img src="avatar/2025/xiaomi.png" alt="小米"></div>
+                                <div class="captain-avatar"><img data-src="avatar/2025/xiaomi.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="小米"></div>
                                 <h2 class="captain-name">小米</h2>
                                 <div class="tags-row">
                                     <div class="captain-title">副队长</div>
@@ -919,7 +1526,7 @@
                                 </div>
                             </div>
                             <div class="captain-member">
-                                <div class="captain-avatar"><img src="avatar/2025/xiaomeng.png" alt="小梦"></div>
+                                <div class="captain-avatar"><img data-src="avatar/2025/xiaomeng.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="小梦"></div>
                                 <h2 class="captain-name">小梦</h2>
                                 <div class="tags-row">
                                     <div class="captain-title">副队长</div>
@@ -930,7 +1537,7 @@
                                 </div>
                             </div>
                             <div class="captain-member">
-                                <div class="captain-avatar"><img src="avatar/2025/pingguo.png" alt="苹果"></div>
+                                <div class="captain-avatar"><img data-src="avatar/2025/pingguo.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="苹果"></div>
                                 <h2 class="captain-name">苹果</h2>
                                 <div class="tags-row">
                                     <div class="captain-title">副队长</div>
@@ -941,7 +1548,7 @@
                                 </div>
                             </div>
                             <div class="captain-member">
-                                <div class="captain-avatar"><img src="avatar/2025/xiaoqi.png" alt="小淇"></div>
+                                <div class="captain-avatar"><img data-src="avatar/2025/xiaoqi.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="小淇"></div>
                                 <h2 class="captain-name">小淇</h2>
                                 <div class="tags-row">
                                     <div class="captain-title">副队长</div>
@@ -1101,7 +1708,7 @@
             const date = new Date(dateString);
             return date.getFullYear() + '年' + (date.getMonth() + 1) + '月' + date.getDate() + '日';
         }
-        
     </script>
+    <script src="js/lazyload.js"></script>
 </body>
 </html>
