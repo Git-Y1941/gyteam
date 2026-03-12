@@ -63,6 +63,19 @@
             color: #b91c1c;
         }
         
+        .version-badge {
+            font-size: 0.35em;
+            font-weight: normal;
+            color: #999;
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            margin-left: 8px;
+            vertical-align: middle;
+            display: inline-block;
+            line-height: 1.4;
+        }
+        
         .logo-text .small {
             font-size: 1em;
             color: #666;
@@ -88,6 +101,33 @@
             transition: color 0.3s ease;
             text-transform: uppercase;
             padding-top: 3px;
+        }
+        
+        .nav-links a:hover {
+            color: #b91c1c;
+            font-weight: bold;
+        }
+        
+        .nav-links a:active {
+            color: #991b1b;
+            transform: scale(0.98);
+        }
+        
+        .nav-links a.active {
+            color: #b91c1c;
+            font-weight: bold;
+            position: relative;
+        }
+        
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #b91c1c;
+            border-radius: 1px;
         }
         
         /* 导航图标 */
@@ -214,8 +254,10 @@
             min-width: 150px;
             display: none;
             z-index: 1000;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            padding: 5px 0;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+            padding: 8px 0;
+            border-radius: 12px;
+            overflow: hidden;
         }
         
         .nav-home-dropdown {
@@ -231,10 +273,11 @@
         
         .nav-home-menu a {
             display: block;
-            padding: 10px 15px;
+            padding: 12px 20px;
             color: #333;
             text-decoration: none;
-            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.2s ease;
+            font-size: 0.95em;
         }
         
         .nav-home-menu a:last-child {
@@ -242,8 +285,9 @@
         }
         
         .nav-home-menu a:hover {
-            background: #f9f9f9;
+            background: linear-gradient(135deg, #fef5f5 0%, #fff0f0 100%);
             color: #b91c1c;
+            padding-left: 25px;
         }
         
         /* 主要内容区域 */
@@ -534,17 +578,259 @@
                 margin-bottom: 30px;
             }
             
+            /* 导航栏 */
+            .nav-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+                text-align: center;
+            }
+            
             .nav-links {
-                flex-wrap: wrap;
+                width: 100%;
+                flex-direction: row;
+                justify-content: space-around;
+                gap: 10px;
             }
             
             .nav-links li {
-                margin-left: 15px;
-                margin-bottom: 10px;
+                margin-left: 0;
+                margin-bottom: 0;
+            }
+            
+            .nav-links a {
+                padding: 5px 0;
+                border-bottom: none;
+                font-size: 14.4px;
+                display: flex;
+                align-items: center;
+                font-weight: 500;
+                text-transform: uppercase;
+                padding-top: 3px;
+            }
+            
+            .nav-icon {
+                margin-right: 8px;
+                display: inline-block;
+                vertical-align: middle;
+                flex-shrink: 0;
+            }
+            
+            /* 首页下拉菜单 - 移动端 */
+            .nav-home-menu {
+                border-radius: 8px;
+                min-width: 140px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            }
+            
+            .nav-home-menu a {
+                font-size: 0.85em;
+                padding: 10px 15px;
+            }
+            
+            .nav-home-menu a:hover {
+                padding-left: 20px;
+            }
+            
+            .logo-text .large {
+                font-size: 1.4em;
+            }
+            
+            .version-badge {
+                font-size: 0.4em;
+                padding: 2px 5px;
+                margin-left: 5px;
+            }
+            
+            .logo-text .small {
+                font-size: 0.8em;
             }
             
             .footer-content {
                 grid-template-columns: 1fr;
+            }
+            
+            .footer-section {
+                text-align: left;
+            }
+            
+            /* 标题区域 */
+            .content-title {
+                font-size: 1.3em;
+                margin-bottom: 15px;
+            }
+            
+            /* 筛选按钮 */
+            .filter-tabs {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            
+            .filter-btn {
+                padding: 8px 12px;
+                font-size: 0.85em;
+            }
+            
+            /* 新闻列表 */
+            .news-list {
+                gap: 12px;
+            }
+            
+            .news-item {
+                flex-direction: column;
+                padding: 12px;
+            }
+            
+            .news-image {
+                width: 100%;
+                height: 150px;
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            .news-content {
+                width: 100%;
+            }
+            
+            .news-title {
+                font-size: 1em;
+            }
+            
+            .news-meta {
+                font-size: 0.8em;
+            }
+            
+            /* 侧边栏 */
+            .sidebar {
+                padding: 15px;
+            }
+            
+            .sidebar-title {
+                font-size: 1.1em;
+                margin-bottom: 15px;
+            }
+            
+            .sidebar-links a {
+                padding: 10px;
+                font-size: 0.9em;
+            }
+            
+            /* 内容区域 */
+            .content {
+                padding: 15px;
+            }
+
+                        /* 页脚 */
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .footer-section:nth-child(2) {
+                padding: 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            /* 导航栏 */
+            .logo img {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .logo-text .large {
+                font-size: 1.5em;
+            }
+            
+            .version-badge {
+                font-size: 0.45em;
+                padding: 2px 4px;
+                margin-left: 4px;
+            }
+            
+            .logo-text .small {
+                font-size: 0.9em;
+            }
+            
+            .nav-links a {
+                display: flex;
+                align-items: center;
+                font-size: 14.4px;
+                font-weight: 500;
+                text-transform: uppercase;
+                padding-top: 3px;
+            }
+            
+            .nav-icon {
+                width: 16px !important;
+                height: 16px !important;
+                flex-shrink: 0 !important;
+                flex-grow: 0 !important;
+                flex-basis: auto !important;
+            }
+            
+            .nav-icon-home {
+                width: 18px !important;
+                height: 14px !important;
+            }
+            
+            /* 首页下拉菜单 */
+            .nav-home-menu {
+                border-radius: 8px;
+                min-width: 120px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            }
+            
+            .nav-home-menu a {
+                font-size: 0.8em;
+                padding: 8px 12px;
+            }
+            
+            .nav-home-menu a:hover {
+                padding-left: 18px;
+            }
+            
+            /* 标题区域 */
+            .content-title {
+                font-size: 1.2em;
+                margin-bottom: 12px;
+            }
+            
+            /* 筛选按钮 */
+            .filter-btn {
+                padding: 6px 10px;
+                font-size: 0.8em;
+            }
+            
+            /* 新闻列表 */
+            .news-image {
+                height: 120px;
+            }
+            
+            .news-title {
+                font-size: 0.95em;
+            }
+            
+            .news-meta {
+                font-size: 0.75em;
+            }
+            
+            /* 侧边栏 */
+            .sidebar {
+                padding: 12px;
+            }
+            
+            .sidebar-links a {
+                padding: 8px 10px;
+                font-size: 0.85em;
+            }
+            
+            /* 内容区域 */
+            .content {
+                padding: 12px;
             }
         }
     </style>
@@ -557,7 +843,7 @@
             <img src="logo.png" alt="厦门大学西部梦想社团 固原支教队">
             <div class="logo-text">
                 <div class="small">厦门大学西部梦想社团</div>
-                <div class="large">固原支教队</div>
+                <div class="large">固原支教队 <span class="version-badge">测试版v-0.3</span></div>
             </div>
         </div>
                                                                         <ul class="nav-links">
@@ -605,7 +891,7 @@
                 <div class="news-list">
                     <a href="https://mp.weixin.qq.com/s/eSXF7D7mYS8ENehWmhaUDA" class="news-item" data-category="荣誉" target="_blank">
                         <div class="news-image">
-                            <img src="https://mmbiz.qpic.cn/mmbiz_jpg/EXdMtPEZUDzT2uqS2dzR4l00wj8gENeArnTPLQPnbXUJhO5xzJd4HvugV8q0AU1y7HH2uvhfYiaHRTMhZhIQSMA/640?wx_fmt=jpeg&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=34" alt="知行计划颁奖季" style="width: 100%; height: 100%; object-fit: cover;">
+                            <img src="s_img/discover/rongyu_01.webp" alt="知行计划颁奖季" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="news-info">
                             <h4>知行计划颁奖季 | 2025百雀羚大学生AI创意大赛收官，获奖名单正式发布</h4>
@@ -615,7 +901,7 @@
                     
                     <a href="https://mp.weixin.qq.com/s/WBEGOuKsrGY5PUHcKgDvWQ" class="news-item" data-category="授课" target="_blank">
                         <div class="news-image">
-                            <img src="https://mmbiz.qpic.cn/mmbiz_jpg/t2emic6QGfcib55kTRCht46udDKiaY1MubO38lyKY0Bw1Gl0AE5I8t6wj8OKjcpmoaT1lrqrG7riajU3S4DvXJn1wQ/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=0" alt="厦大支教队走入宁夏固原" style="width: 100%; height: 100%; object-fit: cover;">
+                            <img src="s_img/discover/shouke_01.webp" alt="厦大支教队走入宁夏固原" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="news-info">
                             <h4>厦大支教队走入宁夏固原：蝶豆花酸碱变色科普课程实践</h4>
@@ -625,7 +911,7 @@
                     
                     <a href="https://mp.weixin.qq.com/s/27MR5Y25m0xpgjOCXEba5A" class="news-item" data-category="活动" target="_blank">
                         <div class="news-image">
-                            <img src="https://mmbiz.qpic.cn/sz_mmbiz_jpg/t3IREU1iakOO7jhR8XNStNbdwP6WwC56DmibFzre8AvxrwhUT7sNMAYMc1kh9CeULUL5z8wpshm8Axq8AEH8ACpA/640?wx_fmt=jpeg&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=15" alt="童探AI奇境" style="width: 100%; height: 100%; object-fit: cover;">
+                            <img src="s_img/discover/huodong_01.webp" alt="童探AI奇境" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="news-info">
                             <h4>"童" 探 AI 奇境丨智启未来之旅，播种科技梦想</h4>
@@ -635,7 +921,7 @@
                     
                     <a href="https://mp.weixin.qq.com/s/vkWbopwWyoj4WCHtNjn2dA" class="news-item" data-category="备课" target="_blank">
                         <div class="news-image">
-                            <img src="https://mmbiz.qpic.cn/sz_mmbiz_png/t3IREU1iakOMoDVl0BkI5x7kbISnNrSJsVawibEvuCVSVOYIr5Aj5hibh06P4dEBECj9EfpEWeTuEcYLCiaO2PFpkQ/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=6" alt="璞玉试锋芒" style="width: 100%; height: 100%; object-fit: cover;">
+                            <img src="s_img/discover/beike_01.webp" alt="璞玉试锋芒" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="news-info">
                             <h4>璞玉试锋芒 | 课堂蕴芬芳</h4>
@@ -645,7 +931,7 @@
                     
                     <a href="https://mp.weixin.qq.com/s/jTuvtFLXGoJ8c2d8RKcVIg" class="news-item" data-category="夜训" target="_blank">
                         <div class="news-image">
-                            <img src="https://mmbiz.qpic.cn/sz_mmbiz_jpg/t3IREU1iakOP9eZlk3ZnbVjy9awmKHODRoSS0csEEc4nU6hetpHT1YYCVGcwjbdiaic1LJuPUGKHlQplg2cqMC18w/640?wx_fmt=jpeg&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=6" alt="武德试炼" style="width: 100%; height: 100%; object-fit: cover;">
+                            <img src="s_img/discover/yexun_01.webp" alt="武德试炼" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="news-info">
                             <h4>武德试炼·侠义争锋</h4>
@@ -655,7 +941,7 @@
                     
                     <a href="https://mp.weixin.qq.com/s/qaIHizM36uKv1uux3OubnQ" class="news-item" data-category="团建" target="_blank">
                         <div class="news-image">
-                            <img src="https://mmbiz.qpic.cn/sz_mmbiz_png/t3IREU1iakOOPibx0ibqDYMQP4pajHwznbRj8rBjupvd7jKFkaibhMV7mIICfwNKUnqbgzt7hjc8icrmAuxK3uOmdEQ/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=6" alt="奔赴山海" style="width: 100%; height: 100%; object-fit: cover;">
+                            <img src="s_img/discover/tuanjian_01.webp" alt="奔赴山海" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="news-info">
                             <h4>奔赴山海 | 遇见温暖</h4>
@@ -716,7 +1002,6 @@
             </div>
         </div>
     </footer>
-    
     <script>
         // 栏目筛选
         document.querySelectorAll('.sidebar-links a').forEach(link => {
